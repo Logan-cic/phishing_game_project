@@ -1,5 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:phishing_game_project/Registration.dart';
+
+import 'Home.dart';
+import 'model/Dados_do_usuario.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -9,6 +14,69 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  TextEditingController _controllerEmail = TextEditingController();
+  TextEditingController _controllerSenha = TextEditingController();
+  String _errorMessage = " ";
+
+  _autenticacaoDeLogin() {
+    //retrieve the fields
+    String email = _controllerEmail.text;
+    String password = _controllerSenha.text;
+
+    if (email.isNotEmpty && email.contains("@")) {
+      if (password.isNotEmpty) {
+        setState(() {
+          _errorMessage = " ";
+        });
+
+        Userdata user = Userdata();
+        user.email = email;
+        user.senha = password;
+        _loginUser(user);
+      } else {
+        setState(() {
+          _errorMessage = "Enter a valid password";
+        });
+      }
+    } else {
+      setState(() {
+        _errorMessage = "Enter a valid email";
+      });
+    }
+  }
+
+  _loginUser(Userdata user) async {
+    await Firebase.initializeApp();
+    FirebaseAuth _auth = FirebaseAuth.instance;
+    _auth
+        .signInWithEmailAndPassword(email: user.email, password: user.senha)
+        .then((firebaseUser) {
+      Navigator.push(
+          context, MaterialPageRoute(builder: ((context) => const Home())));
+    }).catchError((error) {
+      setState(() {
+        _errorMessage = 'Erro ao auetenticar o usuario, verifique seu e-mail e senha.';
+      });
+    });
+  }
+
+  Future _verificaSeUsuarioEstaLogado() async {
+    Firebase.initializeApp();
+    FirebaseAuth auth = FirebaseAuth.instance;
+    //auth.signOut();
+    final User? loggedInUser = await auth.currentUser;
+    if (loggedInUser != null) {
+      Navigator.push(
+          context, MaterialPageRoute(builder: ((context) => const Home())));
+    }
+  }
+
+  @override
+  void initState() {
+    _verificaSeUsuarioEstaLogado();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,6 +97,7 @@ class _LoginState extends State<Login> {
               Padding(
                 padding: const EdgeInsets.only(bottom: 8),
                 child: TextField(
+                  controller: _controllerEmail,
                   autofocus: true,
                   keyboardType: TextInputType.emailAddress,
                   style: const TextStyle(fontSize: 20),
@@ -42,12 +111,13 @@ class _LoginState extends State<Login> {
                 ),
               ),
               TextField(
+                controller: _controllerSenha,
                 obscureText: true,
                 keyboardType: TextInputType.text,
                 style: TextStyle(fontSize: 20),
                 decoration: InputDecoration(
                     contentPadding: EdgeInsets.fromLTRB(32, 16, 32, 16),
-                    hintText: "Password",
+                    hintText: "senha",
                     filled: true,
                     fillColor: Colors.white,
                     border: OutlineInputBorder(
@@ -70,7 +140,7 @@ class _LoginState extends State<Login> {
               Center(
                 child: GestureDetector(
                   child: Text(
-                    "Don't have an account? register here.",
+                    "não tem uma conta? cadastre-se aqui.",
                     style: TextStyle(color: Colors.black),
                   ),
                   onTap: (() {
@@ -80,7 +150,16 @@ class _LoginState extends State<Login> {
                             builder: ((context) => const Resgistration())));
                   }),
                 ),
-              )
+              ),
+              Padding(
+                  padding: const EdgeInsets.only(top: 16),
+                  child: Center(
+                    child: Text(
+                      _errorMessage,
+                      style: const TextStyle(color: Colors.red, fontSize: 20),
+                    ),
+                  ),
+                )
             ],
           )),
         ),
