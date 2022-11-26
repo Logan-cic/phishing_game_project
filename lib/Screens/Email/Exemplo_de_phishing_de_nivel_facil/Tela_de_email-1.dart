@@ -1,17 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:phishing_game_project/model/Dados_do_usuario.dart';
 import '../../../Widgets/Email_Header/Sender_Card.dart';
 import '../../../Widgets/Email_Header/shipping_information.dart';
-
+import '../../Resposta/Formulario_de_Resposta.dart';
 
 class Screen16 extends StatelessWidget {
   const Screen16({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    Userdata user;
     return Container(
       height: 460,
       child: MaterialApp(
         home: Scaffold(
+          floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+          floatingActionButton: FloatingActionButton(
+            child: const Icon(Icons.add),
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: ((context) => FormularioDeResposta())));
+            },
+          ),
           backgroundColor: Colors.black,
           appBar: AppBar(
             backgroundColor: Colors.black,
@@ -87,7 +99,6 @@ class Screen16 extends StatelessWidget {
                         children: [
                           Text("3. Finally your account will be confirmed. ",
                               style:
-                              
                                   TextStyle(color: Colors.white, fontSize: 16)),
                         ],
                       ),
@@ -132,7 +143,7 @@ class Screen16 extends StatelessWidget {
                       ),
                     ],
                   ),
-                ),              
+                ),
               ],
             ),
           ),
