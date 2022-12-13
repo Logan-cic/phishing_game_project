@@ -44,40 +44,39 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyCH567P8P0zIamXONGznv0um3xZAMqLO9I',
-    appId: '1:172262660003:web:77d6a361762686184fac16',
-    messagingSenderId: '172262660003',
-    projectId: 'projeto-game-phishing-190d4',
-    authDomain: 'projeto-game-phishing-190d4.firebaseapp.com',
-    storageBucket: 'projeto-game-phishing-190d4.appspot.com',
-    measurementId: 'G-CQNFNH2Y6M',
+    apiKey: 'AIzaSyDrc2o8h4BJN3YgsKSYCR7wka1BWmcmc2c',
+    appId: '1:444180175794:web:8b09e9e1c21c27bc9de2ab',
+    messagingSenderId: '444180175794',
+    projectId: 'phishing-game-project',
+    authDomain: 'phishing-game-project.firebaseapp.com',
+    storageBucket: 'phishing-game-project.appspot.com',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCZdgox114JsuPX8Oe6KFTtEBGrIaRPL0c',
-    appId: '1:172262660003:android:e08ac8a40f8894204fac16',
-    messagingSenderId: '172262660003',
-    projectId: 'projeto-game-phishing-190d4',
-    storageBucket: 'projeto-game-phishing-190d4.appspot.com',
+    apiKey: 'AIzaSyAhLSY25u_hbxdGM-orgejWqRK_tXaJ7Lo',
+    appId: '1:444180175794:android:3c007a7778fa67a39de2ab',
+    messagingSenderId: '444180175794',
+    projectId: 'phishing-game-project',
+    storageBucket: 'phishing-game-project.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyAt7CADPYv_ZkL0S0vHX-PWqd8EV21FXTY',
-    appId: '1:172262660003:ios:cd02c3cd723a69a74fac16',
-    messagingSenderId: '172262660003',
-    projectId: 'projeto-game-phishing-190d4',
-    storageBucket: 'projeto-game-phishing-190d4.appspot.com',
-    iosClientId: '172262660003-d5jsrjgub004j6hcbk7rjqsle1p6ao3i.apps.googleusercontent.com',
+    apiKey: 'AIzaSyBIDchrthPcwC5x3nNSXaF_Fpj91UeJeVc',
+    appId: '1:444180175794:ios:627400d785f098669de2ab',
+    messagingSenderId: '444180175794',
+    projectId: 'phishing-game-project',
+    storageBucket: 'phishing-game-project.appspot.com',
+    iosClientId: '444180175794-fndpagafk2k7lius1q4hr3rfvo7bija0.apps.googleusercontent.com',
     iosBundleId: 'com.example.phishingGameProject',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyAt7CADPYv_ZkL0S0vHX-PWqd8EV21FXTY',
-    appId: '1:172262660003:ios:cd02c3cd723a69a74fac16',
-    messagingSenderId: '172262660003',
-    projectId: 'projeto-game-phishing-190d4',
-    storageBucket: 'projeto-game-phishing-190d4.appspot.com',
-    iosClientId: '172262660003-d5jsrjgub004j6hcbk7rjqsle1p6ao3i.apps.googleusercontent.com',
+    apiKey: 'AIzaSyBIDchrthPcwC5x3nNSXaF_Fpj91UeJeVc',
+    appId: '1:444180175794:ios:627400d785f098669de2ab',
+    messagingSenderId: '444180175794',
+    projectId: 'phishing-game-project',
+    storageBucket: 'phishing-game-project.appspot.com',
+    iosClientId: '444180175794-fndpagafk2k7lius1q4hr3rfvo7bija0.apps.googleusercontent.com',
     iosBundleId: 'com.example.phishingGameProject',
   );
 }

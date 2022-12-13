@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -20,7 +21,7 @@ class _ResgistrationState extends State<Resgistration> {
   TextEditingController _controllerIdade = TextEditingController();
   String _errorMessage = " ";
 
-  _authentication() {
+  _authentication() async {
     //retrieve the fields
     String nome = _controllerNome.text;
     String email = _controllerEmail.text;
@@ -40,7 +41,11 @@ class _ResgistrationState extends State<Resgistration> {
             user.idade = idade;
             user.email = email;
             user.senha = senha;
-            _userRegistrationInFirebase(user);
+            //_userRegistrationInFirebase(user);
+            _salvandoDadosDoCadastro(user);
+
+            //salvando dados do usuario
+
           } else {
             setState(() {
               _errorMessage = "Insira uma senha valida";
@@ -63,13 +68,21 @@ class _ResgistrationState extends State<Resgistration> {
     }
   }
 
-  _userRegistrationInFirebase(Userdata user) async{
+  _salvandoDadosDoCadastro(Userdata user) async {
+    await Firebase.initializeApp();
+    FirebaseFirestore.instance
+      .collection("Dados de Cadastro")
+      .doc("001")
+      .set({"nome": user.name, "idade": user.idade, "e-mail": user.email});
+  }
+
+  _userRegistrationInFirebase(Userdata user) async {
     await Firebase.initializeApp();
     FirebaseAuth _auth = FirebaseAuth.instance;
     _auth
         .createUserWithEmailAndPassword(email: user.email, password: user.senha)
         .then(((firebaseUser) {
-      Navigator.push(
+      Navigator.pushReplacement(
           context, MaterialPageRoute(builder: ((context) => const Home())));
     })).catchError((error) {
       //print("error app:" + error.toString());
@@ -96,8 +109,10 @@ class _ResgistrationState extends State<Resgistration> {
               children: [
                 Padding(
                   padding: const EdgeInsets.only(bottom: 32),
-                  child:
-                      Image.asset("images/user.png", width: 200, height: 150),
+                  child: Image.asset(
+                    "images/user.png",
+                    scale: 1,
+                  ),
                 ),
                 Padding(
                   padding: EdgeInsets.only(bottom: 8),
@@ -168,7 +183,9 @@ class _ResgistrationState extends State<Resgistration> {
                               borderRadius: BorderRadius.circular(32))),
                       child: Text(
                         "Registration",
-                        style: TextStyle(color: Color.fromARGB(255, 51, 5, 115), fontSize: 20),
+                        style: TextStyle(
+                            color: Color.fromARGB(255, 51, 5, 115),
+                            fontSize: 20),
                       ),
                       onPressed: (() {
                         _authentication();

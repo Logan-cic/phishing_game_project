@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 class FormularioDeResposta extends StatefulWidget {
@@ -8,52 +10,80 @@ class FormularioDeResposta extends StatefulWidget {
 }
 
 class _FormularioDeRespostaState extends State<FormularioDeResposta> {
-  final GlobalKey<FormState> _formKey = GlobalKey();
-  String email = "";
-  String password = "";
+  String simOuNao = 'padrao', motivo = 'padrao';
 
-  void _submit() {
-    // you can write your
-    // own code according to
-    // whatever you want to submit;
+  getSimOuNao(resposta1) {
+    this.simOuNao = resposta1;
   }
+
+  getMotivo(resposta2) {
+    this.motivo = resposta2;
+  }
+
+  createData() async {
+    await Firebase.initializeApp();
+    DocumentReference documentReference =
+        FirebaseFirestore.instance.collection("Respostas").doc("001");
+
+    //create Map
+    Map<String, String> respostas = {"ePhishing": simOuNao, "motivo": motivo};
+    documentReference.set(respostas).whenComplete(
+      () {
+        print("teste criado");
+      },
+    );
+  }
+
+  // _submit() async {
+  //   //String resposta1;
+
+  //   // await Firebase.initializeApp();
+  //   // FirebaseFirestore db = FirebaseFirestore.instance;
+  //   // db
+  //   //     .collection("Respostas")
+  //   //     .add({"sim ou não": resposta1, "Motivo": resposta2});
+  // }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Responda"),
+        title: const Text("Responda"),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            Form(
-                child: Column(
+            Column(
               children: [
-                TextFormField(
-                  decoration: InputDecoration(labelText: 'O exemplo mostrado é Phishing? (sim ou não)'),
-                  keyboardType: TextInputType.emailAddress,
-                  onFieldSubmitted: (value) {
-                    setState(() {
-                      email = value;
-                    });
-                  },
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: TextFormField(
+                    keyboardType: TextInputType.text,
+                    decoration: InputDecoration(
+                        labelText:
+                            'O exemplo mostrado é Phishing? (sim ou não)'),
+                    onChanged: (String resposta1) {
+                      getSimOuNao(resposta1);
+                    },
+                  ),
                 ),
-              
-                TextFormField(
-                  decoration: InputDecoration(labelText: 'Na sua opnião porque o exemplo é um phishing.'),
-                  keyboardType: TextInputType.emailAddress,
-                  onFieldSubmitted: (value) {
-                    setState(() {
-                      email = value;
-                    });
-                  },
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextFormField(
+                    keyboardType: TextInputType.text,
+                    decoration: InputDecoration(
+                        labelText:
+                            'Na sua opnião porque o exemplo é um phishing?'),
+                    onChanged: (String resposta2) {
+                      getMotivo(resposta2);
+                    },
+                  ),
                 ),
-
-                TextButton(onPressed: _submit,
-                    child: Text("Responder"),)
+                ElevatedButton(
+                    onPressed: (() {}), child: const Text("Responder"))
               ],
-            ))
+            )
           ],
         ),
       ),

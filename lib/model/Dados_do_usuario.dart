@@ -1,10 +1,9 @@
 class Userdata {
   String _name = '';
   String _email = '';
-  String _idade = '';
+  dynamic _idade;
   String _senha = '';
-
-  Userdata();
+ 
 
   String get senha => _senha;
 
@@ -12,12 +11,11 @@ class Userdata {
     _senha = value;
   }
 
-  String get idade => _idade;
+  dynamic get idade => _idade;
 
-  set idade(String value) {
+  set idade(dynamic value) {
     _senha = value;
   }
-
 
   String get email => _email;
 

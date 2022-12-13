@@ -1,9 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:phishing_game_project/Registration.dart';
+import 'package:phishing_game_project/Screens/Email/Exemplo_de_phishing_de_nivel_facil/Tela_de_email-1.dart';
 
 import 'Home.dart';
+import 'Registration.dart';
 import 'model/Dados_do_usuario.dart';
 
 class Login extends StatefulWidget {
@@ -55,7 +56,8 @@ class _LoginState extends State<Login> {
           context, MaterialPageRoute(builder: ((context) => const Home())));
     }).catchError((error) {
       setState(() {
-        _errorMessage = 'Erro ao auetenticar o usuario, verifique seu e-mail e senha.';
+        _errorMessage =
+            'Erro ao auetenticar o usuario, verifique seu e-mail e senha.';
       });
     });
   }
@@ -92,7 +94,7 @@ class _LoginState extends State<Login> {
             children: [
               Padding(
                 padding: const EdgeInsets.only(bottom: 32),
-                child: Image.asset("Images/logo.png", width: 200, height: 150),
+                child: Image.asset("Images/logo.png", scale: 1),
               ),
               Padding(
                 padding: const EdgeInsets.only(bottom: 8),
@@ -135,7 +137,9 @@ class _LoginState extends State<Login> {
                       "Entrar",
                       style: TextStyle(color: Colors.black, fontSize: 20),
                     ),
-                    onPressed: (() {}),
+                    onPressed: (() {
+                      Screen16();
+                    }),
                   )),
               Center(
                 child: GestureDetector(
@@ -152,14 +156,14 @@ class _LoginState extends State<Login> {
                 ),
               ),
               Padding(
-                  padding: const EdgeInsets.only(top: 16),
-                  child: Center(
-                    child: Text(
-                      _errorMessage,
-                      style: const TextStyle(color: Colors.red, fontSize: 20),
-                    ),
+                padding: const EdgeInsets.only(top: 16),
+                child: Center(
+                  child: Text(
+                    _errorMessage,
+                    style: const TextStyle(color: Colors.red, fontSize: 20),
                   ),
-                )
+                ),
+              )
             ],
           )),
         ),
