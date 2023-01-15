@@ -2,6 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
+import '../../model/Dados_do_usuario.dart';
+
 class FormularioDeResposta extends StatefulWidget {
   const FormularioDeResposta({super.key});
 
@@ -10,39 +12,27 @@ class FormularioDeResposta extends StatefulWidget {
 }
 
 class _FormularioDeRespostaState extends State<FormularioDeResposta> {
-  String simOuNao = 'padrao', motivo = 'padrao';
+  //Controllers
+  TextEditingController _controllerSimOuNao = TextEditingController();
+  TextEditingController _controllerMotivo = TextEditingController();
+  TextEditingController _controllerNome = TextEditingController();
 
-  getSimOuNao(resposta1) {
-    this.simOuNao = resposta1;
-  }
+  _salvandoRespostasDoUsuario() async {
+    String simOuNao = _controllerSimOuNao.text;
+    String motivo = _controllerMotivo.text;
+    String nome = _controllerNome.text;
+    Userdata user = Userdata();
+    user.simOuNao = simOuNao;
+    user.motivo = motivo;
+    user.name = nome;
 
-  getMotivo(resposta2) {
-    this.motivo = resposta2;
-  }
-
-  createData() async {
     await Firebase.initializeApp();
-    DocumentReference documentReference =
-        FirebaseFirestore.instance.collection("Respostas").doc("001");
-
-    //create Map
-    Map<String, String> respostas = {"ePhishing": simOuNao, "motivo": motivo};
-    documentReference.set(respostas).whenComplete(
-      () {
-        print("teste criado");
-      },
-    );
+    FirebaseFirestore.instance.collection("Respostas").doc("001").set({
+      "Nome": user.name,
+      "sim ou não": user.simOuNao,
+      "motivo": user.motivo
+    });
   }
-
-  // _submit() async {
-  //   //String resposta1;
-
-  //   // await Firebase.initializeApp();
-  //   // FirebaseFirestore db = FirebaseFirestore.instance;
-  //   // db
-  //   //     .collection("Respostas")
-  //   //     .add({"sim ou não": resposta1, "Motivo": resposta2});
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -57,31 +47,55 @@ class _FormularioDeRespostaState extends State<FormularioDeResposta> {
             Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: TextFormField(
+                  padding: EdgeInsets.only(bottom: 8),
+                  child: TextField(
+                    controller: _controllerSimOuNao,
+                    autofocus: true,
                     keyboardType: TextInputType.text,
+                    style: TextStyle(fontSize: 20),
                     decoration: InputDecoration(
-                        labelText:
-                            'O exemplo mostrado é Phishing? (sim ou não)'),
-                    onChanged: (String resposta1) {
-                      getSimOuNao(resposta1);
-                    },
+                        contentPadding: EdgeInsets.fromLTRB(32, 16, 32, 16),
+                        hintText: "O exemplo mostrado é Phishing? (sim ou não)",
+                        filled: true,
+                        fillColor: Colors.white,
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(32))),
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: TextFormField(
+                  padding: EdgeInsets.only(bottom: 8),
+                  child: TextField(
+                    controller: _controllerMotivo,
+                    autofocus: true,
                     keyboardType: TextInputType.text,
+                    style: TextStyle(fontSize: 20),
                     decoration: InputDecoration(
-                        labelText:
-                            'Na sua opnião porque o exemplo é um phishing?'),
-                    onChanged: (String resposta2) {
-                      getMotivo(resposta2);
-                    },
+                        contentPadding: EdgeInsets.fromLTRB(32, 16, 32, 16),
+                        hintText: "Motivo",
+                        filled: true,
+                        fillColor: Colors.white,
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(32))),
                   ),
                 ),
-                ElevatedButton(
-                    onPressed: (() {}), child: const Text("Responder"))
+                Padding(
+                    padding: EdgeInsets.only(top: 16, bottom: 10),
+                    child: TextButton(
+                      style: TextButton.styleFrom(
+                          foregroundColor: Colors.blue,
+                          padding: EdgeInsets.fromLTRB(32, 16, 32, 16),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(32))),
+                      child: Text(
+                        "Responder",
+                        style: TextStyle(
+                            color: Color.fromARGB(255, 51, 5, 115),
+                            fontSize: 20),
+                      ),
+                      onPressed: (() {
+                        _salvandoRespostasDoUsuario();
+                      }),
+                    )),
               ],
             )
           ],
@@ -90,3 +104,7 @@ class _FormularioDeRespostaState extends State<FormularioDeResposta> {
     );
   }
 }
+
+//se é phishing
+//como consguiu indetificar que é phishing
+//pq não é phishing

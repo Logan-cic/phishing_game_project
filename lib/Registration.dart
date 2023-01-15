@@ -26,7 +26,7 @@ class _ResgistrationState extends State<Resgistration> {
     String nome = _controllerNome.text;
     String email = _controllerEmail.text;
     String senha = _controllerSenha.text;
-    String idade = _controllerIdade.text;
+    dynamic idade = _controllerIdade.value;
 
     if (nome.isNotEmpty && nome.length > 2) {
       if (email.isNotEmpty && email.contains("@")) {
@@ -41,10 +41,9 @@ class _ResgistrationState extends State<Resgistration> {
             user.idade = idade;
             user.email = email;
             user.senha = senha;
-            //_userRegistrationInFirebase(user);
+            
+            _userRegistrationInFirebase(user);
             _salvandoDadosDoCadastro(user);
-
-            //salvando dados do usuario
 
           } else {
             setState(() {
@@ -173,7 +172,7 @@ class _ResgistrationState extends State<Resgistration> {
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(32))),
                 ),
-                Padding(
+                 Padding(
                     padding: EdgeInsets.only(top: 16, bottom: 10),
                     child: TextButton(
                       style: TextButton.styleFrom(

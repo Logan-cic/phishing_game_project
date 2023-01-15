@@ -37,15 +37,19 @@ class Screen16 extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                //EmailTitle(label: "Últimas horas do Saldão do Cliente!"),
+                Text("Últimas horas do Saldão do Cliente!",
+                    textDirection: TextDirection.ltr,
+                    style: TextStyle(
+                      fontSize: 26,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    )),
                 const SenderCard(label: "Amazon Inc."),
                 const ShippingInformation(
                     sender: "Amazon Inc.",
                     emailSender: "infosecurity@amazon.com.br",
                     emailRecipient: "logancardoso4@gamil.com"),
-
                 SizedBox(height: 14),
-
                 Container(
                   height: 602,
                   width: 390,
