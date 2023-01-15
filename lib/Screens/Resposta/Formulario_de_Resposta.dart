@@ -52,7 +52,7 @@ class _FormularioDeRespostaState extends State<FormularioDeResposta> {
                     controller: _controllerSimOuNao,
                     autofocus: true,
                     keyboardType: TextInputType.text,
-                    style: TextStyle(fontSize: 20),
+                    style: TextStyle(fontSize: 17),
                     decoration: InputDecoration(
                         contentPadding: EdgeInsets.fromLTRB(32, 16, 32, 16),
                         hintText: "O exemplo mostrado é Phishing? (sim ou não)",
@@ -68,10 +68,26 @@ class _FormularioDeRespostaState extends State<FormularioDeResposta> {
                     controller: _controllerMotivo,
                     autofocus: true,
                     keyboardType: TextInputType.text,
-                    style: TextStyle(fontSize: 20),
+                    style: TextStyle(fontSize: 17),
                     decoration: InputDecoration(
                         contentPadding: EdgeInsets.fromLTRB(32, 16, 32, 16),
-                        hintText: "Motivo",
+                        hintText: "Como consguiu indetificar que o exemplo mostrado é phishing?",
+                        filled: true,
+                        fillColor: Colors.white,
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(32))),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(bottom: 8),
+                  child: TextField(
+                    controller: _controllerMotivo,
+                    autofocus: true,
+                    keyboardType: TextInputType.text,
+                    style: TextStyle(fontSize: 17),
+                    decoration: InputDecoration(
+                        contentPadding: EdgeInsets.fromLTRB(32, 16, 32, 16),
+                        hintText: "Caso não seja um phishing, nós diga o porque.",
                         filled: true,
                         fillColor: Colors.white,
                         border: OutlineInputBorder(
@@ -95,7 +111,8 @@ class _FormularioDeRespostaState extends State<FormularioDeResposta> {
                       onPressed: (() {
                         _salvandoRespostasDoUsuario();
                       }),
-                    )),
+                    )
+                  ),
               ],
             )
           ],

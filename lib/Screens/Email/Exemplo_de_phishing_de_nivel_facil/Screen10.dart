@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../Widgets/Email_Header/Sender_Card.dart';
 import '../../../Widgets/Email_Header/shipping_information.dart';
+import '../../Resposta/Formulario_de_Resposta.dart';
 
 class Screen10 extends StatelessWidget {
   const Screen10({Key? key}) : super(key: key);
@@ -11,6 +12,16 @@ class Screen10 extends StatelessWidget {
       height: 460,
       child: MaterialApp(
         home: Scaffold(
+          floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+          floatingActionButton: FloatingActionButton(
+            child: const Icon(Icons.add),
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: ((context) => FormularioDeResposta())));
+            },
+          ),
           backgroundColor: Colors.black,
           appBar: AppBar(
             backgroundColor: Colors.black,
