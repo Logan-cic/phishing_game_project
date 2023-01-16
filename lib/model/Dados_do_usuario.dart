@@ -1,9 +1,19 @@
-import 'dart:math';
+// import 'dart:math';
 
-import 'package:phishing_game_project/Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen2.dart';
-import 'package:phishing_game_project/Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen3.dart';
-import 'package:phishing_game_project/Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen4.dart';
-import 'package:phishing_game_project/Screens/Email/Exemplo_de_phishing_de_nivel_facil/screen1.dart';
+// /// Importing all the screens that are in the folder.
+// import 'package:phishing_game_project/Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen2.dart';
+// import 'package:phishing_game_project/Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen3.dart';
+// import 'package:phishing_game_project/Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen4.dart';
+// import 'package:phishing_game_project/Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen5.dart';
+// import 'package:phishing_game_project/Screens/Email/Exemplo_de_phishing_de_nivel_facil/screen1.dart';
+
+// import '../Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen10.dart';
+// import '../Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen11.dart';
+// import '../Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen12.dart';
+// import '../Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen6.dart';
+// import '../Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen7.dart';
+// import '../Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen8.dart';
+// import '../Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen9.dart';
 
 class Userdata {
   String _name = '';
@@ -19,8 +29,11 @@ class Userdata {
 
   Userdata();
 
-  final _random = new Random();
-  var telas = [Screen1(), Screen2(), Screen3(), Screen4()];
+  // final _random = new Random();
+  // var telas = [
+    
+  // ];
+
 
   String get motivo => _motivo;
 

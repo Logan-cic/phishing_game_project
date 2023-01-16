@@ -17,6 +17,12 @@ class _FormularioDeRespostaState extends State<FormularioDeResposta> {
   TextEditingController _controllerMotivo = TextEditingController();
   TextEditingController _controllerNome = TextEditingController();
 
+  _capturaRespota() {
+    String simOuNao = _controllerSimOuNao.text;
+    String motivo = _controllerMotivo.text;
+    String nome = _controllerNome.text;
+  }
+
   _salvandoRespostasDoUsuario() async {
     String simOuNao = _controllerSimOuNao.text;
     String motivo = _controllerMotivo.text;
@@ -26,10 +32,12 @@ class _FormularioDeRespostaState extends State<FormularioDeResposta> {
     user.motivo = motivo;
     user.name = nome;
 
+    List<dynamic> resposta = [1,2];
+
     await Firebase.initializeApp();
     FirebaseFirestore.instance.collection("Respostas").doc("001").set({
-      "Nome": user.name,
-      "sim ou não": user.simOuNao,
+      "Nome": resposta[0],
+      "sim ou não": resposta[1],
       "motivo": user.motivo
     });
   }
@@ -71,7 +79,8 @@ class _FormularioDeRespostaState extends State<FormularioDeResposta> {
                     style: TextStyle(fontSize: 17),
                     decoration: InputDecoration(
                         contentPadding: EdgeInsets.fromLTRB(32, 16, 32, 16),
-                        hintText: "Como consguiu indetificar que o exemplo mostrado é phishing?",
+                        hintText:
+                            "Como consguiu indetificar que o exemplo mostrado é phishing?",
                         filled: true,
                         fillColor: Colors.white,
                         border: OutlineInputBorder(
@@ -87,7 +96,8 @@ class _FormularioDeRespostaState extends State<FormularioDeResposta> {
                     style: TextStyle(fontSize: 17),
                     decoration: InputDecoration(
                         contentPadding: EdgeInsets.fromLTRB(32, 16, 32, 16),
-                        hintText: "Caso não seja um phishing, nós diga o porque.",
+                        hintText:
+                            "Caso não seja um phishing, nós diga o porque.",
                         filled: true,
                         fillColor: Colors.white,
                         border: OutlineInputBorder(
@@ -111,8 +121,7 @@ class _FormularioDeRespostaState extends State<FormularioDeResposta> {
                       onPressed: (() {
                         _salvandoRespostasDoUsuario();
                       }),
-                    )
-                  ),
+                    )),
               ],
             )
           ],
