@@ -6,14 +6,14 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'Home.dart';
 import 'model/Dados_do_usuario.dart';
 
-class Resgistration extends StatefulWidget {
-  const Resgistration({super.key});
+class Cadastro extends StatefulWidget {
+  const Cadastro({super.key});
 
   @override
-  State<Resgistration> createState() => _ResgistrationState();
+  State<Cadastro> createState() => _CadastroState();
 }
 
-class _ResgistrationState extends State<Resgistration> {
+class _CadastroState extends State<Cadastro> {
   //Controllers
   TextEditingController _controllerNome = TextEditingController();
   TextEditingController _controllerEmail = TextEditingController();
