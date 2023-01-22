@@ -41,10 +41,9 @@ class _CadastroState extends State<Cadastro> {
             user.idade = idade;
             user.email = email;
             user.senha = senha;
-            
+
             _userRegistrationInFirebase(user);
             _salvandoDadosDoCadastro(user);
-
           } else {
             setState(() {
               _errorMessage = "Insira uma senha valida";
@@ -70,9 +69,9 @@ class _CadastroState extends State<Cadastro> {
   _salvandoDadosDoCadastro(Userdata user) async {
     await Firebase.initializeApp();
     FirebaseFirestore.instance
-      .collection("Dados de Cadastro")
-      .doc("001")
-      .set({"nome": user.name, "idade": user.idade, "e-mail": user.email});
+        .collection("Dados de Cadastro")
+        .doc("001")
+        .set({"nome": user.name, "idade": user.idade, "e-mail": user.email});
   }
 
   _userRegistrationInFirebase(Userdata user) async {
@@ -96,22 +95,30 @@ class _CadastroState extends State<Cadastro> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: const Text("Cadastro"),
-          backgroundColor: Color.fromARGB(255, 51, 5, 115)),
+        title: Row(
+          children: [
+            const Text("Cadastro"),
+            SizedBox(
+              width: 10,
+            ),
+            Icon(
+              Icons.person_add_alt,
+            ),
+          ],
+        ),
+        backgroundColor: Colors.red,
+      ),
       body: Container(
-        decoration: BoxDecoration(color: Colors.black),
+        decoration: BoxDecoration(color: Colors.white),
         padding: EdgeInsets.all(16),
         child: Center(
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 32),
-                  child: Image.asset(
-                    "images/user.png",
-                    scale: 1,
-                  ),
+                Icon(
+                  Icons.supervisor_account,
+                  size: 180,
                 ),
                 Padding(
                   padding: EdgeInsets.only(bottom: 8),
@@ -172,19 +179,18 @@ class _CadastroState extends State<Cadastro> {
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(32))),
                 ),
-                 Padding(
-                    padding: EdgeInsets.only(top: 16, bottom: 10),
+                Padding(
+                    padding: const EdgeInsets.only(top: 16, bottom: 10),
                     child: TextButton(
                       style: TextButton.styleFrom(
-                          foregroundColor: Color.fromARGB(255, 51, 5, 115),
-                          padding: EdgeInsets.fromLTRB(32, 16, 32, 16),
+                          backgroundColor: Colors.red,
+                          foregroundColor: Colors.lightBlueAccent,
+                          padding: const EdgeInsets.fromLTRB(32, 16, 32, 16),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(32))),
                       child: Text(
-                        "Registration",
-                        style: TextStyle(
-                            color: Color.fromARGB(255, 51, 5, 115),
-                            fontSize: 20),
+                        "Cadastrar",
+                        style: TextStyle(color: Colors.black, fontSize: 20),
                       ),
                       onPressed: (() {
                         _authentication();
