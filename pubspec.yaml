@@ -79,6 +79,7 @@ flutter:
     - images/wappFundo.png
     - images/icone_zap.jpg
     - images/illust.png
+    - images/simbolo_lab.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

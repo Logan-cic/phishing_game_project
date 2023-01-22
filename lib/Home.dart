@@ -19,12 +19,12 @@ class _HomeState extends State<Home> {
   int randomNumber = 0;
   final List<Widget> _widgets = [Home(), Screen16(), Screen2()];
 
-  void _generateRandomNumber() {
-    var random = Random();
-    randomNumber = _widgets[random.nextInt(_widgets.length)] as int;
-    // now the range works like 0 to n-1
-    setState(() => randomNumber = random.nextInt(_widgets.length));
-  }
+  // void _generateRandomNumber() {
+  //   var random = Random();
+  //   randomNumber = _widgets[random.nextInt(_widgets.length)] as int;
+  //   // now the range works like 0 to n-1
+  //   setState(() => randomNumber = random.nextInt(_widgets.length));
+  // }
 
   var listToShow = [];
   @override
@@ -56,7 +56,7 @@ class _HomeState extends State<Home> {
             )
           ],
         ),
-      ),
+      ), 
     );
   }
 

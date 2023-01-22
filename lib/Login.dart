@@ -9,7 +9,6 @@ import 'model/Dados_do_usuario.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
-
   @override
   State<Login> createState() => _LoginState();
 }
@@ -94,7 +93,24 @@ class _LoginState extends State<Login> {
             children: [
               Padding(
                 padding: const EdgeInsets.only(bottom: 32),
-                child: Image.asset("Images/logo.png", scale: 1),
+                child: Center(
+                  child: Column(
+                    children: [
+                      Image.asset("images/simbolo_lab.png"),
+                      Text(
+                        "Game Phishing ",
+                        style: TextStyle(
+                            fontSize: 40, fontWeight: FontWeight.bold),
+                      ),
+                      SizedBox(height: 10),
+                      Text(
+                        "By: LabSC - UFPA ",
+                        style: TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.w600),
+                      ),
+                    ],
+                  ),
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.only(bottom: 8),
@@ -129,6 +145,7 @@ class _LoginState extends State<Login> {
                   padding: const EdgeInsets.only(top: 16, bottom: 10),
                   child: TextButton(
                     style: TextButton.styleFrom(
+                        backgroundColor: Colors.red,
                         foregroundColor: Colors.lightBlueAccent,
                         padding: const EdgeInsets.fromLTRB(32, 16, 32, 16),
                         shape: RoundedRectangleBorder(

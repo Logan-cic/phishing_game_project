@@ -32,14 +32,35 @@ class _FormularioDeRespostaState extends State<FormularioDeResposta> {
     user.motivo = motivo;
     user.name = nome;
 
-    List<dynamic> resposta = [1,2];
+    List<dynamic> resposta = [{"nome" : "asda" }, 2];
+
+    List<Map<String, dynamic>> locations = [
+      {
+        'Nome': nome,
+        'city': 'Tokyo',
+        'Latitude': 35.6762,
+        'Longitude': 139.6503,
+        'utcOffset': 9
+      }
+      ,
+
+      
+
+    ];
 
     await Firebase.initializeApp();
-    FirebaseFirestore.instance.collection("Respostas").doc("001").set({
-      "Nome": resposta[0],
-      "sim ou não": resposta[1],
-      "motivo": user.motivo
+    FirebaseFirestore.instance.collection("Respostas").add({
+      // "Nome": resposta[0],
+      // "sim ou não": resposta[1],
+      // "motivo": user.motivo
+      "nome" : locations
     });
+
+    // .doc("001").set({
+    //   "Nome": resposta[0],
+    //   "sim ou não": resposta[1],
+    //   "motivo": user.motivo
+    // });
   }
 
   @override
