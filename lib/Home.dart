@@ -30,33 +30,42 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        child: Column(
-          children: [
-            TextButton(
-              style: TextButton.styleFrom(
-                  foregroundColor: Colors.blue,
-                  padding: EdgeInsets.fromLTRB(32, 16, 32, 16),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(32))),
-              child: Text(
-                "Responder",
-                style: TextStyle(
-                    color: Color.fromARGB(255, 51, 5, 115), fontSize: 20),
-              ),
-              onPressed: (() {
-                var random = Random();
-                final List<Widget> _widgets1 = [Screen10(), Screen4(), Screen1()];
-                final List<Widget> _widgets = [_widgets1[random.nextInt(_widgets1.length)]];
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: ((context) => _widgets[random.nextInt(_widgets.length)])));   
+      body: Center(child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
+            child: TextButton(
+               style: TextButton.styleFrom(
+                             backgroundColor: Colors.red,
+                             foregroundColor: Colors.lightBlueAccent,
+                            padding: const EdgeInsets.fromLTRB(32, 16, 32, 16),
+                             shape: RoundedRectangleBorder(
+                                 borderRadius: BorderRadius.circular(32))),
+            onPressed: (() {
+                  var random = Random();
+                  final List<Widget> _widgets1 = [
+                    Screen10(),
+                    Screen4(),
+                    Screen1()
+                  ];
+                  final List<Widget> _widgets = [
+                    _widgets1[random.nextInt(_widgets1.length)]
+                  ];
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: ((context) =>
+                              _widgets[random.nextInt(_widgets.length)])));
               }),
-            )
-          ],
-        ),
-      ), 
+            child: Text(
+                   "Iniciar",
+                  style: TextStyle(
+                       color: Colors.black, fontSize: 20),
+                        
+               ),
+            ),
+          )],
+      ),)
     );
   }
 
@@ -69,3 +78,43 @@ class _HomeState extends State<Home> {
 //   }
 // }
 }
+
+// Center(
+//         child: Column(
+//           children: [
+//             Container(
+//                 child: Center(
+//                   child: TextButton(
+//               style: TextButton.styleFrom(
+//                             backgroundColor: Colors.red,
+//                             foregroundColor: Colors.lightBlueAccent,
+//                             padding: const EdgeInsets.fromLTRB(32, 16, 32, 16),
+//                             shape: RoundedRectangleBorder(
+//                                 borderRadius: BorderRadius.circular(32))),
+//               child: Text(
+//                   "Iniciar",
+//                   style: TextStyle(
+//                       color: Colors.black, fontSize: 20),
+                      
+//               ),
+//               onPressed: (() {
+//                   var random = Random();
+//                   final List<Widget> _widgets1 = [
+//                     Screen10(),
+//                     Screen4(),
+//                     Screen1()
+//                   ];
+//                   final List<Widget> _widgets = [
+//                     _widgets1[random.nextInt(_widgets1.length)]
+//                   ];
+//                   Navigator.push(
+//                       context,
+//                       MaterialPageRoute(
+//                           builder: ((context) =>
+//                               _widgets[random.nextInt(_widgets.length)])));
+//               }),
+//             ),
+//                 ))
+//           ],
+//         ),
+//       ),
