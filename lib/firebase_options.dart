@@ -53,7 +53,7 @@ class DefaultFirebaseOptions {
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyAhLSY25u_hbxdGM-orgejWqRK_tXaJ7Lo',
+    apiKey: "AIzaSyAhLSY25u_hbxdGM-orgejWqRK_tXaJ7Lo",
     appId: '1:444180175794:android:3c007a7778fa67a39de2ab',
     messagingSenderId: '444180175794',
     projectId: 'phishing-game-project',

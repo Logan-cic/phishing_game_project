@@ -194,6 +194,8 @@ class _CadastroState extends State<Cadastro> {
                       ),
                       onPressed: (() {
                         _authentication();
+                        // Navigator.push(context,
+                        //     MaterialPageRoute(builder: ((context) => Home())));
                       }),
                     )),
                 Center(

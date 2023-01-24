@@ -14,69 +14,20 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  TextEditingController _controllerEmail = TextEditingController();
-  TextEditingController _controllerSenha = TextEditingController();
-  String _errorMessage = " ";
-
-  _autenticacaoDeLogin() {
-    //retrieve the fields
-    String email = _controllerEmail.text;
-    String password = _controllerSenha.text;
-
-    if (email.isNotEmpty && email.contains("@")) {
-      if (password.isNotEmpty) {
-        setState(() {
-          _errorMessage = " ";
-        });
-
-        Userdata user = Userdata();
-        user.email = email;
-        user.senha = password;
-        _loginUser(user);
-      } else {
-        setState(() {
-          _errorMessage = "Enter a valid password";
-        });
-      }
-    } else {
-      setState(() {
-        _errorMessage = "Enter a valid email";
-      });
-    }
-  }
-
-  _loginUser(Userdata user) async {
-    await Firebase.initializeApp();
-    FirebaseAuth _auth = FirebaseAuth.instance;
-    _auth
-        .signInWithEmailAndPassword(email: user.email, password: user.senha)
-        .then((firebaseUser) {
-      Navigator.push(
-          context, MaterialPageRoute(builder: ((context) => const Home())));
-    }).catchError((error) {
-      setState(() {
-        _errorMessage =
-            'Erro ao auetenticar o usuario, verifique seu e-mail e senha.';
-      });
-    });
-  }
-
-  Future _verificaSeUsuarioEstaLogado() async {
-    Firebase.initializeApp();
-    FirebaseAuth auth = FirebaseAuth.instance;
-    //auth.signOut();
-    final User? loggedInUser = await auth.currentUser;
-    if (loggedInUser != null) {
-      Navigator.push(
-          context, MaterialPageRoute(builder: ((context) => const Home())));
-    }
-  }
+  final _controllerEmail = TextEditingController();
+  final _controllerSenha = TextEditingController();
 
   @override
-  void initState() {
-    _verificaSeUsuarioEstaLogado();
-    super.initState();
+  void dispose() {
+    _controllerEmail.dispose();
+    _controllerSenha.dispose();
+
+    super.dispose();
   }
+
+  // TextEditingController _controllerEmail = TextEditingController();
+  // TextEditingController _controllerSenha = TextEditingController();
+  // String _errorMessage = " ";
 
   @override
   Widget build(BuildContext context) {
@@ -143,20 +94,16 @@ class _LoginState extends State<Login> {
               ),
               Padding(
                   padding: const EdgeInsets.only(top: 16, bottom: 10),
-                  child: TextButton(
-                    style: TextButton.styleFrom(
-                        backgroundColor: Colors.red,
-                        foregroundColor: Colors.lightBlueAccent,
-                        padding: const EdgeInsets.fromLTRB(32, 16, 32, 16),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(32))),
-                    child: Text(
-                      "Entrar",
-                      style: TextStyle(color: Colors.black, fontSize: 20),
+                  child: ElevatedButton.icon(
+                    style: ElevatedButton.styleFrom(
+                      minimumSize: Size.fromHeight(50),
                     ),
-                    onPressed: (() {
-                      Screen16();
-                    }),
+                    icon: Icon(Icons.lock_open, size: 32),
+                    label: Text(
+                      "Entrar",
+                      style: TextStyle(fontSize: 24),
+                    ),
+                    onPressed: signIn,
                   )),
               Center(
                 child: GestureDetector(
@@ -172,19 +119,26 @@ class _LoginState extends State<Login> {
                   }),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: 16),
-                child: Center(
-                  child: Text(
-                    _errorMessage,
-                    style: const TextStyle(color: Colors.red, fontSize: 20),
-                  ),
-                ),
-              )
+              // Padding(
+              //   padding: const EdgeInsets.only(top: 16),
+              //   child: Center(
+              //     child: Text(
+              //       _errorMessage,
+              //       style: const TextStyle(color: Colors.red, fontSize: 20),
+              //     ),
+              //   ),
+              // )
             ],
           )),
         ),
       ),
+    );
+  }
+
+  Future signIn() async {
+    await FirebaseAuth.instance.signInWithEmailAndPassword(
+      email: _controllerEmail.text.trim(),
+      password: _controllerSenha.text.trim(),
     );
   }
 }
