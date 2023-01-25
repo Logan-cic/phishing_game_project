@@ -1,9 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:phishing_game_project/Auth_page.dart';
 import 'package:phishing_game_project/Home.dart';
 import 'package:phishing_game_project/Login.dart';
 import 'package:phishing_game_project/Screens/Resposta/Formulario_de_Resposta.dart';
+import 'package:phishing_game_project/Utils.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -13,8 +15,19 @@ void main() async {
   );
   runApp(const MaterialApp(
     home: MainPage(),
-    debugShowCheckedModeBanner: false,
   ));
+}
+
+class Myapp extends StatelessWidget {
+  final navigatorKey = GlobalKey<NavigatorState>();
+  Utils utils = Utils();
+
+  @override
+  Widget build(BuildContext context) => MaterialApp(
+        scaffoldMessengerKey: utils.messengerKey,
+        navigatorKey: navigatorKey,
+        debugShowCheckedModeBanner: false,
+      );
 }
 
 class MainPage extends StatefulWidget {
@@ -33,7 +46,7 @@ class _MainPageState extends State<MainPage> {
             if (snapshot.hasData) {
               return Home();
             } else {
-              return Login();
+              return AuthPage();
             }
           },
         ),

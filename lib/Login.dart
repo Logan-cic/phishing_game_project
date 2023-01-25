@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:phishing_game_project/Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen16.dart';
 
 import 'Home.dart';
-import 'Cadastro.dart';
 import 'Utils.dart';
 import 'model/Dados_do_usuario.dart';
 
