@@ -1,19 +1,23 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:phishing_game_project/Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen16.dart';
 
 import 'Home.dart';
 import 'Cadastro.dart';
+import 'Utils.dart';
 import 'model/Dados_do_usuario.dart';
 
 class Login extends StatefulWidget {
-  const Login({super.key});
+  final VoidCallback onClickedSignUp;
+  const Login({super.key, required this.onClickedSignUp});
   @override
   State<Login> createState() => _LoginState();
 }
 
 class _LoginState extends State<Login> {
+  final navigatorKey = GlobalKey<NavigatorState>();
   final _controllerEmail = TextEditingController();
   final _controllerSenha = TextEditingController();
 
@@ -105,29 +109,21 @@ class _LoginState extends State<Login> {
                     ),
                     onPressed: signIn,
                   )),
-              Center(
-                child: GestureDetector(
-                  child: Text(
-                    "não tem uma conta? cadastre-se aqui.",
-                    style: TextStyle(color: Colors.black),
-                  ),
-                  onTap: (() {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: ((context) => const Cadastro())));
-                  }),
-                ),
+              SizedBox(height: 24),
+              RichText(
+                text: TextSpan(
+                    style: TextStyle(color: Colors.black, fontSize: 16),
+                    text: "Não tem uma conta?",
+                    children: [
+                      TextSpan(
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = widget.onClickedSignUp,
+                          text: "Cadastre-se aqui",
+                          style: TextStyle(
+                              decoration: TextDecoration.underline,
+                              color: Theme.of(context).colorScheme.secondary))
+                    ]),
               ),
-              // Padding(
-              //   padding: const EdgeInsets.only(top: 16),
-              //   child: Center(
-              //     child: Text(
-              //       _errorMessage,
-              //       style: const TextStyle(color: Colors.red, fontSize: 20),
-              //     ),
-              //   ),
-              // )
             ],
           )),
         ),
@@ -136,9 +132,16 @@ class _LoginState extends State<Login> {
   }
 
   Future signIn() async {
-    await FirebaseAuth.instance.signInWithEmailAndPassword(
-      email: _controllerEmail.text.trim(),
-      password: _controllerSenha.text.trim(),
-    );
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: _controllerEmail.text.trim(),
+        password: _controllerSenha.text.trim(),
+      );
+    } on FirebaseAuthException catch (e) {
+      print(e);
+
+      Utils utils = Utils();
+      utils.showSnackBar(e.message);
+    }
   }
 }
