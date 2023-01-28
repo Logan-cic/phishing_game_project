@@ -11,6 +11,7 @@ import '../Email/Exemplo_de_phishing_de_nivel_facil/Screen16.dart';
 import '../Email/Exemplo_de_phishing_de_nivel_facil/Screen2.dart';
 import '../Email/Exemplo_de_phishing_de_nivel_facil/Screen3.dart';
 import '../Email/Exemplo_de_phishing_de_nivel_facil/Screen4.dart';
+import 'Respostas.dart';
 
 class FormularioDeResposta extends StatefulWidget {
   const FormularioDeResposta({super.key});
@@ -20,27 +21,36 @@ class FormularioDeResposta extends StatefulWidget {
 }
 
 class _FormularioDeRespostaState extends State<FormularioDeResposta> {
+  var random = Random();
+  Respotas respotas = Respotas();
+
+  List<Widget> _widgets = [
+    Screen2(),
+    Screen3(),
+    Screen4(),
+    Screen16(),
+  ];
   //Controllers
   TextEditingController _controllerSimOuNao = TextEditingController();
   TextEditingController _controllerCasoSim = TextEditingController();
   TextEditingController _controllerCasoNao = TextEditingController();
 
-  _salvandoRespostasDoUsuario() async {
-    String simOuNao = _controllerSimOuNao.text;
-    String casoNao = _controllerCasoSim.text;
-    String casoSim = _controllerCasoNao.text;
+  // _salvandoRespostasDoUsuario() async {
+  //   String simOuNao = _controllerSimOuNao.text;
+  //   String casoNao = _controllerCasoSim.text;
+  //   String casoSim = _controllerCasoNao.text;
 
-    Userdata user = Userdata();
-    user.simOuNao = simOuNao;
-    user.casoSim = casoSim;
-    user.casoNao = casoNao;
+  //   Userdata user = Userdata();
+  //   user.simOuNao = simOuNao;
+  //   user.casoSim = casoSim;
+  //   user.casoNao = casoNao;
 
-    await Firebase.initializeApp();
-    FirebaseFirestore.instance
-        .collection("Resposta")
-        .doc("001")
-        .set({"Nome": "Logan", "sim ou não": "Sim", "motivo": "bla bla bla"});
-  }
+  //   await Firebase.initializeApp();
+  //   FirebaseFirestore.instance
+  //       .collection("Resposta")
+  //       .doc("001")
+  //       .set({"Nome": "Logan", "sim ou não": "Sim", "motivo": "bla bla bla"});
+  // }
 
   final _formKey = GlobalKey<FormState>();
 
@@ -149,23 +159,32 @@ class _FormularioDeRespostaState extends State<FormularioDeResposta> {
                       foregroundColor: Color.fromARGB(255, 7, 7, 7),
                       padding: const EdgeInsets.fromLTRB(32, 16, 32, 16),
                     ),
-                    child: const Text('Responder'),
+                    child: const Text('Proxima'),
                     onPressed: () {
-                      var random = Random();
-                      final List<Map<dynamic, dynamic>> listaDeRespostas = [];
-                      final List<Widget> _widgets = [
-                        Screen2(),
-                        Screen3(),
-                        Screen4(),
-                        Screen16(),
-                      ];
-                      Userdata repostas = Userdata();
-                      repostas.adiciona();
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: ((context) =>
-                                  _widgets[random.nextInt(_widgets.length)])));
+                      if (respotas.resposta.length < 2) {
+                        respotas.adicionaRespostasAoMap({
+                          "É phishing": _controllerSimOuNao,
+                          "Caso sim": _controllerCasoSim,
+                          "Caso não": _controllerCasoSim,
+                        });
+                      } else if (respotas.resposta.length == 2) {
+                        respotas.adicionaRespostasAoMap({
+                          "É phishing": _controllerSimOuNao,
+                          "Caso sim": _controllerCasoSim,
+                          "Caso não": _controllerCasoSim,
+                        });
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => Home(),
+                            ));
+                      } else {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: ((context) => _widgets[
+                                    random.nextInt(_widgets.length)])));
+                      }
                     },
                   )),
             ],
