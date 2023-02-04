@@ -44,7 +44,7 @@ class Screen4 extends StatelessWidget {
                 SenderCard(label: "Banco rrr"),
                 ShippingInformation(
                     sender: "Banco auria",
-                    emailSender: "info@asantander.com",
+                    emailSender: "info@.com",
                     emailRecipient: "cadymaureria@amail.com"),
                 Image.asset('images/transferir.png'),
                 Container(

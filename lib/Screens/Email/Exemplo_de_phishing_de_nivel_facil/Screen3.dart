@@ -41,7 +41,7 @@ class Screen3 extends StatelessWidget {
                 const SenderCard(label: "Banco rrr"),
                 const ShippingInformation(
                     sender: "Banco auria",
-                    emailSender: "info@asantander.com",
+                    emailSender: "info@a.com",
                     emailRecipient: "cadymaureria@amail.com"),
                 // Image.asset('images/transferir.png'),
                 Container(
