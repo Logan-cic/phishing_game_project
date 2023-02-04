@@ -6,49 +6,72 @@ import 'package:phishing_game_project/Home.dart';
 import 'package:phishing_game_project/Login.dart';
 import 'package:phishing_game_project/Screens/Resposta/Formulario_de_Resposta.dart';
 import 'package:phishing_game_project/Utils.dart';
+import 'package:phishing_game_project/page/perguntas.dart';
 import 'firebase_options.dart';
+import 'page/addCadastro.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-  runApp(const MaterialApp(
-    home: MainPage(),
-  ));
+   await Firebase.initializeApp();
+  runApp(MyApp());
 }
 
-class Myapp extends StatelessWidget {
-  final navigatorKey = GlobalKey<NavigatorState>();
-  Utils utils = Utils();
-
+class MyApp extends StatelessWidget {
   @override
-  Widget build(BuildContext context) => MaterialApp(
-        scaffoldMessengerKey: utils.messengerKey,
-        navigatorKey: navigatorKey,
-        debugShowCheckedModeBanner: false,
-      );
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Game Phishing',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: Colors.indigo,
+        brightness: Brightness.dark,
+      ),
+      home: Perguntas(),
+    );
+  }
 }
 
-class MainPage extends StatefulWidget {
-  const MainPage({super.key});
+// void main() async {
+//   WidgetsFlutterBinding.ensureInitialized();
+//   await Firebase.initializeApp(
+//     options: DefaultFirebaseOptions.currentPlatform,
+//   );
+//   runApp(const MaterialApp(
+//     home: MainPage(),
+//   ));
+// }
 
-  @override
-  State<MainPage> createState() => _MainPageState();
-}
+// class Myapp extends StatelessWidget {
+//   final navigatorKey = GlobalKey<NavigatorState>();
+//   Utils utils = Utils();
 
-class _MainPageState extends State<MainPage> {
-  @override
-  Widget build(BuildContext context) => Scaffold(
-        body: StreamBuilder<User?>(
-          stream: FirebaseAuth.instance.authStateChanges(),
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              return Home();
-            } else {
-              return AuthPage();
-            }
-          },
-        ),
-      );
-}
+//   @override
+//   Widget build(BuildContext context) => MaterialApp(
+//         scaffoldMessengerKey: utils.messengerKey,
+//         navigatorKey: navigatorKey,
+//         debugShowCheckedModeBanner: false,
+//       );
+// }
+
+// class MainPage extends StatefulWidget {
+//   const MainPage({super.key});
+
+//   @override
+//   State<MainPage> createState() => _MainPageState();
+// }
+
+// class _MainPageState extends State<MainPage> {
+//   @override
+//   Widget build(BuildContext context) => Scaffold(
+//         body: StreamBuilder<User?>(
+//           stream: FirebaseAuth.instance.authStateChanges(),
+//           builder: (context, snapshot) {
+//             if (snapshot.hasData) {
+//               return Home();
+//             } else {
+//               return AuthPage();
+//             }
+//           },
+//         ),
+//       );
+// }

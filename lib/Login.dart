@@ -6,7 +6,7 @@ import 'package:phishing_game_project/Screens/Email/Exemplo_de_phishing_de_nivel
 
 import 'Home.dart';
 import 'Utils.dart';
-import 'model/Dados_do_usuario.dart';
+import 'models/Dados_do_usuario.dart';
 
 class Login extends StatefulWidget {
   final VoidCallback onClickedSignUp;

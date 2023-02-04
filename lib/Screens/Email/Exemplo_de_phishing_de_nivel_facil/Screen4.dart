@@ -21,9 +21,9 @@ class Screen4 extends StatelessWidget {
               child: const Icon(Icons.add),
               onPressed: () {
                 Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: ((context) => FormularioDeResposta())));
+                  context,
+                  MaterialPageRoute(
+                      builder: ((context) => FormularioDeResposta())));
               },
             ),
             backgroundColor: Colors.black,
@@ -41,9 +41,9 @@ class Screen4 extends StatelessWidget {
                 // EmailTitle(
                 //     label:
                 //         "Você acaba de receber o inforemail Santander - Instabilidade no sistema"),
-                SenderCard(label: "Banco Santander"),
+                SenderCard(label: "Banco rrr"),
                 ShippingInformation(
-                    sender: "Banco Santander",
+                    sender: "Banco auria",
                     emailSender: "info@asantander.com",
                     emailRecipient: "cadymaureria@amail.com"),
                 Image.asset('images/transferir.png'),

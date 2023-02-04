@@ -78,7 +78,6 @@ class _HomeState extends State<Home> {
                       Screen14(),
                       Screen16()
                     ];
-
                     Navigator.push(
                         context,
                         MaterialPageRoute(
