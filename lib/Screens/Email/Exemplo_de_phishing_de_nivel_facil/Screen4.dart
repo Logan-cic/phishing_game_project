@@ -46,7 +46,7 @@ class Screen4 extends StatelessWidget {
                     sender: "Banco auria",
                     emailSender: "info@.com",
                     emailRecipient: "cadymaureria@amail.com"),
-                Image.asset('images/transferir.png'),
+                // Image.asset('images/transferir.png'),
                 Container(
                   height: 460,
                   color: Colors.black,
