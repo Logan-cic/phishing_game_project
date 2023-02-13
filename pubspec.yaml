@@ -81,6 +81,40 @@ flutter:
     - images/icone_zap.jpg
     - images/illust.png
     - images/simbolo_lab.png
+    - images/amazon.png
+    - images/caixaEconomica.png
+    - images/crunchyroll_cabecalho.jpg
+    - images/homem.jpg
+    - images/itau.png
+    - images/latam.png
+    - images/menina.jpg
+    - images/menino.jpg
+    - images/mulher.jpg
+    - images/netflix.png
+    - images/nubankIcone.png
+    - images/pai.jpg
+    - images/riotgames.png
+    - images/santander.png
+    - images/transferir.png
+    - images/unimed.png
+    - images/whatsapp.png
+
+
+    
+
+
+
+
+
+    
+
+
+
+
+
+    
+
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

@@ -2,9 +2,18 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:phishing_game_project/Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen12.dart';
+import 'package:phishing_game_project/Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen13.dart';
+import 'package:phishing_game_project/Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen14.dart';
+import 'package:phishing_game_project/Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen8.dart';
+import 'package:phishing_game_project/Screens/Sms/SmsScreen1.dart';
+import 'package:phishing_game_project/Screens/Sms/SmsScreen2.dart';
+import 'package:phishing_game_project/Screens/Sms/SmsScreen3.dart';
+import 'package:phishing_game_project/Screens/Whatsapp/WappScreen1.dart';
+import 'package:phishing_game_project/Screens/Whatsapp/WappScreen3.dart';
 import 'package:phishing_game_project/models/guardaRespostas.dart';
 import '../Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen16.dart';
 import '../Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen2.dart';
+import '../Screens/Whatsapp/WappScreen2.dart';
 import '../services/firebase_crud.dart';
 
 class Perguntas extends StatefulWidget {
@@ -21,7 +30,15 @@ class _PerguntasState extends State<Perguntas> {
   final _casoNao = TextEditingController();
   List<Widget> _widgets = [
     Screen2(),
-    Screen16(),
+    Screen13(),
+    Screen14(),
+    Screen8(),
+    SmsScreen1(),
+    SmsScreen2(),
+    SmsScreen3(),
+    WappScreen1(),
+    WappScreen2(),
+    WappScreen3(),
   ];
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -78,6 +95,7 @@ class _PerguntasState extends State<Perguntas> {
         padding: const EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
         onPressed: () async {
           if (_formKey.currentState!.validate()) {
+            var random = Random();
             // GuardaRespostas guardaRespostas = GuardaRespostas();
             // guardaRespostas.adiciona({
             //   "simOuNao": _simOuNao.text,
@@ -85,7 +103,11 @@ class _PerguntasState extends State<Perguntas> {
             //   "casoNao": _casoNao.text
             // });
 
-            uploadFirebase();
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: ((context) =>
+                        _widgets[random.nextInt(_widgets.length)])));
 
             //   var response = await FirebaseCrud.addResposta(
             //       "simOuNao": _simOuNao.text,
@@ -122,8 +144,18 @@ class _PerguntasState extends State<Perguntas> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: const Text('Game Phishing'),
-        backgroundColor: Theme.of(context).primaryColor,
+        title: Row(
+          children: [
+            Text("Agora Responda"),
+            SizedBox(
+              width: 10,
+            ),
+            Icon(
+              Icons.format_align_right,
+            ),
+          ],
+        ),
+        backgroundColor: Colors.red,
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -169,23 +201,23 @@ class _PerguntasState extends State<Perguntas> {
     //           builder: ((context) =>
     //               _widgets[random.nextInt(_widgets.length)])));
     // } else if (listaDeRespostas.length < 2){
-      var response = await FirebaseCrud.addResposta();
-      if (response.code != 200) {
-        showDialog(
-            context: context,
-            builder: (context) {
-              return AlertDialog(
-                content: Text(response.message.toString()),
-              );
-            });
-      } else {
-        showDialog(
-            context: context,
-            builder: (context) {
-              return AlertDialog(
-                content: Text(response.message.toString()),
-              );
-            });
-      }
+    var response = await FirebaseCrud.addResposta();
+    if (response.code != 200) {
+      showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              content: Text(response.message.toString()),
+            );
+          });
+    } else {
+      showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              content: Text(response.message.toString()),
+            );
+          });
     }
- }
+  }
+}

@@ -17,14 +17,13 @@ class FirebaseCrud {
     Response response = Response();
     DocumentReference documentReferencer = _Collection.doc();
 
-    List<Map<String, dynamic>> data = [
+    Map<String, dynamic> data = 
       {
         "nome_do_usuario": nome,
         "idade": idade,
         "area_de_atuaçao": areaDeAtuacao,
         "email": email,
-      }
-    ];
+      };
 
     var result = await documentReferencer.set(data).whenComplete(() {
       response.code = 200;

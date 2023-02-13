@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:phishing_game_project/page/perguntas.dart';
 
 import '../../../Widgets/Email_Header/Sender_Card.dart';
 import '../../../Widgets/Email_Header/shipping_information.dart';
@@ -13,14 +14,14 @@ class Screen13 extends StatelessWidget {
       height: 460,
       child: MaterialApp(
         home: Scaffold(
-            floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+          floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
           floatingActionButton: FloatingActionButton(
             child: const Icon(Icons.add),
             onPressed: () {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: ((context) => FormularioDeResposta())));
+                      builder: ((context) => Perguntas())));
             },
           ),
           backgroundColor: Colors.black,

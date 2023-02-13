@@ -77,17 +77,17 @@ class _AddPage extends State<AddPage> {
             border:
                 OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))));
 
-    final viewListbutton = TextButton(
-        onPressed: () {
-          Navigator.pushAndRemoveUntil<dynamic>(
-            context,
-            MaterialPageRoute<dynamic>(
-              builder: (BuildContext context) => Screen16(),
-            ),
-            (route) => false, //To disable back feature set to false
-          );
-        },
-        child: const Text('View List of User'));
+    // final viewListbutton = TextButton(
+    //     onPressed: () {
+    //       Navigator.pushAndRemoveUntil<dynamic>(
+    //         context,
+    //         MaterialPageRoute<dynamic>(
+    //           builder: (BuildContext context) => Screen16(),
+    //         ),
+    //         (route) => false, //To disable back feature set to false
+    //       );
+    //     },
+    //     child: const Text('View List of User'));
 
     final SaveButon = Material(
       elevation: 5.0,
@@ -161,7 +161,7 @@ class _AddPage extends State<AddPage> {
                   campoDeIdade,
                   const SizedBox(height: 35.0),
                   campoDeEmail,
-                  viewListbutton,
+                  // viewListbutton,
                   const SizedBox(height: 45.0),
                   SaveButon,
                   const SizedBox(height: 15.0),
