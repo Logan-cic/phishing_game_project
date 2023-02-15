@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:phishing_game_project/models/guardaRespostas.dart';
 import '../models/response.dart';
 
@@ -35,23 +36,20 @@ class FirebaseCrud {
     return response;
   }
 
-  static Future<Response> addResposta() async {
+  static Future<Response> addResposta(List<Map<String, dynamic>> dados) async {
     Response response = Response();
     DocumentReference documentReferencer = _Collection2.doc();
-    GuardaRespostas teste = GuardaRespostas();
-    teste.adiciona(
-      {"Sim ou Nao": "sim", "\ncaso sim": "nao sei", "caso nao": "\npode ser"});
-    teste.adiciona(
-      {"Sim ou Nao": "sim", "\ncaso sim": "nao sei", "caso nao": "\npode ser"});
-
-  List<Map<String, dynamic>> listaDeRespostas = [];
-  for (int i = 0; i < 2; i++) {
-    listaDeRespostas.add(teste.respostas[i]);
-  }
+    // GuardaRespostas teste = GuardaRespostas();
 
   
     print("Ta indo");
-    var result = await documentReferencer.set({"Repostas" : listaDeRespostas});
+    var result = await documentReferencer.set({"Repostas" : dados}).whenComplete(() {
+      response.code = 200;
+      response.message = "Sucessfully added to the database";
+    }).catchError((e) {
+      response.code = 500;
+      response.message = e;
+    });
 
     return response;
   }

@@ -1,30 +1,22 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:phishing_game_project/Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen12.dart';
 import 'package:phishing_game_project/Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen13.dart';
 import 'package:phishing_game_project/Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen14.dart';
 import 'package:phishing_game_project/Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen8.dart';
-import 'package:phishing_game_project/Screens/Sms/SmsScreen1.dart';
-import 'package:phishing_game_project/Screens/Sms/SmsScreen2.dart';
-import 'package:phishing_game_project/Screens/Sms/SmsScreen3.dart';
-import 'package:phishing_game_project/Screens/Whatsapp/WappScreen1.dart';
-import 'package:phishing_game_project/Screens/Whatsapp/WappScreen3.dart';
 import 'package:phishing_game_project/models/guardaRespostas.dart';
+import 'package:phishing_game_project/page/addCadastro.dart';
 import '../Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen16.dart';
 import '../Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen2.dart';
-import '../Screens/Whatsapp/WappScreen2.dart';
 import '../services/firebase_crud.dart';
 
 class Perguntas extends StatefulWidget {
   const Perguntas({super.key});
-
   @override
   State<Perguntas> createState() => _PerguntasState();
 }
 
 class _PerguntasState extends State<Perguntas> {
-  List<Map<String, dynamic>> lista = [];
   final _simOuNao = TextEditingController();
   final _casoSim = TextEditingController();
   final _casoNao = TextEditingController();
@@ -33,12 +25,6 @@ class _PerguntasState extends State<Perguntas> {
     Screen13(),
     Screen14(),
     Screen8(),
-    SmsScreen1(),
-    SmsScreen2(),
-    SmsScreen3(),
-    WappScreen1(),
-    WappScreen2(),
-    WappScreen3(),
   ];
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -93,48 +79,24 @@ class _PerguntasState extends State<Perguntas> {
       child: MaterialButton(
         minWidth: MediaQuery.of(context).size.width,
         padding: const EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-        onPressed: () async {
+        onPressed: () {
           if (_formKey.currentState!.validate()) {
             var random = Random();
-            // GuardaRespostas guardaRespostas = GuardaRespostas();
-            // guardaRespostas.adiciona({
-            //   "simOuNao": _simOuNao.text,
-            //   "casoSim": _casoSim.text,
-            //   "casoNao": _casoNao.text
-            // });
-
+            GuardaRespostas resposta = GuardaRespostas();
+            resposta.adiciona({
+              "sim ou não": _simOuNao.text,
+              "Caso sim": _casoSim.text,
+              "Caso não": _casoNao.text
+            });
             Navigator.push(
                 context,
                 MaterialPageRoute(
                     builder: ((context) =>
                         _widgets[random.nextInt(_widgets.length)])));
-
-            //   var response = await FirebaseCrud.addResposta(
-            //       "simOuNao": _simOuNao.text,
-            //       "casoSim": _casoSim.text,
-            //       "casoNao": _casoNao.text);
-            //   if (response.code != 200) {
-            //     showDialog(
-            //         context: context,
-            //         builder: (context) {
-            //           return AlertDialog(
-            //             content: Text(response.message.toString()),
-            //           );
-            //         });
-            //   } else {
-            //     showDialog(
-            //         context: context,
-            //         builder: (context) {
-            //           return AlertDialog(
-            //             content: Text(response.message.toString()),
-            //           );
-            //         });
-            //   }
-            // }
           }
         },
         child: Text(
-          "Save",
+          "responder",
           style: TextStyle(color: Theme.of(context).primaryColorLight),
           textAlign: TextAlign.center,
         ),
@@ -146,7 +108,7 @@ class _PerguntasState extends State<Perguntas> {
       appBar: AppBar(
         title: Row(
           children: [
-            Text("Agora Responda"),
+            Text("Agora Responda "),
             SizedBox(
               width: 10,
             ),
@@ -183,41 +145,5 @@ class _PerguntasState extends State<Perguntas> {
         ],
       ),
     );
-  }
-
-  Future uploadFirebase() async {
-    // Random random = Random();
-    // GuardaRespostas respostasDoUsuario = GuardaRespostas();
-    // List<Map<String, dynamic>> listaDeRespostas = [];
-
-    // for (int i = 0; i < 2; i++) {
-    //   listaDeRespostas.add(respostasDoUsuario.respostas[i]);
-    // }
-
-    // if (listaDeRespostas.length < 2) {
-    //   Navigator.push(
-    //       context,
-    //       MaterialPageRoute(
-    //           builder: ((context) =>
-    //               _widgets[random.nextInt(_widgets.length)])));
-    // } else if (listaDeRespostas.length < 2){
-    var response = await FirebaseCrud.addResposta();
-    if (response.code != 200) {
-      showDialog(
-          context: context,
-          builder: (context) {
-            return AlertDialog(
-              content: Text(response.message.toString()),
-            );
-          });
-    } else {
-      showDialog(
-          context: context,
-          builder: (context) {
-            return AlertDialog(
-              content: Text(response.message.toString()),
-            );
-          });
-    }
   }
 }

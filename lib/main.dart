@@ -1,14 +1,18 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:phishing_game_project/Auth_page.dart';
-import 'package:phishing_game_project/Home.dart';
-import 'package:phishing_game_project/Login.dart';
-import 'package:phishing_game_project/Screens/Resposta/Formulario_de_Resposta.dart';
-import 'package:phishing_game_project/Utils.dart';
-import 'package:phishing_game_project/page/perguntas.dart';
-import 'firebase_options.dart';
-import 'page/addCadastro.dart';
+
+import 'Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen16.dart';
+// import 'package:phishing_game_project/Auth_page.dart';
+// import 'package:phishing_game_project/Home.dart';
+// import 'package:phishing_game_project/Login.dart';
+// import 'package:phishing_game_project/Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen16.dart';
+// import 'package:phishing_game_project/Screens/Resposta/Formulario_de_Resposta.dart';
+// import 'package:phishing_game_project/Utils.dart';
+// import 'package:phishing_game_project/page/perguntas.dart';
+// import 'Splash/splash_page.dart';
+// import 'firebase_options.dart';
+// import 'page/addCadastro.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,7 +30,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.indigo,
         brightness: Brightness.dark,
       ),
-      home: AddPage(),
+      home: Screen16(),
     );
   }
 }
