@@ -5,14 +5,16 @@ class GuardaRespostas {
   static List<Map<String, dynamic>> respostas = [];
 
   adiciona(Map<String, dynamic> rpt) {
-    if (respostas.length < 2) {
+    if (respostas.length < 4) {
       respostas.add(rpt);
-      print(respostas.length);
-    } else if (respostas.length == 2) {
-      print("O jogo acabou");
-      uploadFirebase();
+      // print(respostas.length);
     }
   }
+
+  int get tamanho => respostas.length;
+
+  List<Map<String, dynamic>> get conteudo => respostas;
+  
 
   Future uploadFirebase() async {
     await FirebaseCrud.addResposta(respostas);
@@ -29,4 +31,5 @@ class GuardaRespostas {
 //   teste2.adiciona({"nome2": "Logan"});
 //   teste3.adiciona({"nome3": "Logan"});
 //   teste3.adiciona({"nome3": "Logan"});
+
 // }

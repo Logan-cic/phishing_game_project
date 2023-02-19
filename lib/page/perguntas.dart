@@ -6,6 +6,7 @@ import 'package:phishing_game_project/Screens/Email/Exemplo_de_phishing_de_nivel
 import 'package:phishing_game_project/Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen8.dart';
 import 'package:phishing_game_project/models/guardaRespostas.dart';
 import 'package:phishing_game_project/page/addCadastro.dart';
+import 'package:phishing_game_project/page/finalizado.dart';
 import '../Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen16.dart';
 import '../Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen2.dart';
 import '../services/firebase_crud.dart';
@@ -20,6 +21,8 @@ class _PerguntasState extends State<Perguntas> {
   final _simOuNao = TextEditingController();
   final _casoSim = TextEditingController();
   final _casoNao = TextEditingController();
+
+  
   List<Widget> _widgets = [
     Screen2(),
     Screen13(),
@@ -79,7 +82,7 @@ class _PerguntasState extends State<Perguntas> {
       child: MaterialButton(
         minWidth: MediaQuery.of(context).size.width,
         padding: const EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-        onPressed: () {
+        onPressed: () async {
           if (_formKey.currentState!.validate()) {
             var random = Random();
             GuardaRespostas resposta = GuardaRespostas();
@@ -88,11 +91,39 @@ class _PerguntasState extends State<Perguntas> {
               "Caso sim": _casoSim.text,
               "Caso não": _casoNao.text
             });
-            Navigator.push(
+            if (resposta.tamanho == 4) {
+              var response = await FirebaseCrud.addResposta(resposta.conteudo);
+              Navigator.pushAndRemoveUntil<dynamic>(
                 context,
-                MaterialPageRoute(
-                    builder: ((context) =>
-                        _widgets[random.nextInt(_widgets.length)])));
+                MaterialPageRoute<dynamic>(
+                  builder: (BuildContext context) => Finalizado(),
+                ),
+                (route) => false, //To disable back feature set to false
+              );
+              if (response.code != 200) {
+                showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        content: Text(response.message.toString()),
+                      );
+                    });
+              } else {
+                showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        content: Text(response.message.toString()),
+                      );
+                    });
+              }
+            } else {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: ((context) =>
+                          _widgets[random.nextInt(_widgets.length)])));
+            }
           }
         },
         child: Text(

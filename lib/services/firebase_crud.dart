@@ -39,9 +39,6 @@ class FirebaseCrud {
   static Future<Response> addResposta(List<Map<String, dynamic>> dados) async {
     Response response = Response();
     DocumentReference documentReferencer = _Collection2.doc();
-    // GuardaRespostas teste = GuardaRespostas();
-
-  
     print("Ta indo");
     var result = await documentReferencer.set({"Repostas" : dados}).whenComplete(() {
       response.code = 200;
