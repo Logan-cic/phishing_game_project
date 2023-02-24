@@ -10,20 +10,16 @@ final CollectionReference _Collection2 = _firestore.collection('Respostas');
 
 class FirebaseCrud {
   static Future<Response> addUsuario({
-    required String nome,
     required String idade,
     required String areaDeAtuacao,
-    required String email,
   }) async {
     Response response = Response();
     DocumentReference documentReferencer = _Collection.doc();
 
     Map<String, dynamic> data = 
       {
-        "nome_do_usuario": nome,
         "idade": idade,
         "area_de_atuaçao": areaDeAtuacao,
-        "email": email,
       };
 
     var result = await documentReferencer.set(data).whenComplete(() {

@@ -1,10 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:phishing_game_project/Home.dart';
 import 'package:phishing_game_project/page/addCadastro.dart';
-
 import 'Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen16.dart';
 import 'Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen2.dart';
+import 'package:intl/intl.dart';
 // import 'package:phishing_game_project/Auth_page.dart';
 // import 'package:phishing_game_project/Home.dart';
 // import 'package:phishing_game_project/Login.dart';
@@ -14,6 +15,11 @@ import 'Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen2.dart';
 // import 'Splash/splash_page.dart';
 // import 'firebase_options.dart';
 // import 'page/addCadastro.dart';
+
+enum SimOuNao {
+ sim,
+ nao
+}
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,14 +31,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+  
       title: 'Game Phishing',
+      supportedLocales: [Locale("pt", "BR")],
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.indigo,
 
         brightness: Brightness.dark,
       ),
-      home: Screen2(),
+      home: Home(),
     );
   }
 }

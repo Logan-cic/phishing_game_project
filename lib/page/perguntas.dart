@@ -4,6 +4,7 @@ import 'package:phishing_game_project/Screens/Email/Exemplo_de_phishing_de_nivel
 import 'package:phishing_game_project/Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen13.dart';
 import 'package:phishing_game_project/Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen14.dart';
 import 'package:phishing_game_project/Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen8.dart';
+import 'package:phishing_game_project/main.dart';
 import 'package:phishing_game_project/models/guardaRespostas.dart';
 import 'package:phishing_game_project/page/addCadastro.dart';
 import 'package:phishing_game_project/page/finalizado.dart';
@@ -18,11 +19,18 @@ class Perguntas extends StatefulWidget {
 }
 
 class _PerguntasState extends State<Perguntas> {
-  final _simOuNao = TextEditingController();
-  final _casoSim = TextEditingController();
-  final _casoNao = TextEditingController();
+  static int _counter = 0;
+  final _justificativa = TextEditingController();
+  // bool checkBoxSim = false;
+  // bool checkBoxNao = false;
+  SimOuNao simOuNao = SimOuNao.nao;
 
-  
+  void _incrementCounter() {
+    setState(() {
+      _counter++;
+    });
+  }
+
   List<Widget> _widgets = [
     Screen2(),
     Screen13(),
@@ -34,26 +42,37 @@ class _PerguntasState extends State<Perguntas> {
 
   @override
   Widget build(BuildContext context) {
-    final perguntaDeSimOuNao = TextFormField(
-        controller: _simOuNao,
-        autofocus: false,
-        validator: (value) {
-          if (value == null || value.trim().isEmpty) {
-            return 'This field is required';
-          }
-        },
-        decoration: InputDecoration(
-            contentPadding: const EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-            hintText: "Sim ou não",
-            border:
-                OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))));
+    final perguntaDeSimOuNao = Row(
+      children: [
+        Radio(
+          value: SimOuNao.sim,
+          groupValue: simOuNao,
+          onChanged: (SimOuNao? selecionado) {
+            setState(() {
+              simOuNao = selecionado!;
+            });
+          },
+        ),
+        Text("Sim"),
+        Radio(
+          value: SimOuNao.nao,
+          groupValue: simOuNao,
+          onChanged: (SimOuNao? selecionado) {
+            setState(() {
+              simOuNao = selecionado!;
+            });
+          },
+        ),
+        Text("Não")
+      ],
+    );
 
-    final perguntaCasoSim = TextFormField(
-        controller: _casoSim,
+    final justificativa = TextFormField(
+        controller: _justificativa,
         autofocus: false,
         validator: (value) {
           if (value == null || value.trim().isEmpty) {
-            return 'This field is required';
+            return 'Campo Obrigatório';
           }
         },
         decoration: InputDecoration(
@@ -62,19 +81,6 @@ class _PerguntasState extends State<Perguntas> {
             border:
                 OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))));
 
-    final perguntaCasoNao = TextFormField(
-        controller: _casoNao,
-        autofocus: false,
-        validator: (value) {
-          if (value == null || value.trim().isEmpty) {
-            return 'This field is required';
-          }
-        },
-        decoration: InputDecoration(
-            contentPadding: const EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-            hintText: "Justificativa caso não",
-            border:
-                OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))));
     final SaveButon = Material(
       elevation: 5.0,
       borderRadius: BorderRadius.circular(30.0),
@@ -86,10 +92,10 @@ class _PerguntasState extends State<Perguntas> {
           if (_formKey.currentState!.validate()) {
             var random = Random();
             GuardaRespostas resposta = GuardaRespostas();
+            _incrementCounter();
             resposta.adiciona({
-              "sim ou não": _simOuNao.text,
-              "Caso sim": _casoSim.text,
-              "Caso não": _casoNao.text
+              "Sim ou Não": simOuNao,
+              "Justificativa": _justificativa.text,
             });
             if (resposta.tamanho == 4) {
               var response = await FirebaseCrud.addResposta(resposta.conteudo);
@@ -100,23 +106,6 @@ class _PerguntasState extends State<Perguntas> {
                 ),
                 (route) => false, //To disable back feature set to false
               );
-              if (response.code != 200) {
-                showDialog(
-                    context: context,
-                    builder: (context) {
-                      return AlertDialog(
-                        content: Text(response.message.toString()),
-                      );
-                    });
-              } else {
-                showDialog(
-                    context: context,
-                    builder: (context) {
-                      return AlertDialog(
-                        content: Text(response.message.toString()),
-                      );
-                    });
-              }
             } else {
               Navigator.push(
                   context,
@@ -139,7 +128,7 @@ class _PerguntasState extends State<Perguntas> {
       appBar: AppBar(
         title: Row(
           children: [
-            Text("Agora Responda "),
+            Text("Agora Responda '$_counter'/12 "),
             SizedBox(
               width: 10,
             ),
@@ -161,12 +150,12 @@ class _PerguntasState extends State<Perguntas> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
+                  Text("Na sua opnião o exemplo é um phishing?"),
+                  const SizedBox(height: 35.0),
                   perguntaDeSimOuNao,
                   const SizedBox(height: 25.0),
-                  perguntaCasoSim,
+                  justificativa,
                   const SizedBox(height: 35.0),
-                  perguntaCasoNao,
-                  const SizedBox(height: 45.0),
                   SaveButon,
                   const SizedBox(height: 15.0),
                 ],
@@ -178,3 +167,30 @@ class _PerguntasState extends State<Perguntas> {
     );
   }
 }
+
+// Column(
+//       children: [
+//         Row(
+//           children: [
+//             Checkbox(
+//                 value: this.checkBoxSim,
+//                 onChanged: (checkBoxSim) {
+//                   // print(checkBoxSim);
+//                   setState(() {
+//                     checkBoxSim = true;
+//                   });
+//                 }),
+//             Text("Sim"),
+//             Checkbox(
+//                 value: this.checkBoxNao,
+//                 onChanged: (checkBoxNao) {
+//                   // print(checkBoxNao);
+//                   setState(() {
+//                     checkBoxSim = true;
+//                   });
+//                 }),
+//             Text("Não"),
+//           ],
+//         ),
+//       ],
+//     );

@@ -1,10 +1,12 @@
+import 'dart:html';
 import 'dart:math';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:phishing_game_project/Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen1.dart';
+// import 'package:phishing_game_project/Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen1.dart';
 import 'package:phishing_game_project/Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen10.dart';
 import 'package:phishing_game_project/Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen4.dart';
+import 'package:phishing_game_project/page/addCadastro.dart';
 
 import 'Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen11.dart';
 import 'Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen12.dart';
@@ -40,70 +42,34 @@ class _HomeState extends State<Home> {
   var listToShow = [];
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(actions: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [],
-          )
-        ]),
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(),
         body: Center(
           child: Column(
-            mainAxisSize: MainAxisSize.min,
             children: [
-              Container(
-                child: TextButton(
-                  style: TextButton.styleFrom(
-                      backgroundColor: Colors.red,
-                      foregroundColor: Colors.lightBlueAccent,
-                      padding: const EdgeInsets.fromLTRB(32, 16, 32, 16),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(32))),
-                  onPressed: (() {
-                    var random = Random();
-                    final List<Widget> _widgets = [
-                      Screen2(),
-                      Screen3(),
-                      Screen4(),
-                      Screen5(),
-                      Screen6(),
-                      Screen7(),
-                      Screen8(),
-                      Screen9(),
-                      Screen10(),
-                      Screen11(),
-                      Screen12(),
-                      Screen13(),
-                      Screen12(),
-                      Screen14(),
-                      Screen16()
-                    ];
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: ((context) =>
-                                _widgets[random.nextInt(_widgets.length)])));
-                  }),
-                  child: Text(
-                    "Iniciar",
-                    style: TextStyle(color: Colors.black, fontSize: 20),
-                  ),
-                ),
+              Image.asset("images/simbolo_lab.png"),
+              Text(
+                "Game Phishing ",
+                style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
               ),
-              ElevatedButton.icon(
-                style: ElevatedButton.styleFrom(
-                  minimumSize: Size.fromHeight(20),
-                ),
-                icon: Icon(Icons.arrow_back),
-                label: Text(
-                  "Sign Out",
-                  style: TextStyle(fontSize: 18),
-                ),
-                onPressed: (() => FirebaseAuth.instance.signOut()),
-              )
+              SizedBox(height: 10),
+              Text(
+                "By: LabSC - UFPA ",
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+              ),
+              Text("Bem vindo"),
+              ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: ((context) => AddPage())));
+                  },
+                  child: const Text("Iniciar"))
             ],
           ),
-        ));
+        ),
+      ),
+    );
   }
 
 //   void updateDataInList() {
