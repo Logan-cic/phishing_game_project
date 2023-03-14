@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:phishing_game_project/page/tutoriais/ComoResponder.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({Key? key}) : super(key: key);
@@ -10,7 +11,8 @@ class SplashPage extends StatefulWidget {
 class SplashPageState extends State<SplashPage> {
   void initializerSplash() async {
     await Future.delayed(const Duration(seconds: 4));
-    Navigator.pushReplacementNamed(context, "/home");
+   Navigator.push(
+                  context, MaterialPageRoute(builder: ((context) => App())));
   }
 
   @override

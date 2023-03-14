@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:phishing_game_project/page/perguntas.dart';
 import '../../../Widgets/Email_Header/Sender_Card.dart';
 import '../../../Widgets/Email_Header/shipping_information.dart';
 import '../../Resposta/Formulario_de_Resposta.dart';
@@ -19,7 +20,7 @@ class Screen10 extends StatelessWidget {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: ((context) => FormularioDeResposta())));
+                      builder: ((context) => Perguntas())));
             },
           ),
           backgroundColor: Colors.black,

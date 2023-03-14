@@ -1,25 +1,26 @@
-import 'dart:html';
+
 import 'dart:math';
 
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-// import 'package:phishing_game_project/Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen1.dart';
-import 'package:phishing_game_project/Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen10.dart';
-import 'package:phishing_game_project/Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen4.dart';
-import 'package:phishing_game_project/page/addCadastro.dart';
 
-import 'Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen11.dart';
-import 'Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen12.dart';
-import 'Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen13.dart';
-import 'Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen14.dart';
-import 'Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen16.dart';
-import 'Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen2.dart';
-import 'Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen3.dart';
-import 'Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen5.dart';
-import 'Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen6.dart';
-import 'Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen7.dart';
-import 'Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen8.dart';
-import 'Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen9.dart';
+import 'page/addCadastro.dart';
+// // import 'package:phishing_game_project/Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen1.dart';
+// import 'package:phishing_game_project/Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen10.dart';
+// import 'package:phishing_game_project/Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen4.dart';
+
+
+// import 'Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen11.dart';
+// import 'Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen12.dart';
+// import 'Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen13.dart';
+// import 'Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen14.dart';
+// import 'Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen16.dart';
+// import 'Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen2.dart';
+// import 'Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen3.dart';
+// import 'Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen5.dart';
+// import 'Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen6.dart';
+// import 'Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen7.dart';
+// import 'Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen8.dart';
+// import 'Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen9.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});

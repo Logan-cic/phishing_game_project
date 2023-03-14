@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class WappHeader extends StatelessWidget {
-  // ignore: prefer_final_fields
+  
   String contato;
   String imageWapp;
  

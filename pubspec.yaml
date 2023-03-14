@@ -34,12 +34,13 @@ dependencies:
   cloud_firestore: ^4.0.4 #banco de dados
   firebase_storage: ^11.0.4 #armazenamento de arquivos
   email_validator: ^2.1.17
+  intl: ^0.18.0
 
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
-  intl: ^0.17.0
+  introduction_screen: ^3.1.6
 
 dev_dependencies:
   flutter_test:
@@ -68,7 +69,6 @@ flutter:
     - images/logo.png
     - images/user.png
     - images/nubank.jpg
-    - images/transferir.png
     - images/paypal.jpg
     - images/inter.jpg
     - images/netflix.jpg
@@ -94,9 +94,18 @@ flutter:
     - images/nubankIcone.png
     - images/pai.jpg
     - images/riotgames.png
-    - images/transferir.png
     - images/unimed.png
     - images/whatsapp.png
+    - images/Pay-Pal.png
+    - images/banco-brasil.png
+    - images/cadastro_tutorial.png
+    - images/exemplo.jpg
+    - images/resposta_exemplo.jpg
+    - images/phishing.jpg
+
+
+
+
 
 
     

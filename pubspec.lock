@@ -81,6 +81,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.5"
+  dots_indicator:
+    dependency: transitive
+    description:
+      name: dots_indicator
+      sha256: e59dfc90030ee5a4fd4c53144a8ce97cc7a823c2067b8fb9814960cd1ae63f89
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.0"
   email_validator:
     dependency: "direct main"
     description:
@@ -101,10 +109,10 @@ packages:
     dependency: "direct main"
     description:
       name: firebase_auth
-      sha256: "4238545c2dd88774195bbb588182eff7f383ffe8b83e47302f1cb50a79f3dc01"
+      sha256: e946a21254784116d32e497e09b851b4d03a3c65880e80d6939a720dfce88aed
       url: "https://pub.dev"
     source: hosted
-    version: "4.2.8"
+    version: "4.2.2"
   firebase_auth_platform_interface:
     dependency: transitive
     description:
@@ -117,10 +125,10 @@ packages:
     dependency: transitive
     description:
       name: firebase_auth_web
-      sha256: d20d5c2d14fd0ec422d6a58caada47354a4066f981f0130abda15bce37e53fa4
+      sha256: bf8f3093c141abd0a624e0244864154d9db694682ba0cc1fcfdf60ecb6f7f2e3
       url: "https://pub.dev"
     source: hosted
-    version: "5.2.7"
+    version: "5.2.2"
   firebase_core:
     dependency: "direct main"
     description:
@@ -212,10 +220,18 @@ packages:
     dependency: "direct main"
     description:
       name: intl
-      sha256: "910f85bce16fb5c6f614e117efa303e85a1731bb0081edf3604a2ae6e9a3cc91"
+      sha256: a3715e3bc90294e971cb7dc063fbf3cd9ee0ebf8604ffeafabd9e6f16abbdbe6
       url: "https://pub.dev"
     source: hosted
-    version: "0.17.0"
+    version: "0.18.0"
+  introduction_screen:
+    dependency: "direct main"
+    description:
+      name: introduction_screen
+      sha256: ffbae2e9e1e21e1d8d6a898385f11513c23f6e83436f78c26664f7f002a58caa
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.1.6"
   js:
     dependency: transitive
     description:

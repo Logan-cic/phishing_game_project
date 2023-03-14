@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:phishing_game_project/page/perguntas.dart';
 
 import '../../../Widgets/Email_Header/Sender_Card.dart';
 import '../../../Widgets/Email_Header/shipping_information.dart';
@@ -21,9 +22,9 @@ class Screen4 extends StatelessWidget {
               child: const Icon(Icons.add),
               onPressed: () {
                 Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: ((context) => FormularioDeResposta())));
+                    context,
+                    MaterialPageRoute(
+                        builder: ((context) => Perguntas())));
               },
             ),
             backgroundColor: Colors.black,
@@ -35,30 +36,68 @@ class Screen4 extends StatelessWidget {
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
             ),
-            body: SingleChildScrollView(
-                child: Column(
-              children: [
-                // EmailTitle(
-                //     label:
-                //         "Você acaba de receber o inforemail Santander - Instabilidade no sistema"),
-                SenderCard(label: "Banco rrr"),
-                ShippingInformation(
-                    sender: "Banco auria",
-                    emailSender: "info@.com",
-                    emailRecipient: "cadymaureria@amail.com"),
-                // Image.asset('images/transferir.png'),
-                Container(
-                  height: 460,
-                  color: Colors.black,
-                  child: Center(
-                    child: Text(
-                        "Pode ser que você tenha notado que na semana passada nosso site www.groupsantander.com estava funcionando instável.\nDevido a este problema, recentemente atualizamos nosso banco de dados, melhorando nossos sistemas de segurança,\nNo entanto, para concluir esta atualização e otimizar a capacidade de funcionamento de suas contas bancárias, você deve insira os detalhes da sua conta para sincronizar com nossa nova base de clientes e verifique nosso novo sistema de proteção de dados.\n\n Use este link www.sr.com para verificar seus dados."),
+            body: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: SingleChildScrollView(
+                  child: Column(
+                children: [
+                  // EmailTitle(
+                  //     label:
+                  //         "Você acaba de receber o inforemail Santander - Instabilidade no sistema"),
+                  SenderCard(label: "PayPal"),
+                  ShippingInformation(
+                      sender: "Banco PayPal",
+                      emailSender: "infoPayPal@.com",
+                      emailRecipient: "usuarioGP@gmail.com"),
+                    SizedBox(height: 14),
+
+                  Image.asset('images/paypal.jpg'),
+                  SizedBox(height: 14),
+                  
+                  Row(
+                    children: [
+                      Text(
+                        "Caro membro valioso do Paypal,",
+                        textAlign: TextAlign.left,
+                        //textDirection: TextDirection.ltr,
+                        style: TextStyle(
+                            fontSize: 18,
+                            color: Colors.white,
+                            fontWeight: FontWeight.normal),
+                      ),
+                    ],
                   ),
-                ),
-              ],
-            ))),
+                    SizedBox(height: 14),
+            
+                   Text(
+                            "Devido a preocupações, para a segurança e integridade do paypal conta, emitimos esta mensagem de alerta.Chegou ao nosso conhecimento que as informações da sua conta precisam ser atualizado devido a membros inativos, fraudes e relatórios falsos.si você puder reservar de 5 a 10 minutos de sua experiência on-line e renovarseus registros, você não terá problemas futuros com o serviço online. No entanto, a falha em atualizar seus registros resultará na suspensão da conta Esta notificação expira em 48. Depois de atualizar seus registros de conta, sua conta paypal o serviço não será interrompido e vamos continuar normalmente. Por favor, siga o link abaixo e faça login na sua conta e renove as informações da sua conta",style: TextStyle(color: Colors.white, fontSize: 16),
+                      ),
+                       SizedBox(height: 10),
+                      Row(
+                        children: [
+                          Text("https://www.paypal.com/cgi-bin/webscr?cmd= login-run",
+                              style:
+                                  TextStyle(color: Colors.blue, fontSize: 16)),
+                        ],
+                      ),
+                   SizedBox(height: 10),
+
+                      Row(
+                        children: [
+                          Text("cumprimentos,\nPayPal.",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold))
+                        ],
+                      ),
+                ],
+              )),
+            )),
       ),
     );
   }
 }
 
+
+// "",style: TextStyle(color: Colors.white, fontSize: 16

@@ -2,10 +2,19 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:phishing_game_project/Home.dart';
+import 'package:phishing_game_project/Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen4.dart';
+import 'package:phishing_game_project/Splash/splash_page.dart';
 import 'package:phishing_game_project/page/addCadastro.dart';
+import 'package:phishing_game_project/page/perguntas.dart';
+import 'package:phishing_game_project/page/tutoriais/ComoResponder.dart';
 import 'Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen16.dart';
 import 'Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen2.dart';
 import 'package:intl/intl.dart';
+
+import 'Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen3.dart';
+import 'Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen5.dart';
+import 'Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen6.dart';
+import 'page/concentimento/concentimento.dart';
 // import 'package:phishing_game_project/Auth_page.dart';
 // import 'package:phishing_game_project/Home.dart';
 // import 'package:phishing_game_project/Login.dart';
@@ -18,7 +27,8 @@ import 'package:intl/intl.dart';
 
 enum SimOuNao {
  sim,
- nao
+ nao,
+ padrao 
 }
 
 void main() async {
@@ -30,22 +40,17 @@ void main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    // ignore: prefer_const_constructors
     return MaterialApp(
   
       title: 'Game Phishing',
-      supportedLocales: [Locale("pt", "BR")],
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.indigo,
-
-        brightness: Brightness.dark,
-      ),
-      home: Home(),
+      
+      home: Perguntas(),
     );
   }
 }
 
-// void main() async {
 //   WidgetsFlutterBinding.ensureInitialized();
 //   await Firebase.initializeApp(
 //     options: DefaultFirebaseOptions.currentPlatform,
