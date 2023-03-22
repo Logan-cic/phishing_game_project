@@ -48,7 +48,8 @@ class Screen7 extends StatelessWidget {
                   color: Colors.black,
                   child: Center(
                     child: Text(
-                        "Faz tempo que a gente não se fala. Queria te ouvir e melhorar a experiência que você teve. Topa me ajudar? É só responder essa pesquisa rapidinho. O link para a pesquisa: https://pesquisaifood.com/jfe/form/SV_2fNiVw3jkVGl4Q6"),
+                        "Faz tempo que a gente não se fala. Queria te ouvir e melhorar a experiência que você teve. Topa me ajudar? É só responder essa pesquisa rapidinho. O link para a pesquisa: https://pesquisaifood.com/jfe/form/SV_2fNiVw3jkVGl4Q6",
+                        style: TextStyle(color: Colors.white, fontSize: 16)),
                   ),
                 ),
               ],

@@ -19,7 +19,7 @@ class Screen6 extends StatelessWidget {
               child: const Icon(Icons.add),
               onPressed: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: ((context) => Perguntas())));
+                    MaterialPageRoute(builder: ((context) => const  Perguntas())));
               },
             ),
             backgroundColor: Colors.black,

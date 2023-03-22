@@ -42,15 +42,27 @@ class Screen15 extends StatelessWidget {
                     sender: "Amazon",
                     emailSender: "store-news@amazon.com.br",
                     emailRecipient: "logancardoso4@gamil.com"),
-                Image.asset('images/amazon.jpg'),
-                Container(
-                  height: 460,
-                  color: Colors.black,
-                  child: Center(
-                    child: Text(
-                        "Acesse o link e confira as ofertas: \nhttps://www.amazon.com.br/events/saldaodocliente/"),
-                  ),
+                SizedBox(height: 12,),
+
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Image.asset('images/amazon.jpg'),
                 ),
+                SizedBox(height: 12,),
+                  Center(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child:  Column(
+                        children: [
+                          Text(
+                              "Acesse o link e confira as ofertas: ",
+                              style: TextStyle(color: Colors.white, fontSize: 16)),
+                          Text("https://www.amazon.com.br/events/saldaodocliente/", style: TextStyle(color: Colors.blue, fontSize: 16))
+                        ],
+                      ),
+                    ),
+                  ),
+                
               ],
             ),
           ),

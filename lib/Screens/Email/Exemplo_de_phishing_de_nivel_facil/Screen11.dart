@@ -49,7 +49,8 @@ class Screen11 extends StatelessWidget {
                   color: Colors.black,
                   child: Center(
                     child: Text(
-                        "Importante,\n\n The information transmitted is for the use of the intended recipient only and may contain confidential and/or legally privileged material. Any review, re-transmission, disclosure,dissemination or other use of, or taking of anyaaction in reliance upon, this information by persons or entíties other than the intended recipient is prohibited and may result in severe penalties. If you have received this e-mail in errorplease notify the Privacy Hotline of the Australian Taxation Office, telephone 1300 661 542 and delete al copies of this transmission together with any attachments. Acesse o link para atualizar seus dados: \n\nwww.scam.org.com/FMfcgzGqQmWjKmdhgcFRXtMlKlnPlJWQ"),
+                        "Importante,\n\n The information transmitted is for the use of the intended recipient only and may contain confidential and/or legally privileged material. Any review, re-transmission, disclosure,dissemination or other use of, or taking of anyaaction in reliance upon, this information by persons or entíties other than the intended recipient is prohibited and may result in severe penalties. If you have received this e-mail in errorplease notify the Privacy Hotline of the Australian Taxation Office, telephone 1300 661 542 and delete al copies of this transmission together with any attachments. Acesse o link para atualizar seus dados: \n\nwww.scam.org.com/FMfcgzGqQmWjKmdhgcFRXtMlKlnPlJWQ",
+                        style: TextStyle(color: Colors.white, fontSize: 16)),
                   ),
                 ),
               ],

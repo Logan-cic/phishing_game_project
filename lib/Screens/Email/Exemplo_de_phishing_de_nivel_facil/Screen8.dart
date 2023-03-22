@@ -50,7 +50,8 @@ class Screen8 extends StatelessWidget {
                   color: Colors.black,
                   child: Center(
                     child: Text(
-                        "A conta vinculada ao contrato de número 09767137-001973.097 encontra-se desatualizada com nosso sistema. Por isso, estamos disponibilizando a atualização através deste assistente, para que não haja necessidade de você se deslocar até sua agência.\n\nA atualização consiste em sincronizar o seu dispositivo de segurança (iToken) para a nova versão disponível 2.04.\n\nA atualização será realizada em ambiente seguro com o Guardião 30 horas. Esse procedimento é obrigatório para todos os clientes\n\n clique no link abaixo e preencha os campos corretamente.\n\nAcesse o link: www.scam.org.com/FMfcgzGqQmWjKmdhgcFRXtMlKlnPlJWQ"),
+                        "A conta vinculada ao contrato de número 09767137-001973.097 encontra-se desatualizada com nosso sistema. Por isso, estamos disponibilizando a atualização através deste assistente, para que não haja necessidade de você se deslocar até sua agência.\n\nA atualização consiste em sincronizar o seu dispositivo de segurança (iToken) para a nova versão disponível 2.04.\n\nA atualização será realizada em ambiente seguro com o Guardião 30 horas. Esse procedimento é obrigatório para todos os clientes\n\n clique no link abaixo e preencha os campos corretamente.\n\nAcesse o link: www.scam.org.com/FMfcgzGqQmWjKmdhgcFRXtMlKlnPlJWQ",
+                        style: TextStyle(color: Colors.white, fontSize: 16)),
                   ),
                 ),
               ],

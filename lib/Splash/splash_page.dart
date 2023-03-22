@@ -10,7 +10,7 @@ class SplashPage extends StatefulWidget {
 
 class SplashPageState extends State<SplashPage> {
   void initializerSplash() async {
-    await Future.delayed(const Duration(seconds: 4));
+    await Future.delayed(const Duration(seconds: 5));
    Navigator.push(
                   context, MaterialPageRoute(builder: ((context) => App())));
   }

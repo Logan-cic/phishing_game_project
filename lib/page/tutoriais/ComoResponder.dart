@@ -91,40 +91,68 @@ class OnBoardingPageState extends State<OnBoardingPage> {
       //   ),
       // ),
       pages: [
+        
         PageViewModel(
           title: "Bem vindo ao Game Phishing",
           body:
               "Os ataques phishing são uma ameaça cada vez mais comum no mundo digital. Eles são realizados por meio de mensagens fraudulentas que se parecem com comunicações legítimas de empresas e organizações conhecidas. A conscientização é a chave para evitar ser vítima de um ataque phishing. Ao permanecer vigilante e tomar precauções de segurança adequadas, você pode proteger-se contra essa ameaça crescente na internet.",
-          image: Image.asset("images/simbolo_lab.png"),
-          decoration: pageDecoration,
+          image: _buildImage('logo.png'),
+          decoration: const PageDecoration(
+            titleTextStyle: TextStyle(fontSize: 28.0, fontWeight: FontWeight.bold),
+            bodyTextStyle: TextStyle(fontSize: 19.0),
+            pageColor: Colors.white,
+            imagePadding: EdgeInsets.zero,
+            
+          ),
         ),
         PageViewModel(
           title: "Fase de cadastro",
           body:
-              "Nesta fase precismos que você se cadastre. Para isso basta informar sua área de atuação e data de nascimento.",
+              "Nesta fase, precisamos que você se cadastre. Para isso, basta informar sua área de atuação e data de nascimento.",
           image: _buildImage('cadastro_tutorial.png'),
           decoration: pageDecoration,
         ),
         PageViewModel(
           title: "Como jogar?",
           body:
-              "Será mostrada na sua tela um exemplo que pode ou não ser um phishin ou não. Analise o exemplo e em seguida clique no botão com o icone de + no lado inferior direito da tela",
+              "Será mostrado na sua tela um exemplo que pode ou não ser um phishing. Analise o exemplo e, em seguida, clique no botão com o ícone de '+' no lado inferior direito da tela.",
           image: _buildImage('exemplo.jpg'),
           decoration: pageDecoration,
         ),
         PageViewModel(
           title: "Como responder",
           body:
-              "Primeira mente você precisa dizer se o exemplo é phishing ou não. Logo em seguida insira a justificativa da sua resposta anterior. Serão mostrados um total de 12 exemplos que serão contabilizados e mostrado na parte superior da sua tela.",
+              "Primeiramente, você precisa dizer se o exemplo é phishing ou não. Logo em seguida, insira a justificativa da sua resposta anterior. Serão mostrados um total de 12 exemplos, que serão contabilizados e mostrados na parte superior da sua tela.",
           image: Padding(
             padding: const EdgeInsets.only(top: 20, right: 20),
             child: Image.asset('images/resposta_exemplo.jpg', width: 350),
           ),
           decoration: pageDecoration,
         ),
+      
+        
         PageViewModel(
-          title: "Antes de irmos para o jogo, Leia!",
-          body: "s simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+          title: "Termos de Uso",
+          bodyWidget: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text("    Como aluno vinculado ao PROGRAMA DE PÓS GRADUAÇÃO EM SEGURANÇA PÚBLICA DO INSTITUTO DE FILOSOFIA E CIÊNCIAS HUMANAS DA UNIVERSIDADE FEDERAL DO PARÁ, sob orientação do professor Dr. Renato Hidaka Torres na área de concentração Segurança Pública Justiça, conflitos e cidadaniae linha de pesquisa Crimes Cibernéticos, criamos o PHISHING GAME, com o objetivo de coletar dados para a pesquisa deste orientando, sem nenhum fim lucrativo, por meio da coletas de respostas das alternativas apresentadas no jogo.\n\n    O jogador, após cadastro prévio, vai selecionar alternativas retiradas de exemplos reais de PHISHING (tentativas de golpes de criminosos), bem como alternativas que não são PHISHING.  Após deverá responder se a alternativa se enquadra ou não como o cibercrime de PHISHING. O jogador fará uma breve justificativa de sua resposta e terá o gabarito delas ao final.\n\n    A obtenção das respostas servirá para coleta de dados do discente na pesquisa 'O Estudo do Cibercrime de Phishing no Estado do Pará', podendo ser respondida por qualquer pessoa da comunidade acadêmica ou não, garantindo-se a não divulgação de dados pessoais conforme a LGPD Lei Geral de Proteção de Dados (art 7º, IV da LGPD).\n\n     A sua resposta é essencial para a pesquisa acadêmica, mas também para elaboração de estratégia de combate e prevenção ao PHISHING. Contamos com sua colaboração.\n\nAtenciosamente\n\nFabrício Barreto Nascimento DICENTE DO PROGRAMA DE PÓS GRADUAÇÃO EM SEGURANÇA PÚBLICA DO INSTITUTO DE FILOSOFIA E CIÊNCIAS HUMANAS DA UNIVERSIDADE FEDERAL DO PARÁ "),
+              SizedBox(height: 12.0),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Checkbox(
+                    value: true, // altere o valor conforme necessário
+                    onChanged: (value) {
+                      // altere o valor conforme necessário
+                    },
+                  ),
+                  Text("Eu aceito os termos de uso."),
+                ],
+              ),
+
+            ],
+          ),
           image: _buildImage('phishing.jpg'),
           footer: ElevatedButton(
             onPressed: () {
@@ -192,5 +220,14 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(title: const Text('Home')),
       body: const Center(child: Text("This is the screen after Introduction")),
     );
+  }
+}
+
+class Merda  extends StatelessWidget {
+  const Merda ({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
   }
 }

@@ -48,7 +48,8 @@ class Screen13 extends StatelessWidget {
                   color: Colors.black,
                   child: Center(
                     child: Text(
-                        "Você só tem mais três dias para aproveitar seu primeiro mês de Disney+ por apenas R\$ 4,90. Assine até ‌19 de setembro para garantir essa oferta especial e assistir a grandes lançamentos como Thor: Amor e Trovão da Marvel Studios e Pinóquio da Disney.\nSujeito aos termos.*\n\nAproveite a oferta:\nhttps://www.disneymais.com/pt-br?cid=dss-Disneyplus-email-HPM2QTI244-20220916"),
+                        "Você só tem mais três dias para aproveitar seu primeiro mês de Disney+ por apenas R\$ 4,90. Assine até ‌19 de setembro para garantir essa oferta especial e assistir a grandes lançamentos como Thor: Amor e Trovão da Marvel Studios e Pinóquio da Disney.\nSujeito aos termos.*\n\nAproveite a oferta:\nhttps://www.disneymais.com/pt-br?cid=dss-Disneyplus-email-HPM2QTI244-20220916",
+                        style: TextStyle(color: Colors.white, fontSize: 16)),
                   ),
                 ),
               ],

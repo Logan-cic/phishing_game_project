@@ -1,13 +1,15 @@
-
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:phishing_game_project/Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen16.dart';
+import 'package:phishing_game_project/page/fim.dart';
+import 'package:phishing_game_project/services/firebase_crud.dart';
 
+import 'models/guardaRespostas.dart';
 import 'page/addCadastro.dart';
 // // import 'package:phishing_game_project/Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen1.dart';
 // import 'package:phishing_game_project/Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen10.dart';
 // import 'package:phishing_game_project/Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen4.dart';
-
 
 // import 'Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen11.dart';
 // import 'Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen12.dart';
@@ -40,6 +42,22 @@ class _HomeState extends State<Home> {
   //   setState(() => randomNumber = random.nextInt(_widgets.length));
   // }
 
+  _proximaTela() {
+    GuardaRespostas lista = GuardaRespostas();
+      int randomIndex = Random().nextInt(lista.telas.length);
+      while (lista.indexSorteados.contains(randomIndex)) {
+        randomIndex = Random().nextInt(lista.telas.length);
+      }
+      lista.indexSorteados.add(randomIndex);
+      lista.incrementa();
+
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => lista.telas[randomIndex]),
+      );
+    
+  }
+
   var listToShow = [];
   @override
   Widget build(BuildContext context) {
@@ -61,11 +79,23 @@ class _HomeState extends State<Home> {
               ),
               Text("Bem vindo"),
               ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: ((context) => AddPage())));
-                  },
-                  child: const Text("Iniciar"))
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: ((context) => Screen16())));
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.red,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                ),
+                child: const Text(
+                  'Iniciar',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
             ],
           ),
         ),

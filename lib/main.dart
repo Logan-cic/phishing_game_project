@@ -2,9 +2,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:phishing_game_project/Home.dart';
+import 'package:phishing_game_project/Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen15.dart';
 import 'package:phishing_game_project/Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen4.dart';
 import 'package:phishing_game_project/Splash/splash_page.dart';
+// import 'package:phishing_game_project/Splash/splash_page.dart';
 import 'package:phishing_game_project/page/addCadastro.dart';
+// import 'package:phishing_game_project/page/finalizado.dart';
 import 'package:phishing_game_project/page/perguntas.dart';
 import 'package:phishing_game_project/page/tutoriais/ComoResponder.dart';
 import 'Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen16.dart';
@@ -14,6 +17,7 @@ import 'package:intl/intl.dart';
 import 'Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen3.dart';
 import 'Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen5.dart';
 import 'Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen6.dart';
+import 'Screens/Email/Exemplo_de_phishing_de_nivel_facil/tela00.dart';
 import 'page/concentimento/concentimento.dart';
 // import 'package:phishing_game_project/Auth_page.dart';
 // import 'package:phishing_game_project/Home.dart';
@@ -37,6 +41,7 @@ void main() async {
   runApp(MyApp());
 }
 
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -46,51 +51,9 @@ class MyApp extends StatelessWidget {
       title: 'Game Phishing',
       debugShowCheckedModeBanner: false,
       
-      home: Perguntas(),
+      home: SplashPage(),
     );
   }
 }
 
-//   WidgetsFlutterBinding.ensureInitialized();
-//   await Firebase.initializeApp(
-//     options: DefaultFirebaseOptions.currentPlatform,
-//   );
-//   runApp(const MaterialApp(
-//     home: MainPage(),
-//   ));
-// }
 
-// class Myapp extends StatelessWidget {
-//   final navigatorKey = GlobalKey<NavigatorState>();
-//   Utils utils = Utils();
-
-//   @override
-//   Widget build(BuildContext context) => MaterialApp(
-//         scaffoldMessengerKey: utils.messengerKey,
-//         navigatorKey: navigatorKey,
-//         debugShowCheckedModeBanner: false,
-//       );
-// }
-
-// class MainPage extends StatefulWidget {
-//   const MainPage({super.key});
-
-//   @override
-//   State<MainPage> createState() => _MainPageState();
-// }
-
-// class _MainPageState extends State<MainPage> {
-//   @override
-//   Widget build(BuildContext context) => Scaffold(
-//         body: StreamBuilder<User?>(
-//           stream: FirebaseAuth.instance.authStateChanges(),
-//           builder: (context, snapshot) {
-//             if (snapshot.hasData) {
-//               return Home();
-//             } else {
-//               return AuthPage();
-//             }
-//           },
-//         ),
-//       );
-// }

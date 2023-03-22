@@ -26,9 +26,9 @@ class GuardaRespostas {
   static List<Widget> _widgets = 
   [
     Screen2(), Screen3(), Screen4(), Screen5(),
-    Screen6(), Screen7(), Screen8(), Screen9(),
-    Screen10(), Screen11(), Screen12(),Screen13(),
-    Screen14(), Screen15(), Screen16()
+    Screen6(), Screen7(), Screen8(), Screen10(), 
+    Screen11(), Screen12(),Screen13(),Screen14(), 
+    Screen15()
   ];
 
 

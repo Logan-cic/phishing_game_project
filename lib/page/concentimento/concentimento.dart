@@ -1,138 +1,250 @@
-// import 'dart:math';
+import 'package:flutter/material.dart';
 
-// import 'package:flutter/material.dart'; 
-// class MyApp extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       title: 'Perguntas',
-//       home: Perguntas(),
-//     );
-//   }
-// }
+class WhatsAppChatScreen extends StatelessWidget {
+  final String contactName;
+  final String contactImage;
 
-// class Perguntas extends StatefulWidget {
-//   @override
-//   _PerguntasState createState() => _PerguntasState();
-// }
+  const WhatsAppChatScreen({
+    Key? key,
+    required this.contactName,
+    required this.contactImage,
+  }) : super(key: key);
 
-// class _PerguntasState extends State<Perguntas> {
-//   int _numeroRespostasDadas = 0;
-//   String _nomeUsuario = '';
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Row(
+          children: [
+            CircleAvatar(
+              backgroundImage: AssetImage("images/$contactImage"),
+            ),
+            SizedBox(width: 10),
+            Text(contactName),
+          ],
+        ),
+      ),
+      body: Column(
+        children: <Widget>[
+          Expanded(
+            child: ListView.builder(
+              itemBuilder: (BuildContext context, int index) {
+                final message = messages[index];
+                return Container(
+                  margin: EdgeInsets.symmetric(vertical: 10.0),
+                  child: Row(
+                    mainAxisAlignment: message.isMe ? MainAxisAlignment.end : MainAxisAlignment.start,
+                    children: <Widget>[
+                      Container(
+                        margin: EdgeInsets.only(right: 16.0),
+                        child: CircleAvatar(
+                          backgroundImage: NetworkImage(message.avatarUrl),
+                        ),
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Text(message.name),
+                          Container(
+                            margin: EdgeInsets.only(top: 5.0),
+                            padding: EdgeInsets.all(10.0),
+                            decoration: BoxDecoration(
+                              color: message.isMe ? Colors.blue[50] : Colors.grey[200],
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(15.0),
+                                topRight: Radius.circular(15.0),
+                                bottomLeft: message.isMe ? Radius.circular(15.0) : Radius.circular(0.0),
+                                bottomRight: message.isMe ? Radius.circular(0.0) : Radius.circular(15.0),
+                              ),
+                            ),
+                            child: Text(message.text),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                );
+              },
+              itemCount: messages.length,
+            ),
+          ),
+          Divider(),
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 8.0),
+            child: Row(
+              children: <Widget>[
+                Expanded(
+                  child: TextField(
+                    decoration: InputDecoration.collapsed(
+                      hintText: 'Digite aqui',
+                    ),
+                  ),
+                ),
+                IconButton(
+                  icon: Icon(Icons.send),
+                  onPressed: () {},
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
 
-//   final List<Widget> _screens = [
-//     Screen(
-//       cor: Colors.red,
-//       texto: 'Tela 1',
-//     ),
-//     Screen(
-//       cor: Colors.blue,
-//       texto: 'Tela 2',
-//     ),
-//     Screen(
-//       cor: Colors.green,
-//       texto: 'Tela 3',
-//     ),
-//     Screen(
-//       cor: Colors.orange,
-//       texto: 'Tela 4',
-//     ),
-//     Screen(
-//       cor: Colors.purple,
-//       texto: 'Tela 5',
-//     ),
-//     Screen(
-//       cor: Colors.teal,
-//       texto: 'Tela 6',
-//     ),
-//   ];
+class WhatsAppMessage {
+  final String avatarUrl;
+  final String name;
+  final String text;
+  final bool isMe;
 
-//   bool _telaFinal = false;
-//   int _telaAtual = 0;
+  WhatsAppMessage({required this.avatarUrl, required this.name, required this.text, required this.isMe});
+}
 
-//   void _responder() {
-//     if (_numeroRespostasDadas < 2) {
-//       setState(() {
-//         _telaAtual = Random().nextInt(_screens.length);
-//         _numeroRespostasDadas++;
-//       });
-//     } else {
-//       setState(() {
-//         _telaFinal = true;
-//       });
-//     }
-//   }
+final List<WhatsAppMessage> messages = [
+  WhatsAppMessage(
+    avatarUrl: "images/mulher.jpg",
+    name: 'Contato 1',
+    text: 'Olá, tudo bem?',
+    isMe: false,
+  ),
+  WhatsAppMessage(
+    avatarUrl: 'https://via.placeholder.com/150',
+    name: 'Eu',
+    text: 'Sim, e com você?',
+    isMe: true,
+  ),
+  WhatsAppMessage(
+    avatarUrl: 'https://via.placeholder.com/150',
+    name: 'Contato 1',
+    text: 'Estou bem também. O que tem feito?',
+    isMe: false,
+  ),
+  WhatsAppMessage(
+    avatarUrl: 'https://via.placeholder.com/150',
+    name: 'Eu',
+    text: 'Nada de mais, e você?',
+    isMe: true
+  )
+];
 
+// import 'package:flutter/material.dart';
+
+// class WhatsAppChatScreen extends StatelessWidget {
 //   @override
 //   Widget build(BuildContext context) {
 //     return Scaffold(
 //       appBar: AppBar(
-//         title: Text('Perguntas'),
+//         title: Text('WhatsApp Clone'),
 //       ),
-//       body: Center(
-//         child: Column(
-//           mainAxisAlignment: MainAxisAlignment.center,
-//           children: [
-//             TextField(
-//               decoration: InputDecoration(
-//                 labelText: 'Qual é o seu nome?',
-//               ),
-//               onChanged: (nome) {
-//                 setState(() {
-//                   _nomeUsuario = nome;
-//                 });
+//       body: Column(
+//         children: <Widget>[
+//           Expanded(
+//             child: ListView.builder(
+//               itemBuilder: (BuildContext context, int index) {
+//                 final message = messages[index];
+//                 return Container(
+//                   margin: EdgeInsets.symmetric(vertical: 10.0),
+//                   child: Row(
+//                     mainAxisAlignment: message.isMe ? MainAxisAlignment.end : MainAxisAlignment.start,
+//                     children: <Widget>[
+//                       Container(
+//                         margin: EdgeInsets.only(right: 16.0),
+//                         child: CircleAvatar(
+//                           backgroundImage: NetworkImage(message.avatarUrl),
+//                         ),
+//                       ),
+//                       Column(
+//                         crossAxisAlignment: CrossAxisAlignment.start,
+//                         children: <Widget>[
+//                           Text(message.name),
+//                           Container(
+//                             margin: EdgeInsets.only(top: 5.0),
+//                             padding: EdgeInsets.all(10.0),
+//                             decoration: BoxDecoration(
+//                               color: message.isMe ? Colors.blue[50] : Colors.grey[200],
+//                               borderRadius: BorderRadius.only(
+//                                 topLeft: Radius.circular(15.0),
+//                                 topRight: Radius.circular(15.0),
+//                                 bottomLeft: message.isMe ? Radius.circular(15.0) : Radius.circular(0.0),
+//                                 bottomRight: message.isMe ? Radius.circular(0.0) : Radius.circular(15.0),
+//                               ),
+//                             ),
+//                             child: Text(message.text),
+//                           ),
+//                         ],
+//                       ),
+//                     ],
+//                   ),
+//                 );
 //               },
+//               itemCount: messages.length,
 //             ),
-//             SizedBox(height: 16),
-//             TextButton(
-//               child: Text('Responder'),
-//               onPressed: _nomeUsuario.isEmpty ? null : _responder,
+//           ),
+//           Divider(),
+//           Container(
+//             padding: EdgeInsets.symmetric(horizontal: 8.0),
+//             child: Row(
+//               children: <Widget>[
+//                 Expanded(
+//                   child: TextField(
+//                     decoration: InputDecoration.collapsed(
+//                       hintText: 'Digite aqui',
+//                     ),
+//                   ),
+//                 ),
+//                 IconButton(
+//                   icon: Icon(Icons.send),
+//                   onPressed: () {},
+//                 ),
+//               ],
 //             ),
-//             SizedBox(height: 32),
-//             if (_telaFinal)
-//               Text(
-//                 'Obrigado, $_nomeUsuario! Você já respondeu todas as perguntas.',
-//                 style: TextStyle(fontSize: 18),
-//               ),
-//             if (!_telaFinal)
-//               Expanded(
-//                 child: _screens[_telaAtual],
-//               ),
-//           ],
-//         ),
-//       ),
-//       floatingActionButton: FloatingActionButton(
-//         child: Icon(Icons.arrow_back),
-//         onPressed: _numeroRespostasDadas > 0
-//             ? () {
-//                 setState(() {
-//                   _telaAtual = Random().nextInt(_screens.length);
-//                   _numeroRespostasDadas--;
-//                   _telaFinal = false;
-//                 });
-//               }
-//             : null,
+//           ),
+//         ],
 //       ),
 //     );
 //   }
 // }
 
-// class Screen extends StatelessWidget {
-//   final Color cor;
-//   final String texto;
+// class WhatsAppMessage {
+//   final String avatarUrl;
+//   final String name;
+//   final String text;
+//   final bool isMe;
 
-//   const Screen({super.key, required this.cor, required this.texto});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container(
-//       color: cor,
-//       child: Center(
-//         child: Text(
-//           texto,
-//           style: TextStyle(fontSize: 32, color: Colors.white),
-//         ),
-//       ),
-//     );
-//   }
+//   WhatsAppMessage({required this.avatarUrl, required this.name, required this.text, required this.isMe});
 // }
+
+// final List<WhatsAppMessage> messages = [
+//   WhatsAppMessage(
+//     avatarUrl: 'https://via.placeholder.com/150',
+//     name: 'Contato 1',
+//     text: 'Olá, tudo bem?',
+//     isMe: false,
+//   ),
+//   WhatsAppMessage(
+//     avatarUrl: 'https://via.placeholder.com/150',
+//     name: 'Eu',
+//     text: 'Sim, e com você?',
+//     isMe: true,
+//   ),
+//   WhatsAppMessage(
+//     avatarUrl: 'https://via.placeholder.com/150',
+//     name: 'Contato 1',
+//     text: 'Estou bem também. O que tem feito?',
+//     isMe: false,
+//   ),
+//   WhatsAppMessage(
+//     avatarUrl: 'https://via.placeholder.com/150',
+//     name: 'Eu',
+//     text: 'Nada de mais, e você?',
+//     isMe: true,
+//   ),
+//   WhatsAppMessage(
+//     avatarUrl: 'https://via.placeholder.com/150',
+//     name: 'Contato 1',
+//     text: 'Também nada de mais, só trabalhando e estudando. E você?',
+//     isMe: false,
+//   ),
+// ];

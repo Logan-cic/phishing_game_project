@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:phishing_game_project/Home.dart';
 // import 'package:intl/intl.dart';
 // import 'package:intl/intl.dart';
 import 'package:phishing_game_project/Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen16.dart';
@@ -152,7 +153,7 @@ class _AddPage extends State<AddPage> {
                                     context,
                                     MaterialPageRoute<dynamic>(
                                       builder: (BuildContext context) =>
-                                          Screen5(),
+                                          Home(),
                                     ),
                                     (route) =>
                                         false, //To disable back feature set to false
