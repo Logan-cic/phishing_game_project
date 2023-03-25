@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:phishing_game_project/Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen16.dart';
+import 'package:phishing_game_project/models/cronometro.dart';
 import 'package:phishing_game_project/page/fim.dart';
 import 'package:phishing_game_project/services/firebase_crud.dart';
 
@@ -44,18 +45,17 @@ class _HomeState extends State<Home> {
 
   _proximaTela() {
     GuardaRespostas lista = GuardaRespostas();
-      int randomIndex = Random().nextInt(lista.telas.length);
-      while (lista.indexSorteados.contains(randomIndex)) {
-        randomIndex = Random().nextInt(lista.telas.length);
-      }
-      lista.indexSorteados.add(randomIndex);
-      lista.incrementa();
+    int randomIndex = Random().nextInt(lista.telas.length);
+    while (lista.indexSorteados.contains(randomIndex)) {
+      randomIndex = Random().nextInt(lista.telas.length);
+    }
+    lista.indexSorteados.add(randomIndex);
+    lista.incrementa();
 
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => lista.telas[randomIndex]),
-      );
-    
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => lista.telas[randomIndex]),
+    );
   }
 
   var listToShow = [];
@@ -63,7 +63,9 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(
+          backgroundColor: Colors.red,
+        ),
         body: Center(
           child: Column(
             children: [
@@ -80,10 +82,11 @@ class _HomeState extends State<Home> {
               Text("Bem vindo"),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: ((context) => Screen16())));
+                  
+                  Cronometro inicia = Cronometro();
+                  // inicia.startTimer();
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: ((context) => Screen16())));
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.red,
@@ -98,6 +101,37 @@ class _HomeState extends State<Home> {
               ),
             ],
           ),
+        ),
+        drawer: Drawer(
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: [
+              const DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.red,
+              ),
+              child: Text('Game Phishing'),
+            ),
+            ListTile(
+              title: const Text('Cards'),
+              onTap: () {
+                
+              },
+            ),
+            ListTile(
+              title: const Text('Contato pra denuncia'),
+              onTap: () {
+                
+              },
+            ),
+            ListTile(
+              title: const Text('Sobre o Phishing'),
+              onTap: () {
+                
+              },
+            ),
+          ]),
+          
         ),
       ),
     );

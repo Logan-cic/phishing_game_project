@@ -29,7 +29,7 @@ import 'page/concentimento/concentimento.dart';
 // import 'firebase_options.dart';
 // import 'page/addCadastro.dart';
 
-enum SimOuNao {
+enum Resposta {
  sim,
  nao,
  padrao 
@@ -51,7 +51,7 @@ class MyApp extends StatelessWidget {
       title: 'Game Phishing',
       debugShowCheckedModeBanner: false,
       
-      home: SplashPage(),
+      home: App(),
     );
   }
 }

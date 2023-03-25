@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:phishing_game_project/Home.dart';
 class Finalizado extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -25,7 +26,10 @@ class Finalizado extends StatelessWidget {
               ),
               SizedBox(height: 16.0),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: ((context) => Home())));
+                },
                 child: Text('Voltar'),
               ),
             ],

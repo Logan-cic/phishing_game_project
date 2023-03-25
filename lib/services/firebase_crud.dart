@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:phishing_game_project/models/cronometro.dart';
 import 'package:phishing_game_project/models/guardaRespostas.dart';
 import '../models/response.dart';
 
@@ -16,31 +17,28 @@ class FirebaseCrud {
     Response response = Response();
     DocumentReference documentReferencer = _Collection.doc();
 
-    Map<String, dynamic> data = 
-      {
-        "idade": idade,
-        "area_de_atuaçao": areaDeAtuacao,
-      };
+    Map<String, dynamic> data = {
+      "data_de_nascimento": idade,
+      "area_de_atuaçao": areaDeAtuacao,
+    };
 
-    var result = await documentReferencer.set(data).whenComplete(() {
-    }).catchError((e) {
-      response.code = 500;
-      
-    });
+    var result = await documentReferencer.set(data);
     return response;
   }
 
-  static Future<Response> addResposta(List<Map<String, dynamic>> dados) async {
+  static Future<Response> addResposta() async {
     Response response = Response();
+    // Cronometro tempo = Cronometro();
+    GuardaRespostas listaComRespostas = GuardaRespostas();
+    List<Map<String, dynamic>> dados;
+    // Cronometro fim = Cronometro();
+    // Duration elapsed = fim.stopTimer();
+    // fim.tempoFinal(elapsed.inSeconds);
+
     DocumentReference documentReferencer = _Collection2.doc();
     // print("Ta indo");
-    var result = await documentReferencer.set({"Repostas" : dados}).whenComplete(() {
-      response.code = 200;
-      response.message = "Sucessfully added to the database";
-    }).catchError((e) {
-      response.code = 500;
-      response.message = e;
-    });
+    var result =
+        await documentReferencer.set({"Repostas": listaComRespostas.conteudo});
 
     return response;
   }

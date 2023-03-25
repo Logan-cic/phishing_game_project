@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +8,7 @@ import 'package:phishing_game_project/Screens/Email/Exemplo_de_phishing_de_nivel
 import 'package:phishing_game_project/Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen4.dart';
 import 'package:phishing_game_project/Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen5.dart';
 import 'package:phishing_game_project/Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen6.dart';
+import 'package:phishing_game_project/models/cronometro.dart';
 import 'package:phishing_game_project/page/fim.dart';
 import '../main.dart';
 import '../models/guardaRespostas.dart';
@@ -21,10 +21,11 @@ class Perguntas extends StatefulWidget {
 }
 
 class _PerguntasState extends State<Perguntas> {
-  static int _counter = 1;
+  static int _counter = 0;
   final _justificativa = TextEditingController();
-  SimOuNao simOuNao = SimOuNao.padrao;
+  // SimOuNao simOuNao = SimOuNao.padrao;
   GuardaRespostas contador = GuardaRespostas();
+  String? _selectedOption;
 
   void _incrementCounter() {
     setState(() {
@@ -73,30 +74,35 @@ class _PerguntasState extends State<Perguntas> {
                                 style: TextStyle(
                                   fontSize: 22,
                                 )),
-                            Row(
-                              children: [
-                                Radio(
-                                  value: SimOuNao.sim,
-                                  groupValue: simOuNao,
-                                  onChanged: (SimOuNao? selecionado) {
-                                    setState(() {
-                                      simOuNao = selecionado!;
-                                    });
-                                  },
-                                ),
-                                Text("Sim"),
-                                Radio(
-                                  value: SimOuNao.nao,
-                                  groupValue: simOuNao,
-                                  onChanged: (SimOuNao? selecionado) {
-                                    setState(() {
-                                      simOuNao = selecionado!;
-                                    });
-                                  },
-                                ),
-                                Text("Não"),
-                              ],
-                            ),
+                                Row(
+      children: <Widget>[
+        Radio(
+          value: 'sim',
+          groupValue: _selectedOption,
+          onChanged: (valor) {
+            setState(() {
+             _selectedOption = "sim";
+            });
+          },
+        ),
+        Text('Sim'),
+      ],
+    ),
+    Row(
+      children: <Widget>[
+        Radio(
+          value: 'não',
+          groupValue: _selectedOption,
+          onChanged: (valor) {
+            setState(() {
+              _selectedOption = "não";
+            });
+          },
+        ),
+        Text('Não'),
+      ],
+    ),
+                           
                             Padding(
                               padding: EdgeInsets.only(bottom: 8),
                               child: TextFormField(
@@ -140,27 +146,35 @@ class _PerguntasState extends State<Perguntas> {
                                         GuardaRespostas lista =
                                             GuardaRespostas();
                                         if (lista.numTelasMostradas == 9) {
-                                          await FirebaseCrud.addResposta(
-                                              lista.conteudo);
+                                          await FirebaseCrud.addResposta();
+                                          print(
+                                              'Redirecionando para a tela Finalizado');
                                           Navigator.push(
                                             context,
                                             MaterialPageRoute(
-                                                builder: (context) => Finalizado()),
+                                                builder: (context) =>
+                                                    Finalizado()),
                                           );
                                         } else {
-                                          int randomIndex = Random().nextInt(lista.telas.length);
-                                          while (lista.indexSorteados.contains(randomIndex)) {
-                                            randomIndex = Random().nextInt(lista.telas.length);
+                                          int randomIndex = Random()
+                                              .nextInt(lista.telas.length);
+                                          while (lista.indexSorteados
+                                              .contains(randomIndex)) {
+                                            randomIndex = Random()
+                                                .nextInt(lista.telas.length);
                                           }
                                           lista.indexSorteados.add(randomIndex);
                                           lista.adiciona({
-                                            "sim ou não" : simOuNao, 
-                                            "Justificativa" :  _justificativa});
+                                            "sim ou não": _selectedOption,
+                                            "Justificativa": _justificativa.text
+                                          });
                                           _incrementCounter();
+                                          lista.incrementa();
                                           Navigator.push(
                                             context,
                                             MaterialPageRoute(
-                                                builder: (context) => lista.telas[randomIndex]),
+                                                builder: (context) =>
+                                                    lista.telas[randomIndex]),
                                           );
                                         }
                                       }
@@ -179,4 +193,3 @@ class _PerguntasState extends State<Perguntas> {
     );
   }
 }
-
