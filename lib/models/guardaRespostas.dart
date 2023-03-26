@@ -78,7 +78,6 @@ class GuardaRespostas {
     SmsScreen13(), SmsScreen14(), SmsScreen15(), SmsScreen16(),
     SmsScreen17(), SmsScreen18(), SmsScreen19(), SmsScreen20(),
   ];
-  
 
 
   adiciona(Map<String, dynamic> rpt) {
