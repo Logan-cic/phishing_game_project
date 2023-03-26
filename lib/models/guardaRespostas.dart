@@ -16,9 +16,16 @@ import 'package:phishing_game_project/Screens/Email/Exemplo_de_phishing_de_nivel
 import 'package:phishing_game_project/Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen9.dart';
 import 'package:phishing_game_project/Screens/SMS/SmsScreen1.dart';
 import 'package:phishing_game_project/Screens/SMS/SmsScreen10.dart';
-import 'package:phishing_game_project/Screens/SMS/SmsScreen11.dart';
 import 'package:phishing_game_project/Screens/SMS/SmsScreen12.dart';
+import 'package:phishing_game_project/Screens/SMS/SmsScreen13.dart';
+import 'package:phishing_game_project/Screens/SMS/SmsScreen14.dart';
+import 'package:phishing_game_project/Screens/SMS/SmsScreen15.dart';
+import 'package:phishing_game_project/Screens/SMS/SmsScreen16.dart';
+import 'package:phishing_game_project/Screens/SMS/SmsScreen17.dart';
+import 'package:phishing_game_project/Screens/SMS/SmsScreen18.dart';
+import 'package:phishing_game_project/Screens/SMS/SmsScreen19.dart';
 import 'package:phishing_game_project/Screens/SMS/SmsScreen2.dart';
+import 'package:phishing_game_project/Screens/SMS/SmsScreen20.dart';
 import 'package:phishing_game_project/Screens/SMS/SmsScreen3.dart';
 import 'package:phishing_game_project/Screens/SMS/SmsScreen4.dart';
 import 'package:phishing_game_project/Screens/SMS/SmsScreen5.dart';
@@ -57,18 +64,19 @@ class GuardaRespostas {
   static List<int> screensShown = [];
   static List<Widget> _widgets = 
   [
-    Screen2(), Screen3(), Screen4(), Screen5(),
-    Screen6(), Screen7(), Screen8(), Screen10(), 
-    Screen11(), Screen12(),Screen13(),Screen14(), 
+    Screen6(), Screen7(), Screen8(), Screen10(),  
     Screen15(),WappScreen1(), WappScreen2(), WappScreen3(),
     WappScreen4(),WappScreen5(), WappScreen6(), WappScreen7(),
-    WappScreen8(),WappScreen9(), WappScreen10(), WappScreen11(), 
-    WappScreen12(), WappScreen13(), WappScreen14(), WappScreen15(), 
+    Screen11(), Screen12(),Screen13(),Screen14(),
     WappScreen16(), WappScreen17(), WappScreen18(), WappScreen19(), 
     WappScreen20(), SmsScreen1(), SmsScreen2(), SmsScreen3(),
     SmsScreen4(), SmsScreen5(), SmsScreen6(), SmsScreen7(),
-    SmsScreen8(), SmsScreen9(),  SmsScreen10(),  SmsScreen11(),
-    SmsScreen12()
+    Screen2(), Screen3(), Screen4(), Screen5(),
+    SmsScreen8(), SmsScreen9(),  SmsScreen10(), SmsScreen12(),
+    WappScreen8(),WappScreen9(), WappScreen10(), WappScreen11(), 
+    WappScreen12(), WappScreen13(), WappScreen14(), WappScreen15(),
+    SmsScreen13(), SmsScreen14(), SmsScreen15(), SmsScreen16(),
+    SmsScreen17(), SmsScreen18(), SmsScreen19(), SmsScreen20(),
   ];
   
 

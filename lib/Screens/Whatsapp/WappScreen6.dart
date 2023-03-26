@@ -73,7 +73,7 @@ class ChatMessege{
             ListView.builder(
               itemCount: messages.length,
               shrinkWrap: true,
-              padding: EdgeInsets.only(top: 70,bottom: 60),
+              padding: EdgeInsets.only(top: 120,bottom: 60),
               physics: NeverScrollableScrollPhysics(),
               itemBuilder: (context, index){
                 return Container(
