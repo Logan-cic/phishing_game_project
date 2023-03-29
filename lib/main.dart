@@ -7,6 +7,7 @@ import 'package:phishing_game_project/Screens/Email/Exemplo_de_phishing_de_nivel
 import 'package:phishing_game_project/Splash/splash_page.dart';
 // import 'package:phishing_game_project/Splash/splash_page.dart';
 import 'package:phishing_game_project/page/addCadastro.dart';
+import 'package:phishing_game_project/page/fim.dart';
 // import 'package:phishing_game_project/page/finalizado.dart';
 import 'package:phishing_game_project/page/perguntas.dart';
 import 'package:phishing_game_project/page/tutoriais/ComoResponder.dart';
@@ -51,7 +52,7 @@ class MyApp extends StatelessWidget {
       title: 'Game Phishing',
       debugShowCheckedModeBanner: false,
       
-      home: App(),
+      home: Finalizado(),
     );
   }
 }

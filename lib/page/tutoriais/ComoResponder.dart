@@ -34,12 +34,6 @@ class OnBoardingPageState extends State<OnBoardingPage> {
   bool _acceptTerms = false;
 
 
-  void _onIntroEnd(context) {
-    Navigator.of(context).push(
-      MaterialPageRoute(builder: (_) => const HomePage()),
-    );
-  }
-
   Widget _buildFullscreenImage() {
     return Image.asset(
       'assets/fullscreen.jpg',
@@ -70,7 +64,7 @@ class OnBoardingPageState extends State<OnBoardingPage> {
       key: introKey,
       globalBackgroundColor: Colors.white,
       allowImplicitScrolling: true,
-      autoScrollDuration: 3000,
+      autoScrollDuration: 10000,
       globalHeader: Align(
         alignment: Alignment.topRight,
         child: SafeArea(
@@ -88,7 +82,7 @@ class OnBoardingPageState extends State<OnBoardingPage> {
       //       'Como jogar o game phishing',
       //       style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
       //     ),
-      //     onPressed: () => _onIntroEnd(context),
+      //     onPressed: () {},
       //   ),
       // ),
       pages: [
@@ -202,17 +196,15 @@ class OnBoardingPageState extends State<OnBoardingPage> {
           ),
         )
       ],
-      onDone: () => _onIntroEnd(context),
-      //onSkip: () => _onIntroEnd(context), // You can override onSkip callback
-      showSkipButton: false,
+      
+      onDone: () => null,
       skipOrBackFlex: 0,
       nextFlex: 0,
       showBackButton: true,
-      //rtl: true, // Display as right-to-left
       back: const Icon(Icons.arrow_back),
-      skip: const Text('Skip', style: TextStyle(fontWeight: FontWeight.w600)),
+      skip: const Text('', style: TextStyle(fontWeight: FontWeight.w600)),
       next: const Icon(Icons.arrow_forward),
-      done: const Text('Done', style: TextStyle(fontWeight: FontWeight.w600)),
+      done: const Text('', style: TextStyle(fontWeight: FontWeight.w600)),
       curve: Curves.fastLinearToSlowEaseIn,
       controlsMargin: const EdgeInsets.all(16),
       controlsPadding: kIsWeb
@@ -227,32 +219,11 @@ class OnBoardingPageState extends State<OnBoardingPage> {
         ),
       ),
       dotsContainerDecorator: const ShapeDecoration(
-        color: Color.fromARGB(255, 255, 255, 255),
+        color: Colors.black87,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(8.0)),
         ),
       ),
     );
-  }
-}
-
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Home')),
-      body: const Center(child: Text("This is the screen after Introduction")),
-    );
-  }
-}
-
-class Merda  extends StatelessWidget {
-  const Merda ({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container();
   }
 }

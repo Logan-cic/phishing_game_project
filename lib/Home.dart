@@ -61,6 +61,7 @@ class _HomeState extends State<Home> {
   var listToShow = [];
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
@@ -80,23 +81,27 @@ class _HomeState extends State<Home> {
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
               ),
               Text("Bem vindo"),
-              ElevatedButton(
-                onPressed: () {
-                  
-                  Cronometro inicia = Cronometro();
-                  // inicia.startTimer();
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: ((context) => Screen16())));
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.red,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8.0),
+              Container(
+                width: screenWidth,
+                child: TextButton(
+                  onPressed: () {
+                    
+                    Cronometro inicia = Cronometro();
+                    // inicia.startTimer();
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: ((context) => Screen16())));
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.red,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
                   ),
-                ),
-                child: const Text(
-                  'Iniciar',
-                  style: TextStyle(color: Colors.white),
+                  child: const Text(
+                    'Iniciar',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                          
                 ),
               ),
             ],
