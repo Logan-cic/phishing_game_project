@@ -33,7 +33,6 @@ class OnBoardingPageState extends State<OnBoardingPage> {
   final introKey = GlobalKey<IntroductionScreenState>();
   bool _acceptTerms = false;
 
-
   Widget _buildFullscreenImage() {
     return Image.asset(
       'assets/fullscreen.jpg',
@@ -86,14 +85,14 @@ class OnBoardingPageState extends State<OnBoardingPage> {
       //   ),
       // ),
       pages: [
-        
         PageViewModel(
           title: "Bem vindo ao Game Phishing",
           body:
               "Os ataques phishing são uma ameaça cada vez mais comum no mundo digital. Eles são realizados por meio de mensagens fraudulentas que se parecem com comunicações legítimas de empresas e organizações conhecidas. A conscientização é a chave para evitar ser vítima de um ataque phishing. Ao permanecer vigilante e tomar precauções de segurança adequadas, você pode proteger-se contra essa ameaça crescente na internet.",
           image: _buildImage('logo.png'),
           decoration: const PageDecoration(
-            titleTextStyle: TextStyle(fontSize: 28.0, fontWeight: FontWeight.bold),
+            titleTextStyle:
+                TextStyle(fontSize: 28.0, fontWeight: FontWeight.bold),
             bodyTextStyle: TextStyle(fontSize: 19.0),
             pageColor: Colors.white,
             imagePadding: EdgeInsets.zero,
@@ -124,59 +123,56 @@ class OnBoardingPageState extends State<OnBoardingPage> {
           ),
           decoration: pageDecoration,
         ),
-      
-        
         PageViewModel(
           title: "Termos de Uso",
           bodyWidget: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text("    Como aluno vinculado ao PROGRAMA DE PÓS GRADUAÇÃO EM SEGURANÇA PÚBLICA DO INSTITUTO DE FILOSOFIA E CIÊNCIAS HUMANAS DA UNIVERSIDADE FEDERAL DO PARÁ, sob orientação do professor Dr. Renato Hidaka Torres na área de concentração Segurança Pública Justiça, conflitos e cidadaniae linha de pesquisa Crimes Cibernéticos, criamos o PHISHING GAME, com o objetivo de coletar dados para a pesquisa deste orientando, sem nenhum fim lucrativo, por meio da coletas de respostas das alternativas apresentadas no jogo.\n\n    O jogador, após cadastro prévio, vai selecionar alternativas retiradas de exemplos reais de PHISHING (tentativas de golpes de criminosos), bem como alternativas que não são PHISHING.  Após deverá responder se a alternativa se enquadra ou não como o cibercrime de PHISHING. O jogador fará uma breve justificativa de sua resposta e terá o gabarito delas ao final.\n\n    A obtenção das respostas servirá para coleta de dados do discente na pesquisa 'O Estudo do Cibercrime de Phishing no Estado do Pará', podendo ser respondida por qualquer pessoa da comunidade acadêmica ou não, garantindo-se a não divulgação de dados pessoais conforme a LGPD Lei Geral de Proteção de Dados (art 7º, IV da LGPD).\n\n     A sua resposta é essencial para a pesquisa acadêmica, mas também para elaboração de estratégia de combate e prevenção ao PHISHING. Contamos com sua colaboração.\n\nAtenciosamente\n\nDr. Renato Hidaka Torres (Professor do Programa de Pós-graduação em Segurança Pública da UFPA\n\nFabrício Barreto Nascimento (Mestrando do Programa de Pós-graduação em Segurança Pública da UFPA)"),
+              Text(
+                  "    Como aluno vinculado ao PROGRAMA DE PÓS GRADUAÇÃO EM SEGURANÇA PÚBLICA DO INSTITUTO DE FILOSOFIA E CIÊNCIAS HUMANAS DA UNIVERSIDADE FEDERAL DO PARÁ, sob orientação do professor Dr. Renato Hidaka Torres na área de concentração Segurança Pública Justiça, conflitos e cidadaniae linha de pesquisa Crimes Cibernéticos, criamos o PHISHING GAME, com o objetivo de coletar dados para a pesquisa deste orientando, sem nenhum fim lucrativo, por meio da coletas de respostas das alternativas apresentadas no jogo.\n\n    O jogador, após cadastro prévio, vai selecionar alternativas retiradas de exemplos reais de PHISHING (tentativas de golpes de criminosos), bem como alternativas que não são PHISHING.  Após deverá responder se a alternativa se enquadra ou não como o cibercrime de PHISHING. O jogador fará uma breve justificativa de sua resposta e terá o gabarito delas ao final.\n\n    A obtenção das respostas servirá para coleta de dados do discente na pesquisa 'O Estudo do Cibercrime de Phishing no Estado do Pará', podendo ser respondida por qualquer pessoa da comunidade acadêmica ou não, garantindo-se a não divulgação de dados pessoais conforme a LGPD Lei Geral de Proteção de Dados (art 7º, IV da LGPD).\n\n     A sua resposta é essencial para a pesquisa acadêmica, mas também para elaboração de estratégia de combate e prevenção ao PHISHING. Contamos com sua colaboração.\n\nAtenciosamente\n\nDr. Renato Hidaka Torres (Professor do Programa de Pós-graduação em Segurança Pública da UFPA\n\nFabrício Barreto Nascimento (Mestrando do Programa de Pós-graduação em Segurança Pública da UFPA)"),
               SizedBox(height: 12.0),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Checkbox(
-                  value: _acceptTerms,
-                  onChanged: (value) {
-                    setState(() {
-                      _acceptTerms = value!;
-                    });
-                  },
-                ),
-                Text('Aceito participar da pesquisa'),
-                 
+                    value: _acceptTerms,
+                    onChanged: (value) {
+                      setState(() {
+                        _acceptTerms = value!;
+                      });
+                    },
+                  ),
+                  Text('Aceito participar da pesquisa'),
                 ],
               ),
-
             ],
           ),
           image: _buildImage('phishing.jpg'),
           footer: ElevatedButton(
             onPressed: () {
-               if (_acceptTerms) {
-                  Navigator.push(
-                  context, MaterialPageRoute(builder: ((context) => AddPage())));
-                }else{
-                  showDialog(
-                    context: context,
-                    builder: (context) {
-                      return AlertDialog(
-                        title: Text('Erro'),
-                        content: Text('Você precisa concordar com a pesquisa para prosseguir.'),
-                        actions: [
-                          ElevatedButton(
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                            child: Text('OK'),
-                          ),
-                        ],
-                      );
-                    },
-                  );
-                }
-              
+              if (_acceptTerms) {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: ((context) => AddPage())));
+              } else {
+                showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      title: Text('Erro'),
+                      content: Text(
+                          'Você precisa concordar com a pesquisa para prosseguir.'),
+                      actions: [
+                        ElevatedButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: Text('OK'),
+                        ),
+                      ],
+                    );
+                  },
+                );
+              }
             },
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.red,
@@ -196,7 +192,7 @@ class OnBoardingPageState extends State<OnBoardingPage> {
           ),
         )
       ],
-      
+
       onDone: () => null,
       skipOrBackFlex: 0,
       nextFlex: 0,

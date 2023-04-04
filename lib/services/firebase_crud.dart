@@ -13,6 +13,7 @@ class FirebaseCrud {
   static Future<Response> addUsuario({
     required String idade,
     required String areaDeAtuacao,
+    required String? treinamento,
   }) async {
     Response response = Response();
     DocumentReference documentReferencer = _Collection.doc();
@@ -20,6 +21,7 @@ class FirebaseCrud {
     Map<String, dynamic> data = {
       "data_de_nascimento": idade,
       "area_de_atuaçao": areaDeAtuacao,
+      "Se ja assistiu treinamento sobre phishing" : treinamento
     };
 
     var result = await documentReferencer.set(data);
@@ -28,7 +30,7 @@ class FirebaseCrud {
 
   static Future<Response> addResposta() async {
     Response response = Response();
-    // Cronometro tempo = Cronometro();
+    Cronometro tempo = Cronometro();
     GuardaRespostas listaComRespostas = GuardaRespostas();
     List<Map<String, dynamic>> dados;
     // Cronometro fim = Cronometro();
@@ -38,7 +40,10 @@ class FirebaseCrud {
     DocumentReference documentReferencer = _Collection2.doc();
     // print("Ta indo");
     var result =
-        await documentReferencer.set({"Repostas": listaComRespostas.conteudo});
+        await documentReferencer.set(
+          {"Repostas das telas que sao phishing": listaComRespostas.conteudo,
+            "Repostas das telas que nao sao phishing": listaComRespostas.conteudoNP
+          });
 
     return response;
   }

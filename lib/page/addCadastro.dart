@@ -21,6 +21,7 @@ class AddPage extends StatefulWidget {
 
 class _AddPage extends State<AddPage> {
   final _areaDeAtuacao = TextEditingController();
+  final _treinamento = TextEditingController();
   TextEditingController dateInput = TextEditingController();
   TextEditingController _date = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -33,6 +34,7 @@ class _AddPage extends State<AddPage> {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
@@ -65,19 +67,42 @@ class _AddPage extends State<AddPage> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
-                       Image.asset("images/simbolo_lab.png"),
-              Text(
-                "Game Phishing ",
-                style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
-              ),
-              SizedBox(height: 10),
-              Text(
-                "By: LabSC - UFPA ",
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-              ),
-              SizedBox(height: 10),
-
-              
+                        Image.asset("images/simbolo_lab.png"),
+                        Text(
+                          "Game Phishing ",
+                          style: TextStyle(
+                              fontSize: 40, fontWeight: FontWeight.bold),
+                        ),
+                        SizedBox(height: 10),
+                        Text(
+                          "By: LabSC - UFPA ",
+                          style: TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.w600),
+                        ),
+                        SizedBox(height: 10),
+                        Padding(
+                          padding: EdgeInsets.only(bottom: 8),
+                          child: TextFormField(
+                              controller: _treinamento,
+                              autofocus: true,
+                              keyboardType: TextInputType.text,
+                              style: const TextStyle(fontSize: 20),
+                              validator: (value) {
+                                if (value == null || value.trim().isEmpty) {
+                                  return 'This field is required';
+                                }
+                                return null;
+                              },
+                              decoration: InputDecoration(
+                                  contentPadding:
+                                  EdgeInsets.fromLTRB(32, 16, 32, 16),
+                                  hintText: "Já recebeu algum treinamento sobre phishing?",
+                                  filled: true,
+                                  fillColor: Colors.white,
+                                  border: OutlineInputBorder(
+                                      borderRadius:
+                                          BorderRadius.circular(32)))),
+                        ),
                         Padding(
                           padding: EdgeInsets.only(bottom: 8),
                           child: TextFormField(
@@ -117,11 +142,13 @@ class _AddPage extends State<AddPage> {
                                   initialDate: DateTime.now(),
                                   firstDate: DateTime(1900),
                                   lastDate: DateTime(2100));
+                              initialDatePickerMode:
+                              DatePickerMode.year;
 
                               if (pickeddate != null) {
                                 setState(() {
-                                  _date.text = DateFormat("dd/MM/yyyy")
-                                      .format(pickeddate);
+                                  _date.text =
+                                      DateFormat("yyyy").format(pickeddate);
                                 });
                               }
                             },
@@ -129,38 +156,39 @@ class _AddPage extends State<AddPage> {
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 16, bottom: 10),
-                          child: TextButton(
-                              style: TextButton.styleFrom(
-                                  backgroundColor: Colors.red,
-                                  foregroundColor: Colors.lightBlueAccent,
-                                  padding:
-                                      const EdgeInsets.fromLTRB(32, 16, 32, 16),
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(32))),
-                              child: Text(
-                                "Cadastrar",
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 20),
-                              ),
-                              onPressed: () async {
-                                if (_formKey.currentState!.validate()) {
-                                  var response = await FirebaseCrud.addUsuario(
-                                    idade: _date.text,
-                                    areaDeAtuacao: _areaDeAtuacao.text,
-                                  );
-                            
-                                  Navigator.pushAndRemoveUntil<dynamic>(
-                                    context,
-                                    MaterialPageRoute<dynamic>(
-                                      builder: (BuildContext context) =>
-                                          Home(),
-                                    ),
-                                    (route) =>
-                                        false, //To disable back feature set to false
-                                  );
-                                }
-                                
-                              }),
+                          child: Container(
+                            width: screenWidth,
+                            child: TextButton(
+                                style: TextButton.styleFrom(
+                                    backgroundColor: Colors.red,
+                                    foregroundColor: Colors.lightBlueAccent,
+                                    padding:
+                                        const EdgeInsets.fromLTRB(32, 16, 32, 16),
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(32))),
+                                child: Text(
+                                  "Cadastrar",
+                                  style: TextStyle(
+                                      color: Colors.black, fontSize: 20),
+                                ),
+                                onPressed: () async {
+                                  if (_formKey.currentState!.validate()) {
+                                    var response = await FirebaseCrud.addUsuario(
+                                        idade: _date.text,
+                                        areaDeAtuacao: _areaDeAtuacao.text,
+                                        treinamento: _treinamento.text);
+                          
+                                    Navigator.pushAndRemoveUntil<dynamic>(
+                                      context,
+                                      MaterialPageRoute<dynamic>(
+                                        builder: (BuildContext context) => Home(),
+                                      ),
+                                      (route) =>
+                                          false, //To disable back feature set to false
+                                    );
+                                  }
+                                }),
+                          ),
                         )
                       ],
                     ),

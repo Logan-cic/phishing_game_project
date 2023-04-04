@@ -25,6 +25,7 @@ class _PerguntasState extends State<Perguntas> {
   final _justificativa = TextEditingController();
   // SimOuNao simOuNao = SimOuNao.padrao;
   GuardaRespostas contador = GuardaRespostas();
+  
   String? _selectedOption;
 
   void _incrementCounter() {
@@ -37,6 +38,8 @@ class _PerguntasState extends State<Perguntas> {
 
   @override
   Widget build(BuildContext context) {
+  final screenWidth = MediaQuery.of(context).size.width;
+
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
@@ -74,35 +77,34 @@ class _PerguntasState extends State<Perguntas> {
                                 style: TextStyle(
                                   fontSize: 22,
                                 )),
+                                Row( 
+                                  children: <Widget>[
+                                    Radio(
+                                      value: 'sim',
+                                      groupValue: _selectedOption,
+                                      onChanged: (valor) {
+                                        setState(() {
+                                        _selectedOption = "sim";
+                                        });
+                                      },
+                                    ),
+                                    Text('Sim'),
+                                  ],
+                                ),
                                 Row(
-      children: <Widget>[
-        Radio(
-          value: 'sim',
-          groupValue: _selectedOption,
-          onChanged: (valor) {
-            setState(() {
-             _selectedOption = "sim";
-            });
-          },
-        ),
-        Text('Sim'),
-      ],
-    ),
-    Row(
-      children: <Widget>[
-        Radio(
-          value: 'não',
-          groupValue: _selectedOption,
-          onChanged: (valor) {
-            setState(() {
-              _selectedOption = "não";
-            });
-          },
-        ),
-        Text('Não'),
-      ],
-    ),
-                           
+                                  children: <Widget>[
+                                    Radio(
+                                      value: 'não',
+                                      groupValue: _selectedOption,
+                                      onChanged: (valor) {
+                                        setState(() {
+                                          _selectedOption = "não";
+                                        });
+                                      },
+                                    ),
+                                    Text('Não'),
+                                  ],
+                                ),                    
                             Padding(
                               padding: EdgeInsets.only(bottom: 8),
                               child: TextFormField(
@@ -127,58 +129,76 @@ class _PerguntasState extends State<Perguntas> {
                               child: Padding(
                                 padding:
                                     const EdgeInsets.only(top: 16, bottom: 10),
-                                child: TextButton(
-                                    style: TextButton.styleFrom(
-                                        backgroundColor: Colors.red,
-                                        foregroundColor: Colors.lightBlueAccent,
-                                        padding: const EdgeInsets.fromLTRB(
-                                            32, 16, 32, 16),
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(32))),
-                                    child: const Text(
-                                      "Responder",
-                                      style: TextStyle(
-                                          color: Colors.black, fontSize: 20),
-                                    ),
-                                    onPressed: () async {
-                                      if (_formKey.currentState!.validate()) {
-                                        GuardaRespostas lista =
-                                            GuardaRespostas();
-                                        if (lista.numTelasMostradas == 9) {
-                                          await FirebaseCrud.addResposta();
-                                          print(
-                                              'Redirecionando para a tela Finalizado');
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    Finalizado()),
-                                          );
-                                        } else {
-                                          int randomIndex = Random()
-                                              .nextInt(lista.telas.length);
-                                          while (lista.indexSorteados
-                                              .contains(randomIndex)) {
-                                            randomIndex = Random()
-                                                .nextInt(lista.telas.length);
+                                child: Container(
+                                  width: screenWidth,
+                                  child: TextButton(
+                                      style: TextButton.styleFrom(
+                                          backgroundColor: Colors.red,
+                                          foregroundColor: Colors.lightBlueAccent,
+                                          padding: const EdgeInsets.fromLTRB(
+                                              32, 16, 32, 16),
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(32))),
+                                      child: const Text(
+                                        "Responder",
+                                        style: TextStyle(
+                                            color: Colors.black, fontSize: 20),
+                                      ),
+                                      onPressed: () async {
+                                        if (_formKey.currentState!.validate()) {
+                                          GuardaRespostas lista =
+                                              GuardaRespostas();
+                                          if (lista.numTelasMostradas == 9) {
+                                            await FirebaseCrud.addResposta();
+                                            print(
+                                                'Redirecionando para a tela Finalizado');
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) => Finalizado()),
+                                            );
+                                          } else if(lista.tamanhoEP <= 4){
+                                            int randomIndex = Random().nextInt(lista.telas.length);
+                                            while (lista.indexSorteados.contains(randomIndex)) {
+                                              randomIndex = Random() .nextInt(lista.telas.length);
+                                            }
+                                              lista.indexSorteados.add(randomIndex);
+                                              lista.adicionaEP({
+                                              "sim ou não": _selectedOption,
+                                              "Justificativa": _justificativa.text
+                                            });
+                                            _incrementCounter();
+                                            lista.incrementa();
+                                            Navigator.pushReplacement(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (BuildContext context) => lista.telas[randomIndex]));
+
+                                            } else if(lista.tamanhoNP <= 4 && lista.tamanhoEP == 4) {
+                                              int randomIndex = Random().nextInt(lista.telasNP.length);
+                                              while (lista.indexSorteados.contains(randomIndex)) {
+                                              randomIndex = Random() .nextInt(lista.telas.length);
+                                            }
+                                              lista.indexSorteadosNP.add(randomIndex);
+                                              lista.adicionaNP({
+                                              "sim ou não": _selectedOption,
+                                              "Justificativa": _justificativa.text
+                                            });
+                                            _incrementCounter();
+                                            lista.incrementa();
+                                            Navigator.pushReplacement(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (BuildContext context) => lista.telasNP[randomIndex]));
+                                            }                                            
+                                            
+                                            
+                                            
                                           }
-                                          lista.indexSorteados.add(randomIndex);
-                                          lista.adiciona({
-                                            "sim ou não": _selectedOption,
-                                            "Justificativa": _justificativa.text
-                                          });
-                                          _incrementCounter();
-                                          lista.incrementa();
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    lista.telas[randomIndex]),
-                                          );
                                         }
-                                      }
-                                    }),
+                                      ),
+                                ),
                               ),
                             )
                           ],

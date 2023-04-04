@@ -52,7 +52,7 @@ class MyApp extends StatelessWidget {
       title: 'Game Phishing',
       debugShowCheckedModeBanner: false,
       
-      home: Finalizado(),
+      home: AddPage(),
     );
   }
 }

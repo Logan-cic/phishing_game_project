@@ -88,7 +88,7 @@ class _HomeState extends State<Home> {
                     
                     Cronometro inicia = Cronometro();
                     // inicia.startTimer();
-                    Navigator.push(context,
+                    Navigator.pushReplacement(context,
                         MaterialPageRoute(builder: ((context) => Screen16())));
                   },
                   style: ElevatedButton.styleFrom(

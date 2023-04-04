@@ -61,24 +61,45 @@ import '../Screens/Whatsapp/WappScreen3.dart';
 class GuardaRespostas {
   static int numScreensShown = 0;
   static List<Map<String, dynamic>> _respostas = [];
+  static List<Map<String, dynamic>> _respostasPhishing = [];
+  static List<Map<String, dynamic>> _respostasNaoPhishing = [];
   static List<int> screensShown = [];
+  static List<int> screensShown1 = [];
+
   static List<Widget> _widgets = 
   [
     Screen6(), Screen7(), Screen8(), Screen10(),  
-    Screen15(),WappScreen1(), WappScreen2(), WappScreen3(),
-    WappScreen4(),WappScreen5(), WappScreen6(), WappScreen7(),
+    Screen15(), WappScreen2(), 
+    WappScreen4(),WappScreen5(),  WappScreen7(),
     Screen11(), Screen12(),Screen13(),Screen14(),
     WappScreen16(), WappScreen17(), WappScreen18(), WappScreen19(), 
-    WappScreen20(), SmsScreen1(), SmsScreen2(), SmsScreen3(),
-    SmsScreen4(), SmsScreen5(), SmsScreen6(), SmsScreen7(),
+    WappScreen20(), SmsScreen2(), 
+    SmsScreen4(), SmsScreen5(), SmsScreen7(),
     Screen2(), Screen3(), Screen4(), Screen5(),
-    SmsScreen8(), SmsScreen9(),  SmsScreen10(), SmsScreen12(),
-    WappScreen8(),WappScreen9(), WappScreen10(), WappScreen11(), 
+    SmsScreen9(),  SmsScreen10(), SmsScreen12(),
+    WappScreen9(), WappScreen10(), WappScreen11(), 
     WappScreen12(), WappScreen13(), WappScreen14(), WappScreen15(),
-    SmsScreen13(), SmsScreen14(), SmsScreen15(), SmsScreen16(),
+    SmsScreen13(), SmsScreen16(),
     SmsScreen17(), SmsScreen18(), SmsScreen19(), SmsScreen20(),
   ];
 
+   static List<Widget> _telasDeNaoPhishing= [
+    SmsScreen1(),
+    SmsScreen3(),
+    SmsScreen6(),
+    SmsScreen8(),
+    SmsScreen14(),
+    SmsScreen15(),
+   ];
+
+  
+  adicionaEP(Map<String, dynamic> rpt) {
+    _respostasPhishing.add(rpt);
+  }
+
+  adicionaNP(Map<String, dynamic> rpt) {
+    _respostasNaoPhishing.add(rpt);
+  }
 
   adiciona(Map<String, dynamic> rpt) {
       _respostas.add(rpt);
@@ -89,10 +110,17 @@ class GuardaRespostas {
   }
 
   int get tamanho => _respostas.length;
+  int get tamanhoEP => _respostasPhishing.length;
+  int get tamanhoNP => _respostasNaoPhishing.length;
+
   int get numTelasMostradas => numScreensShown;
   List<Map<String, dynamic>> get conteudo => _respostas;
+  List<Map<String, dynamic>> get conteudoNP => _respostasNaoPhishing;
+
   List<int> get indexSorteados => screensShown;
+  List<int> get indexSorteadosNP => screensShown1;
   List<Widget> get telas => _widgets;
+  List<Widget> get telasNP => _telasDeNaoPhishing;
 }
 
 
