@@ -18,10 +18,8 @@ class Screen7 extends StatelessWidget {
           floatingActionButton: FloatingActionButton(
             child: const Icon(Icons.add),
             onPressed: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: ((context) => Perguntas())));
+              Navigator.push(context,
+                  MaterialPageRoute(builder: ((context) => Perguntas())));
             },
           ),
           backgroundColor: Colors.black,
@@ -42,16 +40,13 @@ class Screen7 extends StatelessWidget {
                     sender: "iFood",
                     emailSender: "<news@news.ifood.com.br>",
                     emailRecipient: "logancardoso4@gamil.com"),
+                SizedBox(height: 12,),
+
                 Image.asset('images/ifood.jpg'),
-                Container(
-                  height: 460,
-                  color: Colors.black,
-                  child: Center(
-                    child: Text(
-                        "Faz tempo que a gente não se fala. Queria te ouvir e melhorar a experiência que você teve. Topa me ajudar? É só responder essa pesquisa rapidinho. O link para a pesquisa: https://pesquisaifood.com/jfe/form/SV_2fNiVw3jkVGl4Q6",
-                        style: TextStyle(color: Colors.white, fontSize: 16)),
-                  ),
-                ),
+                SizedBox(height: 12,),
+                Text(
+                    "Faz tempo que a gente não se fala. Queria te ouvir e melhorar a experiência que você teve. Topa me ajudar? É só responder essa pesquisa rapidinho. O link para a pesquisa: https://pesquisaifood.com/jfe/form/SV_2fNiVw3jkVGl4Q6",
+                    style: TextStyle(color: Colors.white, fontSize: 16)),
               ],
             ),
           ),

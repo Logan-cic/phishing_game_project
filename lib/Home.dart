@@ -58,6 +58,19 @@ class _HomeState extends State<Home> {
     );
   }
 
+  sorteador() {
+    GuardaRespostas lista = GuardaRespostas();
+    int randomIndex = Random().nextInt(lista.telas.length);
+    while (lista.indexSorteados.contains(randomIndex)) {
+      randomIndex = Random().nextInt(lista.telas.length);
+    }
+
+    Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+            builder: (BuildContextcontext) => lista.telas[randomIndex]));
+  }
+
   var listToShow = [];
   @override
   Widget build(BuildContext context) {
@@ -85,11 +98,21 @@ class _HomeState extends State<Home> {
                 width: screenWidth,
                 child: TextButton(
                   onPressed: () {
-                    
-                    Cronometro inicia = Cronometro();
-                    // inicia.startTimer();
-                    Navigator.pushReplacement(context,
-                        MaterialPageRoute(builder: ((context) => Screen16())));
+                    GuardaRespostas lista = GuardaRespostas();
+                    if (lista.tamanhoEP <= 4) {
+                      int randomIndex = Random().nextInt(lista.telas.length);
+                      while (lista.indexSorteados.contains(randomIndex)) {
+                        randomIndex = Random().nextInt(lista.telas.length);
+                      }
+                      lista.indexSorteados.add(randomIndex);
+
+                      lista.incrementa();
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (BuildContextcontext) =>
+                                  lista.telas[randomIndex]));
+                    }
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.red,
@@ -101,17 +124,14 @@ class _HomeState extends State<Home> {
                     'Iniciar',
                     style: TextStyle(color: Colors.white),
                   ),
-                          
                 ),
               ),
             ],
           ),
         ),
         drawer: Drawer(
-          child: ListView(
-            padding: EdgeInsets.zero,
-            children: [
-              const DrawerHeader(
+          child: ListView(padding: EdgeInsets.zero, children: [
+            const DrawerHeader(
               decoration: BoxDecoration(
                 color: Colors.red,
               ),
@@ -119,24 +139,17 @@ class _HomeState extends State<Home> {
             ),
             ListTile(
               title: const Text('Cards'),
-              onTap: () {
-                
-              },
+              onTap: () {},
             ),
             ListTile(
               title: const Text('Contato pra denuncia'),
-              onTap: () {
-                
-              },
+              onTap: () {},
             ),
             ListTile(
               title: const Text('Sobre o Phishing'),
-              onTap: () {
-                
-              },
+              onTap: () {},
             ),
           ]),
-          
         ),
       ),
     );

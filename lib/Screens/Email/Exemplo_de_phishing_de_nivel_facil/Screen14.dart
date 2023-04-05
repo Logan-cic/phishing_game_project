@@ -43,15 +43,12 @@ class Screen14 extends StatelessWidget {
                     emailSender: "noreply@suportes.acessorias.com.br",
                     emailRecipient: "logancardoso4@gamil.com"),
                 Image.asset('images/netflix.jpg'),
-                Container(
-                  height: 460,
-                  color: Colors.black,
-                  child: Center(
-                    child: Text(
+                SizedBox(height: 12,),
+                     Text(
                         "Se foi você ou outra pessoa que mora na sua residência: \nDivirta-se!\n\nSe foi outra pessoa: \nLembre-se de que somente as pessoas que moram na sua residência podem usar sua conta.\n\nSe foi outra pessoa: \nRecomendamos alterar imediatamente sua senha para manter a segurança da conta. \nAcesse o link: http://help.netflixoficial.com/pt/  ",
                         style: TextStyle(color: Colors.white, fontSize: 16)),
-                  ),
-                ),
+                SizedBox(height: 12,),
+                 
               ],
             ),
           ),

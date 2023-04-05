@@ -40,7 +40,7 @@ class Screen16 extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Text("Últimas horas do Saldão do Cliente!",
+                Text("Perigo de suspensão de conta!",
                     textDirection: TextDirection.ltr,
                     style: TextStyle(
                       fontSize: 26,
@@ -63,7 +63,7 @@ class Screen16 extends StatelessWidget {
                       Row(
                         children: [
                           Text(
-                            "Dear Customer, ",
+                            "Querido cliente, ",
                             textAlign: TextAlign.left,
                             //textDirection: TextDirection.ltr,
                             style: TextStyle(
@@ -74,11 +74,11 @@ class Screen16 extends StatelessWidget {
                         ],
                       ),
                       Text(
-                        "  We detected suspicious activity in your account and multiple password used for access your account.",
+                        " Detectamos atividades suspeitas em sua conta e várias senhas usadas para acessar sua conta.",
                         style: TextStyle(color: Colors.white, fontSize: 16),
                       ),
                       SizedBox(height: 8),
-                      Text("We need you to confirm your account!",
+                      Text("Precisamos que você confirme sua conta!",
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               color: Color.fromARGB(255, 255, 183, 0),
@@ -86,25 +86,25 @@ class Screen16 extends StatelessWidget {
                               fontWeight: FontWeight.bold)),
                       Row(
                         children: [
-                          Text("1. Click Here ",
+                          Text("1. Clique aqui ",
                               style:
                                   TextStyle(color: Colors.white, fontSize: 16)),
                           Text(
-                            "to confirm your account.",
+                            "para confirmar sua conta.",
                             style: TextStyle(color: Colors.white, fontSize: 16),
                           ),
                         ],
                       ),
                       Row(
                         children: [
-                          Text("2. Enter your informations. ",
+                          Text("2. Insira suas informações. ",
                               style:
                                   TextStyle(color: Colors.white, fontSize: 16)),
                         ],
                       ),
                       Row(
                         children: [
-                          Text("3. Finally your account will be confirmed. ",
+                          Text("3. Finalmente sua conta será confirmada.",
                               style:
                                   TextStyle(color: Colors.white, fontSize: 16)),
                         ],
@@ -112,13 +112,13 @@ class Screen16 extends StatelessWidget {
                       SizedBox(height: 6),
                       Row(
                         children: [
-                          Text("Note",
+                          Text("Observação",
                               style: TextStyle(
                                   fontSize: 16,
                                   color: Colors.red,
                                   fontWeight: FontWeight.bold)),
                           Text(
-                            ": If you dont't confirm it withing 48 hours, we will",
+                            ": Se vc n confirmar dentro de 48h, iremos",
                             style: TextStyle(color: Colors.white, fontSize: 16),
                           ),
                         ],
@@ -126,7 +126,7 @@ class Screen16 extends StatelessWidget {
                       Row(
                         children: [
                           Text(
-                            "close or suspend your account.",
+                            "fechar ou suspender sua conta.",
                             style: TextStyle(color: Colors.white, fontSize: 16),
                           ),
                         ],
@@ -134,7 +134,7 @@ class Screen16 extends StatelessWidget {
                       SizedBox(height: 10),
                       Row(
                         children: [
-                          Text("Sincerely,",
+                          Text("Atenciosamente,",
                               style:
                                   TextStyle(color: Colors.white, fontSize: 16)),
                         ],

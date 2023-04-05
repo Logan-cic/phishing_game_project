@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+
 import '../../../Widgets/Email_Header/Sender_Card.dart';
 import '../../../Widgets/Email_Header/shipping_information.dart';
 import '../../../models/Dados_do_usuario.dart';
 import '../../../page/perguntas.dart';
 
-class Screen12 extends StatelessWidget {
-  const Screen12({Key? key}) : super(key: key);
+class Screen20 extends StatelessWidget {
+  const Screen20({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -35,18 +36,18 @@ class Screen12 extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Text("Acesso a caixas eletronicos suspenso",
+                Text("[Imersão Java] Um novo desafio para você, Usuário",
                     textDirection: TextDirection.ltr,
                     style: TextStyle(
-                      fontSize: 28,
+                      fontSize: 26,
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
                     )),
-                const SenderCard(label: "Bradesco"),
+                const SenderCard(label: "Facomp"),
                 const ShippingInformation(
-                    sender: "Bradesco",
-                    emailSender: "infoBradesco@live.br",
-                    emailRecipient: "usuario@gamil.com"),
+                    sender: "Jacqueline | Alura",
+                    emailSender: "jacqueline@alura.com.br",
+                    emailRecipient: "aluno@gmail.com"),
                 SizedBox(height: 14),
                 Column(
                   children: [
@@ -54,7 +55,7 @@ class Screen12 extends StatelessWidget {
                     Row(
                       children: [
                         Text(
-                          "Prezado Cliente,",
+                          "Olá, Aluno!",
                           textAlign: TextAlign.left,
                           //textDirection: TextDirection.ltr,
                           style: TextStyle(
@@ -67,49 +68,60 @@ class Screen12 extends StatelessWidget {
                     SizedBox(height: 8),
 
                     Text(
-                      "Por motivos de segurança comunicamos a todos os clientes que, visando barrar o constante aumento de fraudes no Internet Banking Bradesco será obrigatório realizar a Atualização do seu Cartão Chaves de Segurança, e nova forma de acesso ao Internet Banking. Caso não efetue a sua Atualização obrigatória com urgência o acesso via caixas eletroniÔnicos sera suspenso!",
+                      "Aqui é a Jacqueline Oliveira, Instrutora da Alura, e tenho um desafio para você que já participou das nossas Imersões:",
                       style: TextStyle(color: Colors.white, fontSize: 16),
                     ),
                     SizedBox(height: 8),
-
-                    SizedBox(height: 8),
-                    Text("Utilize o botão abaixo para efetuar a atualizas",
+                    Text("Vem aí uma nova edição da Imersão Java!",
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                            color: Colors.red,
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold)),
-                    SizedBox(height: 10),
-
-                    Container(
-                      width: double.infinity,
-                      height: 50,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.yellow,
-                      ),
-                      child: TextButton(
-                        onPressed: () {},
-                        child: Text(
-                          'Atualizar Dados',
-                          style: TextStyle(
+                            color: Colors.yellow,
                             fontSize: 16,
-                            color: Colors.black,
-                          ),
-                        ),
-                      ),
+                            fontWeight: FontWeight.bold)),
+                    SizedBox(height: 8),
+
+                    Text(
+                      "É a sua oportunidade de mergulhar em programação, desenvolver a sua primeira aplicação em Java e ampliar o seu portfólio. Bora lá?",
+                      style: TextStyle(color: Colors.white, fontSize: 16),
                     ),
+                    SizedBox(height: 8),
+                    Text("Topo, desafio Alura!",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: Colors.yellow,
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold)),
+                    SizedBox(height: 8),
+                    Text(
+                      "Serão 5 dias imersos com aulas e desafios desenvolvidos especialmente para você consolidar seu conhecimento, adicionar novos projetos ao seu portfólio e dar um upgrade na sua carreira.",
+                      style: TextStyle(color: Colors.white, fontSize: 16),
+                    ),
+                    SizedBox(height: 10),
+                    Text(
+                      "Serão 5 dias imersos com aulas e desafios desenvolvidos especialmente para você consolidar seu conhecimento, adicionar novos projetos ao seu portfólio e dar um upgrade na sua carreira.E tudo isso, claro, com a didática da Alura, encontros ao vivo, grupos de estudos diários e acesso à uma comunidade exclusiva no Discord!",
+                      style: TextStyle(color: Colors.white, fontSize: 16),
+                    ),
+
+                  
                     SizedBox(height: 10),
                     Row(
                       children: [
-                        Text("Atenciosamente,",
+                        Text("Abraços,",
                             style:
                                 TextStyle(color: Colors.white, fontSize: 16)),
                       ],
                     ),
                     Row(
                       children: [
-                        Text("Bradesco.",
+                        Text("Jacqueline Oliveira",
+                            style:
+                                TextStyle(color: Colors.white, fontSize: 16)),
+                      ],
+                    ),
+                    
+                    Row(
+                      children: [
+                        Text("Instrutora de Java da Alura.",
                             style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 16,

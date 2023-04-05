@@ -5,8 +5,8 @@ import '../../../Widgets/Email_Header/shipping_information.dart';
 import '../../../models/Dados_do_usuario.dart';
 import '../../../page/perguntas.dart';
 
-class Screen9 extends StatelessWidget {
-  const Screen9({Key? key}) : super(key: key);
+class Screen21 extends StatelessWidget {
+  const Screen21({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -43,48 +43,51 @@ class Screen9 extends StatelessWidget {
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
                     )),
-                const SenderCard(label: "Caixa Economica"),
+                const SenderCard(label: "Indeed"),
                 const ShippingInformation(
-                    sender: "Caixa Economica",
-                    emailSender: "caixa123@gmail.com",
+                    sender: "Indeed",
+                    emailSender: "no-reply@indeed.com",
                     emailRecipient: "aluno@gamil.com"),
-                SizedBox(height: 12),
+                SizedBox(height: 14),
                 Column(
                   children: [
-                SizedBox(height: 14),
-                Container(
-                  color: Colors.white,
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Image.asset('images/Caixa_Econômica_Federal_logo.png'),
-                  ),
-                ),
-                SizedBox(height: 14),
-
+                    //Image.asset('images/amazon.jpg'),
                     Row(
                       children: [
                         Text(
-                          "Houve problema ao creditar o valor",
+                          "O e-mail que não queríamos mandar",
                           textAlign: TextAlign.left,
                           //textDirection: TextDirection.ltr,
                           style: TextStyle(
-                              fontSize: 20,
+                              fontSize: 18,
                               color: Colors.white,
                               fontWeight: FontWeight.bold),
                         ),
                       ],
                     ),
                     SizedBox(height: 8),
-                  
-             
+                    Row(
+                      children: [
+                        Text(
+                          "Estágio em Análise e Desenvolvimento de\nSistemas",
+                          textAlign: TextAlign.left,
+                          //textDirection: TextDirection.ltr,
+                          style: TextStyle(
+                              fontSize: 20,
+                              color: Colors.yellow,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 8),
                       
                     Text(
-                      "Os RS1.966,80 que enviaram para você via PIX ainda não estão disponíveis.Informamos que www.caixa.gov.br sistema de identificação da Caixa Econômica Federal.",
+                      "Infelizmente, a empresa Empregar Já decidiu não avançar com sua candidatura no momento.",
                       style: TextStyle(color: Colors.white, fontSize: 18),
                     ),
                     SizedBox(height: 8),
                       Text(
-                      "O recadastramento de segurança é indispensável para desbloquear seus créditos",
+                      "Mas não desista, continue a buscar vagas e se candidatar a elas.",
                       style: TextStyle(color: Colors.white, fontSize: 18),
                     ),
                     SizedBox(height: 8),
@@ -99,7 +102,7 @@ class Screen9 extends StatelessWidget {
                     ),
                     Row(
                       children: [
-                        Text("Caixa economica Federau",
+                        Text("Equipe Indeed",
                             style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 16,

@@ -25,7 +25,7 @@ class _PerguntasState extends State<Perguntas> {
   final _justificativa = TextEditingController();
   // SimOuNao simOuNao = SimOuNao.padrao;
   GuardaRespostas contador = GuardaRespostas();
-  
+
   String? _selectedOption;
 
   void _incrementCounter() {
@@ -36,12 +36,18 @@ class _PerguntasState extends State<Perguntas> {
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
+  bool retornar = false;
+
   @override
   Widget build(BuildContext context) {
-  final screenWidth = MediaQuery.of(context).size.width;
+    final screenWidth = MediaQuery.of(context).size.width;
 
-    return MaterialApp(
-      home: Scaffold(
+    return WillPopScope(
+      onWillPop: () async {
+        
+        return false;
+      },
+      child: Scaffold(
         appBar: AppBar(
           title: Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -77,34 +83,34 @@ class _PerguntasState extends State<Perguntas> {
                                 style: TextStyle(
                                   fontSize: 22,
                                 )),
-                                Row( 
-                                  children: <Widget>[
-                                    Radio(
-                                      value: 'sim',
-                                      groupValue: _selectedOption,
-                                      onChanged: (valor) {
-                                        setState(() {
-                                        _selectedOption = "sim";
-                                        });
-                                      },
-                                    ),
-                                    Text('Sim'),
-                                  ],
+                            Row(
+                              children: <Widget>[
+                                Radio(
+                                  value: 'sim',
+                                  groupValue: _selectedOption,
+                                  onChanged: (valor) {
+                                    setState(() {
+                                      _selectedOption = "sim";
+                                    });
+                                  },
                                 ),
-                                Row(
-                                  children: <Widget>[
-                                    Radio(
-                                      value: 'não',
-                                      groupValue: _selectedOption,
-                                      onChanged: (valor) {
-                                        setState(() {
-                                          _selectedOption = "não";
-                                        });
-                                      },
-                                    ),
-                                    Text('Não'),
-                                  ],
-                                ),                    
+                                Text('Sim'),
+                              ],
+                            ),
+                            Row(
+                              children: <Widget>[
+                                Radio(
+                                  value: 'não',
+                                  groupValue: _selectedOption,
+                                  onChanged: (valor) {
+                                    setState(() {
+                                      _selectedOption = "não";
+                                    });
+                                  },
+                                ),
+                                Text('Não'),
+                              ],
+                            ),
                             Padding(
                               padding: EdgeInsets.only(bottom: 8),
                               child: TextFormField(
@@ -134,7 +140,8 @@ class _PerguntasState extends State<Perguntas> {
                                   child: TextButton(
                                       style: TextButton.styleFrom(
                                           backgroundColor: Colors.red,
-                                          foregroundColor: Colors.lightBlueAccent,
+                                          foregroundColor:
+                                              Colors.lightBlueAccent,
                                           padding: const EdgeInsets.fromLTRB(
                                               32, 16, 32, 16),
                                           shape: RoundedRectangleBorder(
@@ -150,54 +157,59 @@ class _PerguntasState extends State<Perguntas> {
                                           GuardaRespostas lista =
                                               GuardaRespostas();
                                           if (lista.numTelasMostradas == 9) {
-                                            await FirebaseCrud.addResposta();
-                                            print(
-                                                'Redirecionando para a tela Finalizado');
-                                            Navigator.push(
+                                            await FirebaseCrud.addRespostaECadastro();
+                                            print('Redirecionando para a tela Finalizado');
+                                            Navigator.pushReplacement(
                                               context,
                                               MaterialPageRoute(
-                                                  builder: (context) => Finalizado()),
+                                                  builder: (context) =>
+                                                      Finalizado()),
                                             );
-                                          } else if(lista.tamanhoEP <= 4){
+                                          } else if (lista.tamanhoEP <= 4) {
                                             int randomIndex = Random().nextInt(lista.telas.length);
                                             while (lista.indexSorteados.contains(randomIndex)) {
-                                              randomIndex = Random() .nextInt(lista.telas.length);
+                                              randomIndex = Random().nextInt(lista.telas.length);
                                             }
-                                              lista.indexSorteados.add(randomIndex);
-                                              lista.adicionaEP({
+                                            lista.indexSorteados.add(randomIndex);
+                                            lista.adicionaEP({
                                               "sim ou não": _selectedOption,
                                               "Justificativa": _justificativa.text
                                             });
                                             _incrementCounter();
                                             lista.incrementa();
                                             Navigator.pushReplacement(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (BuildContext context) => lista.telas[randomIndex]));
-
-                                            } else if(lista.tamanhoNP <= 4 && lista.tamanhoEP == 4) {
-                                              int randomIndex = Random().nextInt(lista.telasNP.length);
-                                              while (lista.indexSorteados.contains(randomIndex)) {
-                                              randomIndex = Random() .nextInt(lista.telas.length);
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder:
+                                                        (BuildContextcontext) => lista.telas[randomIndex]));
+                                          } else if (lista.tamanhoNP <= 4 &&
+                                              lista.tamanhoEP <= 5) {
+                                            int randomIndex = Random()
+                                                .nextInt(lista.telasNP.length);
+                                            while (lista.indexSorteados
+                                                .contains(randomIndex)) {
+                                              randomIndex = Random().nextInt(
+                                                  lista.telasNP.length);
                                             }
-                                              lista.indexSorteadosNP.add(randomIndex);
-                                              lista.adicionaNP({
+                                            lista.indexSorteadosNP
+                                                .add(randomIndex);
+                                            lista.adicionaNP({
                                               "sim ou não": _selectedOption,
-                                              "Justificativa": _justificativa.text
+                                              "Justificativa":
+                                                  _justificativa.text
                                             });
                                             _incrementCounter();
                                             lista.incrementa();
                                             Navigator.pushReplacement(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (BuildContext context) => lista.telasNP[randomIndex]));
-                                            }                                            
-                                            
-                                            
-                                            
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (BuildContext
+                                                            context) =>
+                                                        lista.telasNP[
+                                                            randomIndex]));
                                           }
                                         }
-                                      ),
+                                      }),
                                 ),
                               ),
                             )

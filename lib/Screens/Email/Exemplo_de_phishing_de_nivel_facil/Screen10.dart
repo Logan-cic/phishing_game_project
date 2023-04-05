@@ -37,21 +37,28 @@ class Screen10 extends StatelessWidget {
               children: [
                 // EmailTitle(
                 //     label: "Informações importantes sobre a sua conta PayPal"),
-                SenderCard(label: "Bradesco"),
+                Text("Muita ateção a sua conta",
+                    textDirection: TextDirection.ltr,
+                    style: TextStyle(
+                      fontSize: 26,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    )),
+                SenderCard(label: "Paypal"),
                 ShippingInformation(
-                    sender: "Bradesco",
+                    sender: "Paypal",
                     emailSender: "service@paypal.com.br",
                     emailRecipient: "logancardoso4@gamil.com"),
-                Image.asset('images/paypal.jpg'),
-                Container(
-                  height: 460,
-                  color: Colors.black,
-                  child: Center(
-                    child: Text(
-                        "Olá cliente,\n\n obrigado por usar Bradesco. Sinto informar que sua conta corrente/poupança será suspensa por não cumprir com nossos termos e condições\n\nOs motivos são: dados cadastrais desatualizados, cartão chave de segurança expirada.\n\nPara evitar essa suspenção será necessário atualizar seus dados Acesse o link para atualizar seus dados: \n\nwww.scam.org.com/FMfcgzGqQmWjKmdhgcFRXtMlKlnPlJWQ",
+
+                    SizedBox(height: 12,),
+                Image.asset('images/paypal2.png'),
+                    SizedBox(height: 12,),
+               
+                     Text(
+                        "Olá cliente,\n\n obrigado por usar Paypal. Sinto informar que sua conta corrente/poupança será suspensa por não cumprir com nossos termos e condições\n\nOs motivos são: dados cadastrais desatualizados, cartão chave de segurança expirada.\n\nPara evitar essa suspenção será necessário atualizar seus dados Acesse o link para atualizar seus dados: \n\nwww.scam.org.com/FMfcgzGqQmWjKmdhgcFRXtMlKlnPlJWQ",
                         style: TextStyle(color: Colors.white, fontSize: 16)),
-                  ),
-                ),
+                  
+                
               ],
             ),
           ),

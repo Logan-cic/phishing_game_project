@@ -7,6 +7,7 @@ import 'package:phishing_game_project/Home.dart';
 // import 'package:intl/intl.dart';
 import 'package:phishing_game_project/Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen16.dart';
 import 'package:phishing_game_project/Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen2.dart';
+import 'package:phishing_game_project/models/cadastroDoUsuario.dart';
 
 import '../Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen5.dart';
 import '../services/firebase_crud.dart';
@@ -95,8 +96,9 @@ class _AddPage extends State<AddPage> {
                               },
                               decoration: InputDecoration(
                                   contentPadding:
-                                  EdgeInsets.fromLTRB(32, 16, 32, 16),
-                                  hintText: "Já recebeu algum treinamento sobre phishing?",
+                                      EdgeInsets.fromLTRB(32, 16, 32, 16),
+                                  hintText:
+                                      "Já recebeu algum treinamento sobre phishing?",
                                   filled: true,
                                   fillColor: Colors.white,
                                   border: OutlineInputBorder(
@@ -162,10 +164,11 @@ class _AddPage extends State<AddPage> {
                                 style: TextButton.styleFrom(
                                     backgroundColor: Colors.red,
                                     foregroundColor: Colors.lightBlueAccent,
-                                    padding:
-                                        const EdgeInsets.fromLTRB(32, 16, 32, 16),
+                                    padding: const EdgeInsets.fromLTRB(
+                                        32, 16, 32, 16),
                                     shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(32))),
+                                        borderRadius:
+                                            BorderRadius.circular(32))),
                                 child: Text(
                                   "Cadastrar",
                                   style: TextStyle(
@@ -173,18 +176,33 @@ class _AddPage extends State<AddPage> {
                                 ),
                                 onPressed: () async {
                                   if (_formKey.currentState!.validate()) {
-                                    var response = await FirebaseCrud.addUsuario(
-                                        idade: _date.text,
-                                        areaDeAtuacao: _areaDeAtuacao.text,
-                                        treinamento: _treinamento.text);
-                          
-                                    Navigator.pushAndRemoveUntil<dynamic>(
+                                    // Usuario cadastro = Usuario();
+
+                                    // cadastro.anoDeNascimento = _date.text;
+                                    // cadastro.areaDeAtuacao = _areaDeAtuacao.text;
+                                    // cadastro.jaFeztreinamentoSobrePhishing = _treinamento.text;
+                                    print("chegou aqui 0 ");
+
+                                    Usuario dados = Usuario();
+                                    dados.setAreaDeAtuacao(_areaDeAtuacao.text);
+                                    dados.setJaFeztreinamentoSobrePhishing(_treinamento.text);
+                                    dados.setAnoDeNascimento(_date.text);
+                                    dados.preencheMapDeCadastro();
+
+                                    print("chegou aqui 1");
+
+                                    // var response = await FirebaseCrud.addUsuario(
+                                    //     idade: _date.text,
+                                    //     areaDeAtuacao: _areaDeAtuacao.text,
+                                    //     treinamento: _treinamento.text);
+
+                                    Navigator.pushReplacement(
                                       context,
                                       MaterialPageRoute<dynamic>(
-                                        builder: (BuildContext context) => Home(),
+                                        builder: (BuildContext context) =>
+                                            Home(),
                                       ),
-                                      (route) =>
-                                          false, //To disable back feature set to false
+                                      //To disable back feature set to false
                                     );
                                   }
                                 }),

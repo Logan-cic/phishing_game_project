@@ -7,6 +7,7 @@ import 'package:phishing_game_project/Screens/Email/Exemplo_de_phishing_de_nivel
 import 'package:phishing_game_project/Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen14.dart';
 import 'package:phishing_game_project/Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen15.dart';
 import 'package:phishing_game_project/Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen16.dart';
+import 'package:phishing_game_project/Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen19.dart';
 import 'package:phishing_game_project/Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen2.dart';
 import 'package:phishing_game_project/Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen3.dart';
 import 'package:phishing_game_project/Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen4.dart';
@@ -55,9 +56,12 @@ import 'package:phishing_game_project/Screens/Whatsapp/WappScreen9.dart';
 import 'package:phishing_game_project/services/firebase_crud.dart';
 
 import '../Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen13.dart';
+import '../Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen17.dart';
+import '../Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen18.dart';
+import '../Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen20.dart';
+import '../Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen21.dart';
 import '../Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen7.dart';
 import '../Screens/Whatsapp/WappScreen3.dart';
-
 class GuardaRespostas {
   static int numScreensShown = 0;
   static List<Map<String, dynamic>> _respostas = [];
@@ -69,9 +73,9 @@ class GuardaRespostas {
   static List<Widget> _widgets = 
   [
     Screen6(), Screen7(), Screen8(), Screen10(),  
-    Screen15(), WappScreen2(), 
+    WappScreen2(), 
     WappScreen4(),WappScreen5(),  WappScreen7(),
-    Screen11(), Screen12(),Screen13(),Screen14(),
+    Screen11(), Screen12(),Screen14(),
     WappScreen16(), WappScreen17(), WappScreen18(), WappScreen19(), 
     WappScreen20(), SmsScreen2(), 
     SmsScreen4(), SmsScreen5(), SmsScreen7(),
@@ -86,10 +90,17 @@ class GuardaRespostas {
    static List<Widget> _telasDeNaoPhishing= [
     SmsScreen1(),
     SmsScreen3(),
+    Screen13(),
+    Screen17(),
     SmsScreen6(),
     SmsScreen8(),
+    Screen18(),
+    Screen19(),
     SmsScreen14(),
     SmsScreen15(),
+    Screen20(),
+    Screen21(),
+    Screen15()
    ];
 
   

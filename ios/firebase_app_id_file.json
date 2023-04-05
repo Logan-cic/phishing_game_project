@@ -1,7 +1,7 @@
 {
   "file_generated_by": "FlutterFire CLI",
   "purpose": "FirebaseAppID & ProjectID for this Firebase app in this directory",
-  "GOOGLE_APP_ID": "1:444180175794:ios:627400d785f098669de2ab",
-  "FIREBASE_PROJECT_ID": "phishing-game-project",
-  "GCM_SENDER_ID": "444180175794"
+  "GOOGLE_APP_ID": "1:77289202542:ios:13b929c8e7ed2572c2577f",
+  "FIREBASE_PROJECT_ID": "game-phishing-gpp",
+  "GCM_SENDER_ID": "77289202542"
 }

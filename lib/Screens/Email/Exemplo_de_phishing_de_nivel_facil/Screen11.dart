@@ -38,21 +38,33 @@ class Screen11 extends StatelessWidget {
               children: [
                 // EmailTitle(
                 //     label: "Informações importantes sobre a sua conta PayPal"),
-                SenderCard(label: "Nigerian Phishing"),
+                SenderCard(label: "Nigerian "),
                 ShippingInformation(
-                    sender: "Nigerian Phishing",
+                    sender: "Nigerian ",
                     emailSender: "service@nigerian.com.br",
                     emailRecipient: "logancardoso4@gamil.com"),
                 //Image.asset('images/paypal.jpg'),
-                Container(
-                  height: 460,
-                  color: Colors.black,
-                  child: Center(
-                    child: Text(
-                        "Importante,\n\n The information transmitted is for the use of the intended recipient only and may contain confidential and/or legally privileged material. Any review, re-transmission, disclosure,dissemination or other use of, or taking of anyaaction in reliance upon, this information by persons or entíties other than the intended recipient is prohibited and may result in severe penalties. If you have received this e-mail in errorplease notify the Privacy Hotline of the Australian Taxation Office, telephone 1300 661 542 and delete al copies of this transmission together with any attachments. Acesse o link para atualizar seus dados: \n\nwww.scam.org.com/FMfcgzGqQmWjKmdhgcFRXtMlKlnPlJWQ",
+                      SizedBox(height: 12),
+
+                Row(
+                        children: [
+                          Text(
+                            "Iimportante,",
+                            textAlign: TextAlign.left,
+                            //textDirection: TextDirection.ltr,
+                            style: TextStyle(
+                                fontSize: 18,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 8),
+                 
+                     Text(
+                        "As informações transmitidas são para uso exclusivo do destinatário pretendido e podem conter material confidencial e/ou legalmente privilegiado. Qualquer revisão, retransmissão, divulgação, divulgação ou outro uso ou tomada de qualquer ação com base nesta informação por pessoas ou entidades que não sejam o destinatário pretendido é proibida e pode resultar em penalidades severas. Se você recebeu este e-mail por engano, notifique a Linha Direta de Privacidade do Australian Taxation Office, telefone para 1300 661 542 e exclua todas as cópias desta transmissão junto com quaisquer anexos. Acesse o link para atualizar seus dados: \n\nwww.scam.org.com/FMfcgzGqQmWjKmdhgcFRXtMlKlnPlJWQ",
                         style: TextStyle(color: Colors.white, fontSize: 16)),
-                  ),
-                ),
+                 
               ],
             ),
           ),
