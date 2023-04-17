@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../Widgets/sms_body/smsBody.dart';
 import '../../Widgets/sms_body/smsSender.dart';
+import '../../Widgets/sms_header/smsHeader.dart';
 import '../../page/perguntas.dart';
 
 
@@ -43,7 +44,7 @@ class SmsScreen1 extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
                     child: Stack(
                       children: [ 
-                // SmsHeader(contato: 'Claro',),
+                SmsHeader(contato: 'Claro',),
                 chatSms(),
                 SmsBackGround(),
                 SmsSender(),

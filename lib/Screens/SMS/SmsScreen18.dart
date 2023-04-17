@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:phishing_game_project/Widgets/sms_body/smsBody.dart';
 import '../../Widgets/sms_body/smsSender.dart';
+import '../../Widgets/sms_header/smsHeader.dart';
 import '../../page/perguntas.dart';
 
 
@@ -44,7 +45,7 @@ class SmsScreen18 extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
                     child: Stack(
                       children: [ 
-                // SmsHeader(contato: '(65) 97506-5587',),
+                SmsHeader(contato: '(65) 97506-5587',),
                 chatSms(),
                 SmsBackGround(),
                 SmsSender(),
