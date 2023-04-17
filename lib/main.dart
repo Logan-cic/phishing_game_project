@@ -59,7 +59,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Game Phishing',
       debugShowCheckedModeBanner: false,
-      home: SplashPage(),
+      home: Home(),
     );
   }
 }

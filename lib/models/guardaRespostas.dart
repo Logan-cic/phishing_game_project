@@ -125,7 +125,7 @@ class GuardaRespostas {
   int get tamanhoNP => _respostasNaoPhishing.length;
 
   int get numTelasMostradas => numScreensShown;
-  List<Map<String, dynamic>> get conteudo => _respostas;
+  List<Map<String, dynamic>> get conteudo => _respostasPhishing;
   List<Map<String, dynamic>> get conteudoNP => _respostasNaoPhishing;
 
   List<int> get indexSorteados => screensShown;

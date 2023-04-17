@@ -14,49 +14,50 @@ class WappScreen16 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-          floatingActionButton: FloatingActionButton(
-            child: const Icon(Icons.add),
-            onPressed: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: ((context) => Perguntas())));
-            },
-          ),
-        backgroundColor: Colors.black,
-            appBar: AppBar(
-              backgroundColor: Colors.black,
-              elevation: 0,
-              title: const Text(
-                "Game Phishing",
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-              ),
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: Scaffold(
+          floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+            floatingActionButton: FloatingActionButton(
+              child: const Icon(Icons.add),
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: ((context) => Perguntas())));
+              },
             ),
-        body: SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 12),  
-            child: Column(
-              children: [
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-                  child: Stack(
-                    children: [          
-                      WappBackGround(),
-                      WappBlock(), 
-                      WappHeader(contato: "+55 64 99429-6592",imageWapp: 'images/homem.jpg',),
-                      chatWapp(),
-                      WappSender(),     
-                    ],
-                  ),
+          backgroundColor: Colors.black,
+              appBar: AppBar(
+                backgroundColor: Colors.black,
+                elevation: 0,
+                title: const Text(
+                  "Game Phishing",
+                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                 ),
-              ],
+              ),
+          body: SingleChildScrollView(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 12),  
+              child: Column(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                    child: Stack(
+                      children: [          
+                        WappBackGround(),
+                        WappBlock(), 
+                        WappHeader(contato: "+55 64 99429-6592",imageWapp: 'images/homem.jpg',),
+                        chatWapp(),
+                        WappSender(),     
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
-      ),
     );  
   }
 }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:phishing_game_project/Widgets/sms_body/smsBody.dart';
-import 'package:phishing_game_project/Widgets/sms_header/smsHeader.dart';
 import '../../Widgets/sms_body/smsSender.dart';
 import '../../page/perguntas.dart';
 
@@ -13,47 +12,48 @@ class SmsScreen8 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-          floatingActionButton: FloatingActionButton(
-            child: const Icon(Icons.add),
-            onPressed: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: ((context) => Perguntas())));
-            },
-          ),
-        backgroundColor: Colors.black,
-            appBar: AppBar(
-              backgroundColor: Colors.black,
-              elevation: 0,
-              title: const Text(
-                "Game Phishing",
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: Scaffold(
+          floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+            floatingActionButton: FloatingActionButton(
+              child: const Icon(Icons.add),
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: ((context) => Perguntas())));
+              },
+            ),
+          backgroundColor: Colors.black,
+              appBar: AppBar(
+                backgroundColor: Colors.black,
+                elevation: 0,
+                title: const Text(
+                  "Game Phishing",
+                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                ),
+              ),
+          body: SingleChildScrollView(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 12),  
+              child: Column(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                    child: Stack(
+                      children: [ 
+                // SmsHeader(contato: 'Claro',),
+                chatSms(),
+                SmsBackGround(),
+                SmsSender(),
+                      ],
+                    ),
+                  ),
+                ],
               ),
             ),
-        body: SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 12),  
-            child: Column(
-              children: [
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-                  child: Stack(
-                    children: [ 
-              SmsHeader(contato: 'Claro',),
-              chatSms(),
-              SmsBackGround(),
-              SmsSender(),
-                    ],
-                  ),
-                ),
-              ],
-            ),
           ),
-        ),
       ),
     );  
   }

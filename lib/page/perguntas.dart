@@ -1,16 +1,6 @@
 import 'dart:math';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:phishing_game_project/Home.dart';
-import 'package:phishing_game_project/Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen16.dart';
-import 'package:phishing_game_project/Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen2.dart';
-import 'package:phishing_game_project/Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen3.dart';
-import 'package:phishing_game_project/Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen4.dart';
-import 'package:phishing_game_project/Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen5.dart';
-import 'package:phishing_game_project/Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen6.dart';
-import 'package:phishing_game_project/models/cronometro.dart';
 import 'package:phishing_game_project/page/fim.dart';
-import '../main.dart';
 import '../models/guardaRespostas.dart';
 import '../services/firebase_crud.dart';
 
@@ -36,7 +26,7 @@ class _PerguntasState extends State<Perguntas> {
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  bool retornar = false;
+  bool retornar = true;
 
   @override
   Widget build(BuildContext context) {
@@ -44,8 +34,14 @@ class _PerguntasState extends State<Perguntas> {
 
     return WillPopScope(
       onWillPop: () async {
-        
-        return false;
+        if (retornar == true) {
+          Navigator.of(context).pop();
+          setState(() {
+            retornar = false;
+          });
+        }
+
+        return retornar;
       },
       child: Scaffold(
         appBar: AppBar(
@@ -154,18 +150,15 @@ class _PerguntasState extends State<Perguntas> {
                                       ),
                                       onPressed: () async {
                                         if (_formKey.currentState!.validate()) {
-                                          GuardaRespostas lista =
-                                              GuardaRespostas();
-                                          if (lista.numTelasMostradas == 9) {
+                                          GuardaRespostas lista = GuardaRespostas();
+                                          if (_counter == 10) {
                                             await FirebaseCrud.addRespostaECadastro();
                                             print('Redirecionando para a tela Finalizado');
                                             Navigator.pushReplacement(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      Finalizado()),
-                                            );
-                                          } else if (lista.tamanhoEP <= 4) {
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) => Finalizado()));
+                                          } else if (_counter <= 4) {
                                             int randomIndex = Random().nextInt(lista.telas.length);
                                             while (lista.indexSorteados.contains(randomIndex)) {
                                               randomIndex = Random().nextInt(lista.telas.length);
@@ -181,32 +174,25 @@ class _PerguntasState extends State<Perguntas> {
                                                 context,
                                                 MaterialPageRoute(
                                                     builder:
-                                                        (BuildContextcontext) => lista.telas[randomIndex]));
-                                          } else if (lista.tamanhoNP <= 4 &&
-                                              lista.tamanhoEP <= 5) {
-                                            int randomIndex = Random()
-                                                .nextInt(lista.telasNP.length);
-                                            while (lista.indexSorteados
-                                                .contains(randomIndex)) {
+                                                        (BuildContextcontext) =>lista.telas[randomIndex]));
+                                          } else if (_counter < 10 && _counter > 4) {
+                                            int randomIndex = Random().nextInt(lista.telasNP.length);
+                                            while (lista.indexSorteadosNP.contains(randomIndex)) {
                                               randomIndex = Random().nextInt(
                                                   lista.telasNP.length);
                                             }
-                                            lista.indexSorteadosNP
-                                                .add(randomIndex);
+                                            lista.indexSorteadosNP.add(randomIndex);
                                             lista.adicionaNP({
                                               "sim ou não": _selectedOption,
-                                              "Justificativa":
-                                                  _justificativa.text
+                                              "Justificativa": _justificativa.text
                                             });
                                             _incrementCounter();
                                             lista.incrementa();
                                             Navigator.pushReplacement(
                                                 context,
                                                 MaterialPageRoute(
-                                                    builder: (BuildContext
-                                                            context) =>
-                                                        lista.telasNP[
-                                                            randomIndex]));
+                                                    builder:
+                                                        (BuildContextcontext) =>lista.telasNP[randomIndex]));
                                           }
                                         }
                                       }),

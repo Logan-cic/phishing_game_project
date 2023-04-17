@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../../Widgets/wapp_body/wappBlock.dart';
 import '../../Widgets/wapp_body/wappBody.dart';
 import '../../Widgets/wapp_body/wappSender.dart';
 import '../../Widgets/wapp_header/wappHeader.dart';

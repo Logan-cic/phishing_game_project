@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../../Widgets/wapp_body/wappBlock.dart';
 import '../../Widgets/wapp_body/wappBody.dart';
 import '../../Widgets/wapp_body/wappSender.dart';
 import '../../Widgets/wapp_header/wappHeader.dart';
@@ -14,48 +13,49 @@ class WappScreen18 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-          floatingActionButton: FloatingActionButton(
-            child: const Icon(Icons.add),
-            onPressed: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: ((context) => Perguntas())));
-            },
-          ),
-        backgroundColor: Colors.black,
-            appBar: AppBar(
-              backgroundColor: Colors.black,
-              elevation: 0,
-              title: const Text(
-                "Game Phishing",
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-              ),
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: Scaffold(
+          floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+            floatingActionButton: FloatingActionButton(
+              child: const Icon(Icons.add),
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: ((context) => Perguntas())));
+              },
             ),
-        body: SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 12),  
-            child: Column(
-              children: [
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-                  child: Stack(
-                    children: [           
-                      WappBackGround(), 
-                      WappHeader(contato: "Itaú",imageWapp: 'images/itau.png',),
-                      chatWapp(),
-                      WappSender(),     
-                    ],
-                  ),
+          backgroundColor: Colors.black,
+              appBar: AppBar(
+                backgroundColor: Colors.black,
+                elevation: 0,
+                title: const Text(
+                  "Game Phishing",
+                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                 ),
-              ],
+              ),
+          body: SingleChildScrollView(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 12),  
+              child: Column(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                    child: Stack(
+                      children: [           
+                        WappBackGround(), 
+                        WappHeader(contato: "Itaú",imageWapp: 'images/itau.png',),
+                        chatWapp(),
+                        WappSender(),     
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
-      ),
     );  
   }
 }
