@@ -1,16 +1,11 @@
 // ignore_for_file: use_build_context_synchronously
-
+import 'package:simple_month_year_picker/simple_month_year_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:phishing_game_project/Home.dart';
 // import 'package:intl/intl.dart';
 // import 'package:intl/intl.dart';
-import 'package:phishing_game_project/Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen16.dart';
-import 'package:phishing_game_project/Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen2.dart';
 import 'package:phishing_game_project/models/cadastroDoUsuario.dart';
-
-import '../Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen5.dart';
-import '../services/firebase_crud.dart';
 // import 'listpage.dart';
 
 class AddPage extends StatefulWidget {
@@ -87,7 +82,7 @@ class _AddPage extends State<AddPage> {
                               controller: _treinamento,
                               autofocus: true,
                               keyboardType: TextInputType.text,
-                              style: const TextStyle(fontSize: 20),
+                              style: const TextStyle(fontSize:14),
                               validator: (value) {
                                 if (value == null || value.trim().isEmpty) {
                                   return 'This field is required';
@@ -111,7 +106,7 @@ class _AddPage extends State<AddPage> {
                               controller: _areaDeAtuacao,
                               autofocus: true,
                               keyboardType: TextInputType.text,
-                              style: const TextStyle(fontSize: 20),
+                              style: const TextStyle(fontSize: 14),
                               validator: (value) {
                                 if (value == null || value.trim().isEmpty) {
                                   return 'This field is required';
@@ -126,35 +121,36 @@ class _AddPage extends State<AddPage> {
                                   fillColor: Colors.white,
                                   border: OutlineInputBorder(
                                       borderRadius:
-                                          BorderRadius.circular(32)))),
+                                          BorderRadius.circular(32)
+                                )
+                                )
+                            ),
                         ),
                         Padding(
                           padding: EdgeInsets.only(bottom: 8),
                           child: TextFormField(
-                            controller: _date,
-                            decoration: InputDecoration(
-                                hintText: "Data de nascimento",
-                                filled: true,
-                                fillColor: Colors.white,
-                                border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(32))),
-                            onTap: () async {
-                              DateTime? pickeddate = await showDatePicker(
-                                  context: context,
-                                  initialDate: DateTime.now(),
-                                  firstDate: DateTime(1900),
-                                  lastDate: DateTime(2100));
-                              initialDatePickerMode:
-                              DatePickerMode.year;
-
-                              if (pickeddate != null) {
-                                setState(() {
-                                  _date.text =
-                                      DateFormat("yyyy").format(pickeddate);
-                                });
-                              }
-                            },
-                          ),
+                              controller: _date,
+                              autofocus: true,
+                              keyboardType: TextInputType.number,
+                              style: const TextStyle(fontSize: 14),
+                              validator: (value) {
+                                if (value == null || value.trim().isEmpty ) {
+                                  return 'This field is required';
+                                }
+                                return null;
+                              },
+                              decoration: InputDecoration(
+                                  contentPadding:
+                                      EdgeInsets.fromLTRB(32, 16, 32, 16),
+                                  hintText: "Ano de nascimento",
+                                  filled: true,
+                                  fillColor: Colors.white,
+                                  border: OutlineInputBorder(
+                                      borderRadius:
+                                          BorderRadius.circular(32)
+                                )
+                                )
+                            ),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 16, bottom: 10),
@@ -185,7 +181,8 @@ class _AddPage extends State<AddPage> {
 
                                     Usuario dados = Usuario();
                                     dados.setAreaDeAtuacao(_areaDeAtuacao.text);
-                                    dados.setJaFeztreinamentoSobrePhishing(_treinamento.text);
+                                    dados.setJaFeztreinamentoSobrePhishing(
+                                        _treinamento.text);
                                     dados.setAnoDeNascimento(_date.text);
                                     dados.preencheMapDeCadastro();
 
