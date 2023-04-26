@@ -31,6 +31,10 @@ class Usuario {
   setJaFeztreinamentoSobrePhishing(String jaFeztreinamentoSobrePhishing) {
     this.jaFeztreinamentoSobrePhishing = jaFeztreinamentoSobrePhishing;
   }
+
+  novoCadastro() {
+    cadastro.clear();
+  }
 }
 
 // void main(List<String> args) {

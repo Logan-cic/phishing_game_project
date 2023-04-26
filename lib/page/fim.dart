@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:phishing_game_project/Home.dart';
+import 'package:phishing_game_project/models/cadastroDoUsuario.dart';
+import 'package:phishing_game_project/page/addCadastro.dart';
+
+import '../models/guardaRespostas.dart';
+
 class Finalizado extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -7,8 +12,7 @@ class Finalizado extends StatelessWidget {
 
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(
-        ),
+        decoration: BoxDecoration(),
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -43,8 +47,12 @@ class Finalizado extends StatelessWidget {
                     ),
                   ),
                   onPressed: () {
+                    GuardaRespostas limpa = GuardaRespostas();
+                    Usuario novo = Usuario();
+                    limpa.recomecaJogo();
+                    novo.novoCadastro();
                     Navigator.push(context,
-                        MaterialPageRoute(builder: ((context) => Home())));
+                        MaterialPageRoute(builder: ((context) => AddPage())));
                   },
                   child: Text('Voltar'),
                 ),

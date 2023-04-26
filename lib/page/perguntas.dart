@@ -150,23 +150,35 @@ class _PerguntasState extends State<Perguntas> {
                                       ),
                                       onPressed: () async {
                                         if (_formKey.currentState!.validate()) {
-                                          GuardaRespostas lista = GuardaRespostas();
+                                          GuardaRespostas lista =
+                                              GuardaRespostas();
                                           if (_counter == 10) {
-                                            await FirebaseCrud.addRespostaECadastro();
-                                            print('Redirecionando para a tela Finalizado');
+                                            await FirebaseCrud
+                                                .addRespostaECadastro();
+                                            print(
+                                                'Redirecionando para a tela Finalizado');
+                                            setState(() {
+                                              _counter = 0;
+                                            });
                                             Navigator.pushReplacement(
                                                 context,
                                                 MaterialPageRoute(
-                                                    builder: (context) => Finalizado()));
+                                                    builder: (context) =>
+                                                        Finalizado()));
                                           } else if (_counter <= 4) {
-                                            int randomIndex = Random().nextInt(lista.telas.length);
-                                            while (lista.indexSorteados.contains(randomIndex)) {
-                                              randomIndex = Random().nextInt(lista.telas.length);
+                                            int randomIndex = Random()
+                                                .nextInt(lista.telas.length);
+                                            while (lista.indexSorteados
+                                                .contains(randomIndex)) {
+                                              randomIndex = Random()
+                                                  .nextInt(lista.telas.length);
                                             }
-                                            lista.indexSorteados.add(randomIndex);
+                                            lista.indexSorteados
+                                                .add(randomIndex);
                                             lista.adicionaEP({
                                               "sim ou não": _selectedOption,
-                                              "Justificativa": _justificativa.text
+                                              "Justificativa":
+                                                  _justificativa.text
                                             });
                                             _incrementCounter();
                                             lista.incrementa();
@@ -174,17 +186,24 @@ class _PerguntasState extends State<Perguntas> {
                                                 context,
                                                 MaterialPageRoute(
                                                     builder:
-                                                        (BuildContextcontext) =>lista.telas[randomIndex]));
-                                          } else if (_counter < 10 && _counter > 4) {
-                                            int randomIndex = Random().nextInt(lista.telasNP.length);
-                                            while (lista.indexSorteadosNP.contains(randomIndex)) {
+                                                        (BuildContextcontext) =>
+                                                            lista.telas[
+                                                                randomIndex]));
+                                          } else if (_counter < 10 &&
+                                              _counter > 4) {
+                                            int randomIndex = Random()
+                                                .nextInt(lista.telasNP.length);
+                                            while (lista.indexSorteadosNP
+                                                .contains(randomIndex)) {
                                               randomIndex = Random().nextInt(
                                                   lista.telasNP.length);
                                             }
-                                            lista.indexSorteadosNP.add(randomIndex);
+                                            lista.indexSorteadosNP
+                                                .add(randomIndex);
                                             lista.adicionaNP({
                                               "sim ou não": _selectedOption,
-                                              "Justificativa": _justificativa.text
+                                              "Justificativa":
+                                                  _justificativa.text
                                             });
                                             _incrementCounter();
                                             lista.incrementa();
@@ -192,7 +211,9 @@ class _PerguntasState extends State<Perguntas> {
                                                 context,
                                                 MaterialPageRoute(
                                                     builder:
-                                                        (BuildContextcontext) =>lista.telasNP[randomIndex]));
+                                                        (BuildContextcontext) =>
+                                                            lista.telasNP[
+                                                                randomIndex]));
                                           }
                                         }
                                       }),

@@ -58,15 +58,16 @@ class FirebaseCrud {
     GuardaRespostas listaComRespostas = GuardaRespostas();
     Usuario dadosCadastrais = Usuario();
     List<Map<String, dynamic>> dados;
-
+    Cronometro termina = Cronometro();
     DocumentReference documentReferencer = _Collection3.doc();
     // dadosCadastrais.preencheMapDeCadastro();
-
+    termina.parar();
+    var tempo = termina.tempoTotal();
     var respostasDoUsuario = await documentReferencer.set({
-      "Usuario" : dadosCadastrais.conteudoDoCadastro,
+      "Usuario": dadosCadastrais.conteudoDoCadastro,
       "Repostas das telas que sao phishing": listaComRespostas.conteudo,
-      "Repostas das telas que nao sao phishing": listaComRespostas.conteudoNP
+      "Repostas das telas que nao sao phishing": listaComRespostas.conteudoNP,
+      "Tempo gasto para responder" : tempo
     });
   }
-
 }

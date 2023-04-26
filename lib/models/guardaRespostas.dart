@@ -62,6 +62,7 @@ import '../Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen20.dart';
 import '../Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen21.dart';
 import '../Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen7.dart';
 import '../Screens/Whatsapp/WappScreen3.dart';
+
 class GuardaRespostas {
   static int numScreensShown = 0;
   static List<Map<String, dynamic>> _respostas = [];
@@ -70,24 +71,50 @@ class GuardaRespostas {
   static List<int> screensShown = [];
   static List<int> screensShown1 = [];
 
-  static List<Widget> _widgets = 
-  [
-    Screen6(), Screen7(), Screen8(), Screen10(),  
-    WappScreen2(), 
-    WappScreen4(),WappScreen5(),  WappScreen7(),
-    Screen11(), Screen12(),Screen14(),
-    WappScreen16(), WappScreen17(), WappScreen18(), WappScreen19(), 
-    WappScreen20(), SmsScreen2(), 
-    SmsScreen4(), SmsScreen5(), SmsScreen7(),
-    Screen2(), Screen3(), Screen4(), Screen5(),
-    SmsScreen9(),  SmsScreen10(), SmsScreen12(),
-    WappScreen9(), WappScreen10(), WappScreen11(), 
-    WappScreen12(), WappScreen13(), WappScreen14(), WappScreen15(),
-    SmsScreen13(), SmsScreen16(),
-    SmsScreen17(), SmsScreen18(), SmsScreen19(), SmsScreen20(),
+  static List<Widget> _widgets = [
+    Screen6(),
+    Screen7(),
+    Screen8(),
+    Screen10(),
+    WappScreen2(),
+    WappScreen4(),
+    WappScreen5(),
+    WappScreen7(),
+    Screen11(),
+    Screen12(),
+    Screen14(),
+    WappScreen16(),
+    WappScreen17(),
+    WappScreen18(),
+    WappScreen19(),
+    WappScreen20(),
+    SmsScreen2(),
+    SmsScreen4(),
+    SmsScreen5(),
+    SmsScreen7(),
+    Screen2(),
+    Screen3(),
+    Screen4(),
+    Screen5(),
+    SmsScreen9(),
+    SmsScreen10(),
+    SmsScreen12(),
+    WappScreen9(),
+    WappScreen10(),
+    WappScreen11(),
+    WappScreen12(),
+    WappScreen13(),
+    WappScreen14(),
+    WappScreen15(),
+    SmsScreen13(),
+    SmsScreen16(),
+    SmsScreen17(),
+    SmsScreen18(),
+    SmsScreen19(),
+    SmsScreen20(),
   ];
 
-   static List<Widget> _telasDeNaoPhishing= [
+  static List<Widget> _telasDeNaoPhishing = [
     SmsScreen1(),
     SmsScreen3(),
     Screen13(),
@@ -101,9 +128,8 @@ class GuardaRespostas {
     Screen20(),
     Screen21(),
     Screen15()
-   ];
+  ];
 
-  
   adicionaEP(Map<String, dynamic> rpt) {
     _respostasPhishing.add(rpt);
   }
@@ -113,11 +139,16 @@ class GuardaRespostas {
   }
 
   adiciona(Map<String, dynamic> rpt) {
-      _respostas.add(rpt);
+    _respostas.add(rpt);
   }
 
   int incrementa() {
     return numScreensShown++;
+  }
+
+  recomecaJogo() {
+    _respostasPhishing.clear();
+    _respostasNaoPhishing.clear();
   }
 
   int get tamanho => _respostas.length;
@@ -133,5 +164,3 @@ class GuardaRespostas {
   List<Widget> get telas => _widgets;
   List<Widget> get telasNP => _telasDeNaoPhishing;
 }
-
-

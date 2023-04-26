@@ -98,6 +98,8 @@ class _HomeState extends State<Home> {
                 width: screenWidth,
                 child: TextButton(
                   onPressed: () {
+                    Cronometro iniciar = Cronometro();
+
                     GuardaRespostas lista = GuardaRespostas();
                     if (lista.tamanhoEP <= 4) {
                       int randomIndex = Random().nextInt(lista.telas.length);
@@ -105,7 +107,7 @@ class _HomeState extends State<Home> {
                         randomIndex = Random().nextInt(lista.telas.length);
                       }
                       lista.indexSorteados.add(randomIndex);
-
+                      iniciar.iniciar();
                       lista.incrementa();
                       Navigator.pushReplacement(
                           context,
