@@ -85,7 +85,7 @@ class _AddPage extends State<AddPage> {
                               style: const TextStyle(fontSize:14),
                               validator: (value) {
                                 if (value == null || value.trim().isEmpty) {
-                                  return 'This field is required';
+                                  return 'campo obrigatorio';
                                 }
                                 return null;
                               },
@@ -109,7 +109,7 @@ class _AddPage extends State<AddPage> {
                               style: const TextStyle(fontSize: 14),
                               validator: (value) {
                                 if (value == null || value.trim().isEmpty) {
-                                  return 'This field is required';
+                                  return 'campo obrigatorio';
                                 }
                                 return null;
                               },
@@ -134,8 +134,8 @@ class _AddPage extends State<AddPage> {
                               keyboardType: TextInputType.number,
                               style: const TextStyle(fontSize: 14),
                               validator: (value) {
-                                if (value == null || value.trim().isEmpty ) {
-                                  return 'This field is required';
+                                if (value == null || value.trim().isEmpty || value == 4 ) {
+                                  return 'campo obrigatorio';
                                 }
                                 return null;
                               },
