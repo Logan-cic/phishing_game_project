@@ -84,7 +84,8 @@ class _AddPage extends State<AddPage> {
                               keyboardType: TextInputType.text,
                               style: const TextStyle(fontSize:14),
                               validator: (value) {
-                                if (value == null || value.trim().isEmpty) {
+                                // List<String> opcoesAceitas = ["Sim", "sim", "Nao","Não", "não", "nao"];
+                                if (value == null ||  value.trim().isEmpty) {
                                   return 'campo obrigatorio';
                                 }
                                 return null;
@@ -134,8 +135,9 @@ class _AddPage extends State<AddPage> {
                               keyboardType: TextInputType.number,
                               style: const TextStyle(fontSize: 14),
                               validator: (value) {
-                                if (value == null || value.trim().isEmpty || value == 4 ) {
-                                  return 'campo obrigatorio';
+                                var teste = "0000";
+                                if (value == null || value.length != teste.length) {
+                                  return 'Campo vazio ou ano inválido';
                                 }
                                 return null;
                               },
