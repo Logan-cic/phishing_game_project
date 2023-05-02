@@ -84,9 +84,9 @@ class _AddPage extends State<AddPage> {
                               keyboardType: TextInputType.text,
                               style: const TextStyle(fontSize:14),
                               validator: (value) {
-                                // List<String> opcoesAceitas = ["Sim", "sim", "Nao","Não", "não", "nao"];
-                                if (value == null ||  value.trim().isEmpty) {
-                                  return 'campo obrigatorio';
+                                List<String> opcoesAceitas = ["Sim", "sim", "Não", "não", "nao", "Nao"];
+                                if (value == null || !opcoesAceitas.contains(value.trim())) {
+                                  return 'Opção inválida. Digite "Sim" ou "Não".';
                                 }
                                 return null;
                               },
@@ -135,8 +135,8 @@ class _AddPage extends State<AddPage> {
                               keyboardType: TextInputType.number,
                               style: const TextStyle(fontSize: 14),
                               validator: (value) {
-                                var teste = "0000";
-                                if (value == null || value.length != teste.length) {
+                                RegExp regex = RegExp(r'^\d{4}$');
+                                if (value == null || !regex.hasMatch(value.toString())) {
                                   return 'Campo vazio ou ano inválido';
                                 }
                                 return null;

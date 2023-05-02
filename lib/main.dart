@@ -14,7 +14,6 @@ void main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // ignore: prefer_const_constructors
     return MaterialApp(
       title: 'Game Phishing',
       debugShowCheckedModeBanner: false,
