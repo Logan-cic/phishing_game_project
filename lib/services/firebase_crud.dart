@@ -62,12 +62,13 @@ class FirebaseCrud {
     DocumentReference documentReferencer = _Collection3.doc();
     // dadosCadastrais.preencheMapDeCadastro();
     termina.parar();
+    print("enviou");
     var tempo = termina.tempoTotal();
     var respostasDoUsuario = await documentReferencer.set({
       "Usuario": dadosCadastrais.conteudoDoCadastro,
       "Repostas das telas que sao phishing": listaComRespostas.conteudo,
       "Repostas das telas que nao sao phishing": listaComRespostas.conteudoNP,
-      "Tempo gasto para responder" : tempo
+      "Tempo gasto para responder": tempo
     });
   }
 }

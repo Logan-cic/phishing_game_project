@@ -6,6 +6,7 @@ import 'package:phishing_game_project/models/cronometro.dart';
 import 'package:phishing_game_project/page/fim.dart';
 import 'package:phishing_game_project/services/firebase_crud.dart';
 
+import 'models/Sorteador.dart';
 import 'models/guardaRespostas.dart';
 import 'page/addCadastro.dart';
 // // import 'package:phishing_game_project/Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen1.dart';
@@ -99,9 +100,9 @@ class _HomeState extends State<Home> {
                 child: TextButton(
                   onPressed: () {
                     Cronometro iniciar = Cronometro();
-
+                    int numerosDaVez = Sorteador.sortear();
                     GuardaRespostas lista = GuardaRespostas();
-                    if (lista.tamanhoEP <= 4) {
+                    if ((numerosDaVez % 2) == 1) {
                       int randomIndex = Random().nextInt(lista.telas.length);
                       while (lista.indexSorteados.contains(randomIndex)) {
                         randomIndex = Random().nextInt(lista.telas.length);
@@ -112,8 +113,20 @@ class _HomeState extends State<Home> {
                       Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                              builder: (BuildContextcontext) =>
-                                  lista.telas[randomIndex]));
+                              builder: (BuildContextcontext) =>lista.telas[randomIndex]));
+                    } else if((numerosDaVez % 2) == 1) {
+                      int randomIndex = Random().nextInt(lista.telasNP.length);
+                      while (lista.indexSorteadosNP.contains(randomIndex)) {
+                      randomIndex = Random().nextInt(lista.telasNP.length);
+                      }
+                      lista.indexSorteadosNP.add(randomIndex);
+                      iniciar.iniciar();
+                      lista.incrementa();
+                      Navigator.pushReplacement(
+                      context,
+                        MaterialPageRoute(
+                          builder:
+                                (BuildContextcontext) =>lista.telasNP[ randomIndex]));
                     }
                   },
                   style: ElevatedButton.styleFrom(

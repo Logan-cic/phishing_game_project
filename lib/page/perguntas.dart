@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:phishing_game_project/page/fim.dart';
+import '../models/Sorteador.dart';
 import '../models/guardaRespostas.dart';
 import '../services/firebase_crud.dart';
 
@@ -16,12 +17,36 @@ class _PerguntasState extends State<Perguntas> {
   // SimOuNao simOuNao = SimOuNao.padrao;
   GuardaRespostas contador = GuardaRespostas();
 
-  String? _selectedOption;
+  String _selectedOption = "";
 
   void _incrementCounter() {
     setState(() {
       _counter++;
     });
+  }
+
+  List<int> numerosPares = [2, 4, 6, 8, 10, 12, 14, 16, 18, 20];
+
+  List<int> numerosImpares = [1, 3, 5, 7, 9, 11, 13, 15, 17, 19];
+
+  static List<int> numerosParesSorteados = [];
+  static List<int> numerosImparesSorteados = [];
+  static List<int> numeros = [];
+
+  int sorteador() {
+    int numeroSorteado = Random().nextInt(20) + 1;
+    while (numeros.contains(numeroSorteado)) {
+      numeroSorteado = Random().nextInt(20) + 1;
+    }
+    if ((numeroSorteado % 2) == 0 && numerosParesSorteados.length <= 4) {
+      numeros.add(numeroSorteado);
+      return numeroSorteado;
+    }
+    else if ((numeroSorteado % 2) == 1 && numerosImparesSorteados.length <= 4) {
+      numeros.add(numeroSorteado);
+      return numeroSorteado;
+    }
+    return numeroSorteado;
   }
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -106,7 +131,9 @@ class _PerguntasState extends State<Perguntas> {
                                 ),
                                 Text('Não'),
                               ],
+                              
                             ),
+                            
                             Padding(
                               padding: EdgeInsets.only(bottom: 8),
                               child: TextFormField(
@@ -150,35 +177,32 @@ class _PerguntasState extends State<Perguntas> {
                                       ),
                                       onPressed: () async {
                                         if (_formKey.currentState!.validate()) {
-                                          GuardaRespostas lista =
-                                              GuardaRespostas();
+                                          GuardaRespostas lista = GuardaRespostas();
+                                          int numerosDaVez = Sorteador.sortear();
+
+                                    
+                                          print(" ESSE É O NUMERO DA VEZ $numerosDaVez");
                                           if (_counter == 10) {
-                                            await FirebaseCrud
-                                                .addRespostaECadastro();
-                                            print(
-                                                'Redirecionando para a tela Finalizado');
+                                            await FirebaseCrud.addRespostaECadastro();
+                                            print('Redirecionando para a tela Finalizado');
                                             setState(() {
                                               _counter = 0;
                                             });
+                                            Sorteador.lista = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,13,14];
+
                                             Navigator.pushReplacement(
                                                 context,
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        Finalizado()));
-                                          } else if (_counter <= 4) {
-                                            int randomIndex = Random()
-                                                .nextInt(lista.telas.length);
-                                            while (lista.indexSorteados
-                                                .contains(randomIndex)) {
-                                              randomIndex = Random()
-                                                  .nextInt(lista.telas.length);
+                                                MaterialPageRoute(builder: (context) =>Finalizado()));
+                                                
+                                          } else if ((numerosDaVez % 2) == 0) {
+                                            int randomIndex = Random().nextInt(lista.telas.length);
+                                            while (lista.indexSorteados.contains(randomIndex)) {
+                                              randomIndex = Random().nextInt(lista.telas.length);
                                             }
-                                            lista.indexSorteados
-                                                .add(randomIndex);
+                                            lista.indexSorteados.add(randomIndex);
                                             lista.adicionaEP({
                                               "sim ou não": _selectedOption,
-                                              "Justificativa":
-                                                  _justificativa.text
+                                              "Justificativa":_justificativa.text
                                             });
                                             _incrementCounter();
                                             lista.incrementa();
@@ -186,24 +210,17 @@ class _PerguntasState extends State<Perguntas> {
                                                 context,
                                                 MaterialPageRoute(
                                                     builder:
-                                                        (BuildContextcontext) =>
-                                                            lista.telas[
-                                                                randomIndex]));
-                                          } else if (_counter < 10 &&
-                                              _counter > 4) {
-                                            int randomIndex = Random()
-                                                .nextInt(lista.telasNP.length);
-                                            while (lista.indexSorteadosNP
-                                                .contains(randomIndex)) {
-                                              randomIndex = Random().nextInt(
-                                                  lista.telasNP.length);
+                                                        (BuildContextcontext) => lista.telas[randomIndex]));
+                                                        
+                                          } else if ((numerosDaVez % 2) == 1) {
+                                            int randomIndex = Random().nextInt(lista.telasNP.length);
+                                            while (lista.indexSorteadosNP.contains(randomIndex)) {
+                                              randomIndex = Random().nextInt(lista.telasNP.length);
                                             }
-                                            lista.indexSorteadosNP
-                                                .add(randomIndex);
+                                            lista.indexSorteadosNP.add(randomIndex);
                                             lista.adicionaNP({
                                               "sim ou não": _selectedOption,
-                                              "Justificativa":
-                                                  _justificativa.text
+                                              "Justificativa": _justificativa.text
                                             });
                                             _incrementCounter();
                                             lista.incrementa();
@@ -211,12 +228,11 @@ class _PerguntasState extends State<Perguntas> {
                                                 context,
                                                 MaterialPageRoute(
                                                     builder:
-                                                        (BuildContextcontext) =>
-                                                            lista.telasNP[
-                                                                randomIndex]));
+                                                        (BuildContextcontext) =>lista.telasNP[ randomIndex]));
                                           }
                                         }
-                                      }),
+                                      }
+                                    ),
                                 ),
                               ),
                             )

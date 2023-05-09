@@ -1,12 +1,7 @@
-// ignore_for_file: use_build_context_synchronously
-import 'package:simple_month_year_picker/simple_month_year_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:phishing_game_project/Home.dart';
-// import 'package:intl/intl.dart';
-// import 'package:intl/intl.dart';
 import 'package:phishing_game_project/models/cadastroDoUsuario.dart';
-// import 'listpage.dart';
+
 
 class AddPage extends StatefulWidget {
   @override
@@ -84,7 +79,7 @@ class _AddPage extends State<AddPage> {
                               keyboardType: TextInputType.text,
                               style: const TextStyle(fontSize:14),
                               validator: (value) {
-                                List<String> opcoesAceitas = ["Sim", "sim", "Não", "não", "nao", "Nao"];
+                                List<String> opcoesAceitas = ["Sim", "sim", "SIM","NÃO","Não", "não", "nao", "Nao"];
                                 if (value == null || !opcoesAceitas.contains(value.trim())) {
                                   return 'Opção inválida. Digite "Sim" ou "Não".';
                                 }
@@ -183,8 +178,7 @@ class _AddPage extends State<AddPage> {
 
                                     Usuario dados = Usuario();
                                     dados.setAreaDeAtuacao(_areaDeAtuacao.text);
-                                    dados.setJaFeztreinamentoSobrePhishing(
-                                        _treinamento.text);
+                                    dados.setJaFeztreinamentoSobrePhishing( _treinamento.text);
                                     dados.setAnoDeNascimento(_date.text);
                                     dados.preencheMapDeCadastro();
 

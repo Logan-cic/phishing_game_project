@@ -1,7 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-// import 'package:phishing_game_project/page/addCadastro.dart';
-import 'Splash/splash_page.dart';
+import 'package:phishing_game_project/Home.dart';
+import 'package:phishing_game_project/Splash/splash_page.dart';
 
 enum Resposta { sim, nao, padrao }
 
