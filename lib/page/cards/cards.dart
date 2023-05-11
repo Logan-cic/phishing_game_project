@@ -1,9 +1,9 @@
-import 'package:carousel_slider/carousel_controller.dart';
-import 'package:carousel_slider/carousel_slider.dart';
-import 'package:flutter/material.dart';
+import "package:carousel_slider/carousel_controller.dart";
+import "package:carousel_slider/carousel_slider.dart";
+import "package:flutter/material.dart";
 
-import 'package:flutter/material.dart';
-import 'package:carousel_slider/carousel_slider.dart';
+import "package:flutter/material.dart";
+import "package:carousel_slider/carousel_slider.dart";
 
 class Cards extends StatefulWidget {
   @override
@@ -13,17 +13,17 @@ class Cards extends StatefulWidget {
 class _CardsState extends State<Cards> {
   
   List<Image> images = [
-    Image.asset('images/card1.png'),
-    Image.asset('images/card3.png'),
-    Image.asset('images/CARD4.png'),
-    Image.asset('images/CARD5.png'),
-    Image.asset('images/CARD6.png'),
+    Image.asset("images/card1.png"),
+    Image.asset("images/card3.png"),
+    Image.asset("images/CARD4.png"),
+    Image.asset("images/CARD5.png"),
+    Image.asset("images/CARD6.png"),
   ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Carousel Slider'),
+        title: Text("CARDS"),
       ),
       body: Center(
         child: CarouselSlider(
@@ -47,5 +47,3 @@ class _CardsState extends State<Cards> {
     );
   }
 }
-
-

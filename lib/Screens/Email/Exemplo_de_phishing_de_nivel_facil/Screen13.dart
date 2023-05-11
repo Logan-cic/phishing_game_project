@@ -38,7 +38,7 @@ class Screen13 extends StatelessWidget {
                   SenderCard(label: "Disney+"),
                   ShippingInformation(
                       sender: "Disney+",
-                      emailSender: "disneymais@mail.disneymais.com",
+                      emailSender: "disneyPlus@mail.disneymais.com",
                       emailRecipient: "logancardoso4@gamil.com"),
                   Image.asset('images/disney.jpg'),
                   Container(
