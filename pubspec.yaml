@@ -46,6 +46,7 @@ dependencies:
   flutter_localization: ^0.1.10
   simple_month_year_picker: ^1.0.5
   flutter_year_picker: ^0.0.1
+  carousel_slider: ^4.2.1
 
 dev_dependencies:
   flutter_test:

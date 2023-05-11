@@ -182,13 +182,13 @@ class _PerguntasState extends State<Perguntas> {
 
                                     
                                           print(" ESSE É O NUMERO DA VEZ $numerosDaVez");
-                                          if (_counter == 10) {
+                                          if (lista.tamanhoEP == 5 && lista.tamanhoNP == 5) {
                                             await FirebaseCrud.addRespostaECadastro();
                                             print('Redirecionando para a tela Finalizado');
                                             setState(() {
                                               _counter = 0;
                                             });
-                                            Sorteador.lista = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,13,14];
+                                            Sorteador.lista = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
 
                                             Navigator.pushReplacement(
                                                 context,

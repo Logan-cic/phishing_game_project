@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:phishing_game_project/Screens/Email/Exemplo_de_phishing_de_nivel_facil/Screen16.dart';
 import 'package:phishing_game_project/models/cronometro.dart';
+import 'package:phishing_game_project/page/cards/cards.dart';
 import 'package:phishing_game_project/page/fim.dart';
 import 'package:phishing_game_project/services/firebase_crud.dart';
 
@@ -154,7 +155,13 @@ class _HomeState extends State<Home> {
             ),
             ListTile(
               title: const Text('Cards'),
-              onTap: () {},
+              onTap: () {
+                Navigator.pushReplacement(
+                    context,
+                        MaterialPageRoute(
+                          builder:
+                            (BuildContextcontext) => Cards()));
+              },
             ),
             ListTile(
               title: const Text('Contato pra denuncia'),
