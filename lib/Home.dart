@@ -104,6 +104,7 @@ class _HomeState extends State<Home> {
                     int numerosDaVez = Sorteador.sortear();
                     GuardaRespostas lista = GuardaRespostas();
                     if ((numerosDaVez % 2) == 1) {
+                      
                       int randomIndex = Random().nextInt(lista.telas.length);
                       while (lista.indexSorteados.contains(randomIndex)) {
                         randomIndex = Random().nextInt(lista.telas.length);
@@ -116,6 +117,7 @@ class _HomeState extends State<Home> {
                           MaterialPageRoute(
                               builder: (BuildContextcontext) =>lista.telas[randomIndex]));
                     } else if((numerosDaVez % 2) == 1) {
+                     
                       int randomIndex = Random().nextInt(lista.telasNP.length);
                       while (lista.indexSorteadosNP.contains(randomIndex)) {
                       randomIndex = Random().nextInt(lista.telasNP.length);

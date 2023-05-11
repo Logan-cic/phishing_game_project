@@ -18,36 +18,37 @@ class _PerguntasState extends State<Perguntas> {
   GuardaRespostas contador = GuardaRespostas();
 
   String _selectedOption = "";
-
+  static bool par = true;
+  static bool impar = true;
   void _incrementCounter() {
     setState(() {
       _counter++;
     });
   }
 
-  List<int> numerosPares = [2, 4, 6, 8, 10, 12, 14, 16, 18, 20];
+  // List<int> numerosPares = [2, 4, 6, 8, 10, 12, 14, 16, 18, 20];
 
-  List<int> numerosImpares = [1, 3, 5, 7, 9, 11, 13, 15, 17, 19];
+  // List<int> numerosImpares = [1, 3, 5, 7, 9, 11, 13, 15, 17, 19];
 
-  static List<int> numerosParesSorteados = [];
-  static List<int> numerosImparesSorteados = [];
-  static List<int> numeros = [];
+  // static List<int> numerosParesSorteados = [];
+  // static List<int> numerosImparesSorteados = [];
+  // static List<int> numeros = [];
 
-  int sorteador() {
-    int numeroSorteado = Random().nextInt(20) + 1;
-    while (numeros.contains(numeroSorteado)) {
-      numeroSorteado = Random().nextInt(20) + 1;
-    }
-    if ((numeroSorteado % 2) == 0 && numerosParesSorteados.length <= 4) {
-      numeros.add(numeroSorteado);
-      return numeroSorteado;
-    }
-    else if ((numeroSorteado % 2) == 1 && numerosImparesSorteados.length <= 4) {
-      numeros.add(numeroSorteado);
-      return numeroSorteado;
-    }
-    return numeroSorteado;
-  }
+  // int sorteador() {
+  //   int numeroSorteado = Random().nextInt(20) + 1;
+  //   while (numeros.contains(numeroSorteado)) {
+  //     numeroSorteado = Random().nextInt(20) + 1;
+  //   }
+  //   if ((numeroSorteado % 2) == 0 && numerosParesSorteados.length <= 4) {
+  //     numeros.add(numeroSorteado);
+  //     return numeroSorteado;
+  //   }
+  //   else if ((numeroSorteado % 2) == 1 && numerosImparesSorteados.length <= 4) {
+  //     numeros.add(numeroSorteado);
+  //     return numeroSorteado;
+  //   }
+  //   return numeroSorteado;
+  // }
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -177,24 +178,31 @@ class _PerguntasState extends State<Perguntas> {
                                       ),
                                       onPressed: () async {
                                         if (_formKey.currentState!.validate()) {
+                                            
                                           GuardaRespostas lista = GuardaRespostas();
                                           int numerosDaVez = Sorteador.sortear();
 
                                     
                                           print(" ESSE É O NUMERO DA VEZ $numerosDaVez");
-                                          if (lista.tamanhoEP == 5 && lista.tamanhoNP == 5) {
+                                          if (_counter == 10) {
                                             await FirebaseCrud.addRespostaECadastro();
                                             print('Redirecionando para a tela Finalizado');
                                             setState(() {
                                               _counter = 0;
                                             });
-                                            Sorteador.lista = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
-
-                                            Navigator.pushReplacement(
+                                            setState(() {
+                                                par =  true;
+                                              });
+                                            setState(() {
+                                                impar =  true;
+                                              });
+                                           
+                                            Navigator.pushReplacement(              
                                                 context,
                                                 MaterialPageRoute(builder: (context) =>Finalizado()));
                                                 
-                                          } else if ((numerosDaVez % 2) == 0) {
+                                          } else if ((numerosDaVez % 2) == 0 && lista.tamanhoEP < 6 && par == true) {
+                                            
                                             int randomIndex = Random().nextInt(lista.telas.length);
                                             while (lista.indexSorteados.contains(randomIndex)) {
                                               randomIndex = Random().nextInt(lista.telas.length);
@@ -204,15 +212,19 @@ class _PerguntasState extends State<Perguntas> {
                                               "sim ou não": _selectedOption,
                                               "Justificativa":_justificativa.text
                                             });
+                                            if(lista.tamanhoEP == 5 ){
+                                              setState(() {
+                                                par =  false;
+                                              });
+                                            }
                                             _incrementCounter();
                                             lista.incrementa();
                                             Navigator.pushReplacement(
                                                 context,
                                                 MaterialPageRoute(
                                                     builder:
-                                                        (BuildContextcontext) => lista.telas[randomIndex]));
-                                                        
-                                          } else if ((numerosDaVez % 2) == 1) {
+                                                        (BuildContextcontext) => lista.telas[randomIndex]));                                                
+                                          } else if ((numerosDaVez % 2) == 1 && lista.tamanhoNP < 6 && impar == true) {
                                             int randomIndex = Random().nextInt(lista.telasNP.length);
                                             while (lista.indexSorteadosNP.contains(randomIndex)) {
                                               randomIndex = Random().nextInt(lista.telasNP.length);
@@ -222,6 +234,11 @@ class _PerguntasState extends State<Perguntas> {
                                               "sim ou não": _selectedOption,
                                               "Justificativa": _justificativa.text
                                             });
+                                            if(lista.tamanhoNP == 5 ){
+                                              setState(() {
+                                                impar = false;
+                                              });
+                                            }
                                             _incrementCounter();
                                             lista.incrementa();
                                             Navigator.pushReplacement(
