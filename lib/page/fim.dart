@@ -36,6 +36,20 @@ class Finalizado extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
               SizedBox(height: 16.0),
+
+                            Text(
+                "Você Acertou X de Y",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 24.0,
+                  fontWeight: FontWeight.bold,
+                ),
+                textAlign: TextAlign.center,
+              ),
+
+              SizedBox(height: 16.0),
+
+
               Container(
                 width: screenWidth,
                 child: ElevatedButton(

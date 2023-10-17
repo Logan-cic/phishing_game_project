@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
 import 'package:phishing_game_project/models/cadastroDoUsuario.dart';
 import 'package:phishing_game_project/models/cronometro.dart';
 import 'package:phishing_game_project/models/guardaRespostas.dart';
@@ -60,7 +59,6 @@ class FirebaseCrud {
     List<Map<String, dynamic>> dados;
     Cronometro termina = Cronometro();
     DocumentReference documentReferencer = _Collection3.doc();
-    // dadosCadastrais.preencheMapDeCadastro();
     termina.parar();
     print("enviou");
     var tempo = termina.tempoTotal();

@@ -25,17 +25,3 @@ class Sorteador {
   }
   
 }
-
-// void main() {
-//   Sorteador sorteador = Sorteador();
-//   // for (int i = 0; i <= 9; i++) {
-//   //     print(Sorteador.conteudo);
-//   //     int numeroSorteado = Sorteador.sortear();
-//   //     print("O numero é o: $numeroSorteado");
-//   //     print(Sorteador.conteudo);
-//   //     print(Sorteador.tamanho);
-  
-//   // }
-//       print(Sorteador.conteudo.length);
-
-// }

@@ -17,7 +17,6 @@ class Usuario {
       "anoDeNascimento": anoDeNascimentoDoUsuario,
       "jaFeztreinamentoSobrePhishing": usuarioFezTreinamentoSobrePhishing
     });
-    // print(cadastro);
   }
 
   setAreaDeAtuacao(String areaDeAtuacao) {
@@ -36,12 +35,3 @@ class Usuario {
     cadastro.clear();
   }
 }
-
-// void main(List<String> args) {
-//   Usuario teste = Usuario();
-//   teste.setAreaDeAtuacao("areaDeAtuacao");
-//   teste.setAnoDeNascimento("anoDeNascimento");
-//   teste.setJaFeztreinamentoSobrePhishing("jaFeztreinamentoSobrePhishing");
-//   teste.preencheMapDeCadastro();
-//   print(teste.conteudoDoCadastro);
-// }

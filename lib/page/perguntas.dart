@@ -13,42 +13,26 @@ class Perguntas extends StatefulWidget {
 
 class _PerguntasState extends State<Perguntas> {
   static int _counter = 0;
+  static int _contadorAcertos = 0;
+
   final _justificativa = TextEditingController();
-  // SimOuNao simOuNao = SimOuNao.padrao;
   GuardaRespostas contador = GuardaRespostas();
 
   String _selectedOption = "";
   static bool par = true;
   static bool impar = true;
+
   void _incrementCounter() {
     setState(() {
       _counter++;
     });
   }
 
-  // List<int> numerosPares = [2, 4, 6, 8, 10, 12, 14, 16, 18, 20];
-
-  // List<int> numerosImpares = [1, 3, 5, 7, 9, 11, 13, 15, 17, 19];
-
-  // static List<int> numerosParesSorteados = [];
-  // static List<int> numerosImparesSorteados = [];
-  // static List<int> numeros = [];
-
-  // int sorteador() {
-  //   int numeroSorteado = Random().nextInt(20) + 1;
-  //   while (numeros.contains(numeroSorteado)) {
-  //     numeroSorteado = Random().nextInt(20) + 1;
-  //   }
-  //   if ((numeroSorteado % 2) == 0 && numerosParesSorteados.length <= 4) {
-  //     numeros.add(numeroSorteado);
-  //     return numeroSorteado;
-  //   }
-  //   else if ((numeroSorteado % 2) == 1 && numerosImparesSorteados.length <= 4) {
-  //     numeros.add(numeroSorteado);
-  //     return numeroSorteado;
-  //   }
-  //   return numeroSorteado;
-  // }
+  void _contagemAcertos() {
+    setState(() {
+      _contadorAcertos++;
+    });
+  }
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -132,9 +116,7 @@ class _PerguntasState extends State<Perguntas> {
                                 ),
                                 Text('Não'),
                               ],
-                              
                             ),
-                            
                             Padding(
                               padding: EdgeInsets.only(bottom: 8),
                               child: TextFormField(
@@ -178,43 +160,61 @@ class _PerguntasState extends State<Perguntas> {
                                       ),
                                       onPressed: () async {
                                         if (_formKey.currentState!.validate()) {
-                                            
-                                          GuardaRespostas lista = GuardaRespostas();
-                                          int numerosDaVez = Sorteador.sortear();
+                                          GuardaRespostas lista =
+                                              GuardaRespostas();
+                                          int numerosDaVez =
+                                              Sorteador.sortear();
 
-                                    
-                                          print(" ESSE É O NUMERO DA VEZ $numerosDaVez");
+                                          print(
+                                              " ESSE É O NUMERO DA VEZ $numerosDaVez");
                                           if (_counter == 10) {
-                                            await FirebaseCrud.addRespostaECadastro();
-                                            print('Redirecionando para a tela Finalizado');
+                                            await FirebaseCrud
+                                                .addRespostaECadastro();
+                                            print(
+                                                'Redirecionando para a tela Finalizado');
                                             setState(() {
                                               _counter = 0;
                                             });
                                             setState(() {
-                                                par =  true;
-                                              });
+                                              par = true;
+                                            });
                                             setState(() {
-                                                impar =  true;
-                                              });
-                                           
-                                            Navigator.pushReplacement(              
+                                              impar = true;
+                                            });
+
+                                            Navigator.pushReplacement(
                                                 context,
-                                                MaterialPageRoute(builder: (context) =>Finalizado()));
-                                                
-                                          } else if ((numerosDaVez % 2) == 0 && lista.tamanhoEP < 6 && par == true) {
-                                            
-                                            int randomIndex = Random().nextInt(lista.telas.length);
-                                            while (lista.indexSorteados.contains(randomIndex)) {
-                                              randomIndex = Random().nextInt(lista.telas.length);
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        Finalizado()));
+                                          } else if ((numerosDaVez % 2) == 0 &&
+                                              lista.tamanhoEP < 6 &&
+                                              par == true) {
+                                            int randomIndex = Random()
+                                                .nextInt(lista.telas.length);
+                                            while (lista.indexSorteados
+                                                .contains(randomIndex)) {
+                                              randomIndex = Random()
+                                                  .nextInt(lista.telas.length);
                                             }
-                                            lista.indexSorteados.add(randomIndex);
+                                            lista.indexSorteados
+                                                .add(randomIndex);
                                             lista.adicionaEP({
                                               "sim ou não": _selectedOption,
-                                              "Justificativa":_justificativa.text
+                                              "Justificativa":
+                                                  _justificativa.text
                                             });
-                                            if(lista.tamanhoEP == 5 ){
+
+                                            //verificar se a resposta é correta o não
+                                            if (_selectedOption == "sim") {
+                                              _contagemAcertos();
+
+                                              print("Esse foi o teste de acertos $_contadorAcertos");
+                                            }
+
+                                            if (lista.tamanhoEP == 5) {
                                               setState(() {
-                                                par =  false;
+                                                par = false;
                                               });
                                             }
                                             _incrementCounter();
@@ -223,18 +223,36 @@ class _PerguntasState extends State<Perguntas> {
                                                 context,
                                                 MaterialPageRoute(
                                                     builder:
-                                                        (BuildContextcontext) => lista.telas[randomIndex]));                                                
-                                          } else if ((numerosDaVez % 2) == 1 && lista.tamanhoNP < 6 && impar == true) {
-                                            int randomIndex = Random().nextInt(lista.telasNP.length);
-                                            while (lista.indexSorteadosNP.contains(randomIndex)) {
-                                              randomIndex = Random().nextInt(lista.telasNP.length);
+                                                        (BuildContextcontext) =>
+                                                            lista.telas[
+                                                                randomIndex]));
+                                          } else if ((numerosDaVez % 2) == 1 &&
+                                              lista.tamanhoNP < 6 &&
+                                              impar == true) {
+                                            int randomIndex = Random()
+                                                .nextInt(lista.telasNP.length);
+                                            while (lista.indexSorteadosNP
+                                                .contains(randomIndex)) {
+                                              randomIndex = Random().nextInt(
+                                                  lista.telasNP.length);
                                             }
-                                            lista.indexSorteadosNP.add(randomIndex);
+                                            lista.indexSorteadosNP
+                                                .add(randomIndex);
                                             lista.adicionaNP({
                                               "sim ou não": _selectedOption,
-                                              "Justificativa": _justificativa.text
+                                              "Justificativa":
+                                                  _justificativa.text
                                             });
-                                            if(lista.tamanhoNP == 5 ){
+
+                                            //verificar se a resposta é correta o não
+                                            if (_selectedOption == "não") {
+                                              _contagemAcertos();
+
+                                              print("Esse foi o teste de acertos $_contadorAcertos");
+                                            }
+
+
+                                            if (lista.tamanhoNP == 5) {
                                               setState(() {
                                                 impar = false;
                                               });
@@ -245,11 +263,12 @@ class _PerguntasState extends State<Perguntas> {
                                                 context,
                                                 MaterialPageRoute(
                                                     builder:
-                                                        (BuildContextcontext) =>lista.telasNP[ randomIndex]));
+                                                        (BuildContextcontext) =>
+                                                            lista.telasNP[
+                                                                randomIndex]));
                                           }
                                         }
-                                      }
-                                    ),
+                                      }),
                                 ),
                               ),
                             )

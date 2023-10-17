@@ -57,6 +57,9 @@ class GuardaRespostas {
   static int numScreensShown = 0;
   static List<Map<String, dynamic>> _respostasPhishing = [];
   static List<Map<String, dynamic>> _respostasNaoPhishing = [];
+
+  static List<dynamic> _acertos = [];
+
   static List<int> screensShown = [];
   static List<int> screensShown1 = [];
 
@@ -119,6 +122,10 @@ class GuardaRespostas {
     Screen15()
   ];
 
+  adcionaAcerto(String value) {
+    _acertos.add(value);
+  }
+
   adicionaEP(Map<String, dynamic> rpt) {
     _respostasPhishing.add(rpt);
   }
@@ -126,8 +133,6 @@ class GuardaRespostas {
   adicionaNP(Map<String, dynamic> rpt) {
     _respostasNaoPhishing.add(rpt);
   }
-
-
 
   int incrementa() {
     return numScreensShown++;
@@ -138,9 +143,10 @@ class GuardaRespostas {
     _respostasNaoPhishing.clear();
   }
 
-
   int get tamanhoEP => _respostasPhishing.length;
   int get tamanhoNP => _respostasNaoPhishing.length;
+
+  int get qtdAcertos => _acertos.length;
 
   int get numTelasMostradas => numScreensShown;
   List<Map<String, dynamic>> get conteudo => _respostasPhishing;
