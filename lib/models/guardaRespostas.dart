@@ -57,8 +57,7 @@ class GuardaRespostas {
   static int numScreensShown = 0;
   static List<Map<String, dynamic>> _respostasPhishing = [];
   static List<Map<String, dynamic>> _respostasNaoPhishing = [];
-
-  static List<dynamic> _acertos = [];
+  static int acertos = 0;
 
   static List<int> screensShown = [];
   static List<int> screensShown1 = [];
@@ -122,10 +121,6 @@ class GuardaRespostas {
     Screen15()
   ];
 
-  adcionaAcerto(String value) {
-    _acertos.add(value);
-  }
-
   adicionaEP(Map<String, dynamic> rpt) {
     _respostasPhishing.add(rpt);
   }
@@ -146,8 +141,6 @@ class GuardaRespostas {
   int get tamanhoEP => _respostasPhishing.length;
   int get tamanhoNP => _respostasNaoPhishing.length;
 
-  int get qtdAcertos => _acertos.length;
-
   int get numTelasMostradas => numScreensShown;
   List<Map<String, dynamic>> get conteudo => _respostasPhishing;
   List<Map<String, dynamic>> get conteudoNP => _respostasNaoPhishing;
@@ -156,4 +149,21 @@ class GuardaRespostas {
   List<int> get indexSorteadosNP => screensShown1;
   List<Widget> get telas => _widgets;
   List<Widget> get telasNP => _telasDeNaoPhishing;
+
+  void set quantidadeAcertos(int value) {
+    acertos = value;
+  }
+
+  int get retornaQtdAcertos => acertos;
+}
+
+void main(List<String> args) {
+  GuardaRespostas teste = GuardaRespostas();
+
+  print(teste.retornaQtdAcertos); // Acesse o método como uma propriedade
+
+  // Você pode atribuir um novo valor da seguinte maneira:
+  teste.quantidadeAcertos = 234; // Defina a propriedade com um novo valor
+
+  print(teste.retornaQtdAcertos); // Agora, imprime o novo valor
 }

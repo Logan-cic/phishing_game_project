@@ -9,6 +9,10 @@ class Finalizado extends StatelessWidget {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
 
+    GuardaRespostas acertos = GuardaRespostas();
+
+    int? qtdAcertos = acertos.retornaQtdAcertos;
+
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(),
@@ -36,9 +40,8 @@ class Finalizado extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
               SizedBox(height: 16.0),
-
-                            Text(
-                "Você Acertou X de Y",
+              Text(
+                "Você Acertou ${qtdAcertos} de 10",
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 24.0,
@@ -46,10 +49,7 @@ class Finalizado extends StatelessWidget {
                 ),
                 textAlign: TextAlign.center,
               ),
-
               SizedBox(height: 16.0),
-
-
               Container(
                 width: screenWidth,
                 child: ElevatedButton(

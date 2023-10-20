@@ -172,6 +172,7 @@ class _PerguntasState extends State<Perguntas> {
                                                 .addRespostaECadastro();
                                             print(
                                                 'Redirecionando para a tela Finalizado');
+
                                             setState(() {
                                               _counter = 0;
                                             });
@@ -181,6 +182,8 @@ class _PerguntasState extends State<Perguntas> {
                                             setState(() {
                                               impar = true;
                                             });
+
+                                            lista.quantidadeAcertos = _contadorAcertos;
 
                                             Navigator.pushReplacement(
                                                 context,
@@ -209,7 +212,8 @@ class _PerguntasState extends State<Perguntas> {
                                             if (_selectedOption == "sim") {
                                               _contagemAcertos();
 
-                                              print("Esse foi o teste de acertos $_contadorAcertos");
+                                              print(
+                                                  "Esse foi o teste de acertos $_contadorAcertos");
                                             }
 
                                             if (lista.tamanhoEP == 5) {
@@ -248,9 +252,9 @@ class _PerguntasState extends State<Perguntas> {
                                             if (_selectedOption == "não") {
                                               _contagemAcertos();
 
-                                              print("Esse foi o teste de acertos $_contadorAcertos");
+                                              print(
+                                                  "Esse foi o teste de acertos $_contadorAcertos");
                                             }
-
 
                                             if (lista.tamanhoNP == 5) {
                                               setState(() {

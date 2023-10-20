@@ -5,8 +5,6 @@ import 'package:phishing_game_project/Home.dart';
 import 'package:phishing_game_project/Splash/splash_page.dart';
 import 'package:phishing_game_project/page/fim.dart';
 
-enum Resposta { sim, nao, padrao }
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -19,7 +17,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Game Phishing',
       debugShowCheckedModeBanner: false,
-      home: Finalizado(),
+      home: SplashPage(),
     );
   }
 }
