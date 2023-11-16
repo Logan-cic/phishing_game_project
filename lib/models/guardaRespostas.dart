@@ -156,14 +156,3 @@ class GuardaRespostas {
 
   int get retornaQtdAcertos => acertos;
 }
-
-void main(List<String> args) {
-  GuardaRespostas teste = GuardaRespostas();
-
-  print(teste.retornaQtdAcertos); // Acesse o método como uma propriedade
-
-  // Você pode atribuir um novo valor da seguinte maneira:
-  teste.quantidadeAcertos = 234; // Defina a propriedade com um novo valor
-
-  print(teste.retornaQtdAcertos); // Agora, imprime o novo valor
-}

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:phishing_game_project/Home.dart';
 import 'package:phishing_game_project/models/cadastroDoUsuario.dart';
 
-
 class AddPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -16,6 +15,12 @@ class _AddPage extends State<AddPage> {
   TextEditingController dateInput = TextEditingController();
   TextEditingController _date = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  final dropValue = ValueNotifier(" ");
+
+  String selectedValue = "Onde você está?";
+
+  final dropOpcoes = ["Escola Pública", "Universidade", "Igreja", "Outros"];
 
   @override
   void initState() {
@@ -77,10 +82,20 @@ class _AddPage extends State<AddPage> {
                               controller: _treinamento,
                               autofocus: true,
                               keyboardType: TextInputType.text,
-                              style: const TextStyle(fontSize:14),
+                              style: const TextStyle(fontSize: 14),
                               validator: (value) {
-                                List<String> opcoesAceitas = ["Sim", "sim", "SIM","NÃO","Não", "não", "nao", "Nao"];
-                                if (value == null || !opcoesAceitas.contains(value.trim())) {
+                                List<String> opcoesAceitas = [
+                                  "Sim",
+                                  "sim",
+                                  "SIM",
+                                  "NÃO",
+                                  "Não",
+                                  "não",
+                                  "nao",
+                                  "Nao"
+                                ];
+                                if (value == null ||
+                                    !opcoesAceitas.contains(value.trim())) {
                                   return 'Opção inválida. Digite "Sim" ou "Não".';
                                 }
                                 return null;
@@ -117,11 +132,34 @@ class _AddPage extends State<AddPage> {
                                   fillColor: Colors.white,
                                   border: OutlineInputBorder(
                                       borderRadius:
-                                          BorderRadius.circular(32)
-                                )
-                                )
-                            ),
+                                          BorderRadius.circular(32)))),
                         ),
+                       Padding(
+                            padding: EdgeInsets.only(bottom: 8),
+                            child: DropdownButtonFormField(
+                              isExpanded: true,
+                              decoration: InputDecoration(
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20)
+                              )
+                              ),
+                              hint: Text(selectedValue),
+                              onChanged: (escolha) {
+                                setState(() {
+                                  selectedValue = escolha.toString();
+                                });
+                              },
+                              items: dropOpcoes
+                                  .map(
+                                    (op) => DropdownMenuItem(
+                                      value: op,
+                                      child: Text(op),
+                                    ),
+                                  )
+                                  .toList(),
+                            ),
+                          ),
+                        
                         Padding(
                           padding: EdgeInsets.only(bottom: 8),
                           child: TextFormField(
@@ -131,7 +169,8 @@ class _AddPage extends State<AddPage> {
                               style: const TextStyle(fontSize: 14),
                               validator: (value) {
                                 RegExp regex = RegExp(r'^\d{4}$');
-                                if (value == null || !regex.hasMatch(value.toString())) {
+                                if (value == null ||
+                                    !regex.hasMatch(value.toString())) {
                                   return 'Campo vazio ou ano inválido';
                                 }
                                 return null;
@@ -144,10 +183,7 @@ class _AddPage extends State<AddPage> {
                                   fillColor: Colors.white,
                                   border: OutlineInputBorder(
                                       borderRadius:
-                                          BorderRadius.circular(32)
-                                )
-                                )
-                            ),
+                                          BorderRadius.circular(32)))),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 16, bottom: 10),
@@ -178,7 +214,8 @@ class _AddPage extends State<AddPage> {
 
                                     Usuario dados = Usuario();
                                     dados.setAreaDeAtuacao(_areaDeAtuacao.text);
-                                    dados.setJaFeztreinamentoSobrePhishing( _treinamento.text);
+                                    dados.setJaFeztreinamentoSobrePhishing(
+                                        _treinamento.text);
                                     dados.setAnoDeNascimento(_date.text);
                                     dados.preencheMapDeCadastro();
 
